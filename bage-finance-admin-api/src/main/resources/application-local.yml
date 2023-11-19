@@ -29,3 +29,6 @@ spring:
 logging:
   file:
     name: ../${spring.application.name}/logs/bage-finance-admin-api.log
+
+redisson:
+  address: redis://127.0.0.1:6379

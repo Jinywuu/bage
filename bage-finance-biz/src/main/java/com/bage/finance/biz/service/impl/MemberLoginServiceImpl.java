@@ -92,6 +92,24 @@ public class MemberLoginServiceImpl implements MemberLoginService {
     }
 
     /**
+     * 校验短信验证码
+     *
+     * @param phone
+     * @param smsCode
+     * @param smsCodeType
+     * @return
+     */
+    @Override
+    public boolean checkSmsCode(String phone, String smsCode, String smsCodeType) {
+        SmsCodeResult cacheSmsCode = (SmsCodeResult) redisTemplate.opsForValue().get(RedisKeyConstant.SMS_CODE + smsCodeType + phone);
+        redisTemplate.delete(RedisKeyConstant.SMS_CODE + smsCodeType + phone);
+        if (cacheSmsCode == null || !smsCode.equals(cacheSmsCode.getCode())) {
+            throw new ParameterException("smsCode", "短信证码错误，请重新获取验证码！");
+        }
+        return true;
+    }
+
+    /**
      * 校验图形验证码
      *
      * @param clientId

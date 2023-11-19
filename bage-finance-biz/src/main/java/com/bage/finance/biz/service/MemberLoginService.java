@@ -28,6 +28,16 @@ public interface MemberLoginService {
     void sendSmsCode(GetSmsCodeForm form);
 
     /**
+     * 校验短信验证码
+     *
+     * @param phone
+     * @param smsCode
+     * @param smsCodeType
+     * @return
+     */
+    boolean checkSmsCode(String phone, String smsCode, String smsCodeType);
+
+    /**
      * 校验图形验证码
      *
      * @param clientId
