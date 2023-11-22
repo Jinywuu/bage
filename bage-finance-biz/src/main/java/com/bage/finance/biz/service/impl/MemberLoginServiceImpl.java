@@ -2,24 +2,36 @@ package com.bage.finance.biz.service.impl;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
+import com.bage.common.constant.ApiResponseCode;
+import com.bage.common.dto.TokenResponse;
 import com.bage.common.exception.BizException;
 import com.bage.common.exception.ParameterException;
+import com.bage.common.service.TokenService;
 import com.bage.common.util.DateUtil;
 import com.bage.common.util.MyUtil;
 import com.bage.finance.biz.constant.RedisKeyConstant;
+import com.bage.finance.biz.domain.Member;
 import com.bage.finance.biz.domain.MemberBindPhone;
+import com.bage.finance.biz.dto.AdminDTO;
 import com.bage.finance.biz.dto.form.GetBase64CodeForm;
 import com.bage.finance.biz.dto.form.GetSmsCodeForm;
+import com.bage.finance.biz.dto.form.PhonePasswordLoginForm;
 import com.bage.finance.biz.dto.form.SmsCodeResult;
 import com.bage.finance.biz.enums.SmsCodeTypeEnum;
 import com.bage.finance.biz.service.MemberBindPhoneService;
 import com.bage.finance.biz.service.MemberLoginService;
+import com.bage.finance.biz.service.MemberService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +41,10 @@ import java.util.concurrent.TimeUnit;
 public class MemberLoginServiceImpl implements MemberLoginService {
     final RedisTemplate<String, Object> redisTemplate;
     final MemberBindPhoneService memberBindPhoneService;
+    final MemberService memberService;
+    final PasswordEncoder passwordEncoder;
+    final ObjectMapper jsonMapper;
+    final TokenService<AdminDTO> adminTokenService;
 
     /**
      * 获取客户端id
@@ -124,5 +140,43 @@ public class MemberLoginServiceImpl implements MemberLoginService {
             throw new ParameterException("code", "图形验证码错误！");
         }
         return true;
+    }
+
+
+    /**
+     * 手机账号密码登录
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public TokenResponse phonePasswordLogin(PhonePasswordLoginForm form) {
+        checkBase64Code(form.getClientId(), form.getCode());
+        MemberBindPhone memberBindPhone = memberBindPhoneService.getMemberByPhone(form.getPhone());
+        if (memberBindPhone == null || Strings.isBlank(memberBindPhone.getPassword())) {
+            throw new BizException(ApiResponseCode.ACCOUNT_PASSWORD_ERROR.getCode(),
+                    ApiResponseCode.ACCOUNT_PASSWORD_ERROR.getMessage());
+        }
+        if (!passwordEncoder.matches(form.getPassword(), memberBindPhone.getPassword())) {
+            throw new BizException(ApiResponseCode.ACCOUNT_PASSWORD_ERROR.getCode(),
+                    ApiResponseCode.ACCOUNT_PASSWORD_ERROR.getMessage());
+        }
+        Member member = memberService.get(memberBindPhone.getMemberId());
+        return loginSuccess(memberBindPhone.getMemberId(), member.getTenantId(), member.getSysRoleIds());
+    }
+
+    private TokenResponse loginSuccess(long memberId, long tenantId, String sysRoleIds) {
+        try {
+            AdminDTO adminDTO = new AdminDTO();
+            adminDTO.setId(memberId);
+            adminDTO.setTenantId(tenantId);
+            adminDTO.setSysRoleIds(jsonMapper.readValue(sysRoleIds, new TypeReference<Set<Long>>() {
+            }));
+            adminTokenService.setToken(adminDTO);
+//        redisTemplate.opsForValue().set(RedisKeyConstant.CLIENT_TOKEN_KEY + memberId, adminDTO.getToken(), 10, TimeUnit.MINUTES);
+            return adminDTO.getToken();
+        } catch (Exception ex) {
+            throw new BizException("登录失败", ex);
+        }
     }
 }

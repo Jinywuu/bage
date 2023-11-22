@@ -1,5 +1,7 @@
 package com.bage.finance.biz.service;
 
+import com.bage.finance.biz.domain.Member;
+
 public interface MemberService {
     /**
      * 注册
@@ -7,4 +9,12 @@ public interface MemberService {
      * @return 会员id
      */
     long reg(long tenantId);
+
+    /**
+     * 获取会员信息
+     *
+     * @param id
+     * @return
+     */
+    Member get(long id);
 }

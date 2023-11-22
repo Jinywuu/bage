@@ -28,7 +28,8 @@ public class MemberBindPhoneServiceImpl implements MemberBindPhoneService {
     public MemberBindPhone getMemberByPhone(String phone) {
         MyBatisWrapper<MemberBindPhone> myBatisWrapper = new MyBatisWrapper<>();
         myBatisWrapper.select(MemberId, Phone, Password)
-                .whereBuilder().andEq(setPhone(phone));
+                .whereBuilder().andEq(setPhone(phone))
+                .andEq(setDisable(false));
         // select member_id,phone,password from member_bind_phone where phone = ?
         return memberBindPhoneMapper.topOne(myBatisWrapper);
     }

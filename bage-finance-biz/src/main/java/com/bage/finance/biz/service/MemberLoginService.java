@@ -1,7 +1,9 @@
 package com.bage.finance.biz.service;
 
+import com.bage.common.dto.TokenResponse;
 import com.bage.finance.biz.dto.form.GetBase64CodeForm;
 import com.bage.finance.biz.dto.form.GetSmsCodeForm;
+import com.bage.finance.biz.dto.form.PhonePasswordLoginForm;
 
 public interface MemberLoginService {
     /**
@@ -44,4 +46,12 @@ public interface MemberLoginService {
      * @return
      */
     boolean checkBase64Code(String clientId, String code);
+
+    /**
+     * 手机账号密码登录
+     *
+     * @param form
+     * @return
+     */
+    TokenResponse phonePasswordLogin(PhonePasswordLoginForm form);
 }

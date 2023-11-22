@@ -1,18 +1,17 @@
 package com.bage.finance.admin.api.controller;
 
 import com.bage.common.dto.ApiResponse;
+import com.bage.common.dto.TokenResponse;
 import com.bage.finance.biz.dto.form.GetBase64CodeForm;
 import com.bage.finance.biz.dto.form.GetSmsCodeForm;
+import com.bage.finance.biz.dto.form.PhonePasswordLoginForm;
 import com.bage.finance.biz.service.MemberLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "用户登录模块")
 @RestController
@@ -41,5 +40,12 @@ public class LoginController {
     public ApiResponse<Void> sendSmsCode(@Validated @ModelAttribute GetSmsCodeForm form) {
         memberLoginService.sendSmsCode(form);
         return ApiResponse.success();
+    }
+
+    @ApiOperation(value = "手机密码登录")
+    @PostMapping(value = "/phonePasswordLogin")
+    public ApiResponse<TokenResponse> phonePasswordLogin(@Validated @RequestBody PhonePasswordLoginForm form) {
+        TokenResponse tokenResponse = memberLoginService.phonePasswordLogin(form);
+        return ApiResponse.success(tokenResponse);
     }
 }

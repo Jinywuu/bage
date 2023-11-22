@@ -77,6 +77,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
+     * 业务处理异常
+     *
+     * @return ResponseEntity<ApiResponse>
+     */
+    @ExceptionHandler(LoginException.class)
+    public ResponseEntity<ApiResponse<Object>> apiErrorException(LoginException bizException) {
+        // 返回响应对象
+        ApiResponse<Object> apiResponse = new ApiResponse<>();
+        Map<String, String> errors = new HashMap<>();
+        errors.put(ApiResponseCode.LOGIN_ERROR.getMessage(), bizException.getMessage());
+        apiResponse.error(bizException.getCode(), errors);
+        return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
      * BindException异常处理
      * BindException: 作用于@Validated @Valid 注解
      * 仅对于表单提交参数进行异常处理，对于以json格式提交将会失效

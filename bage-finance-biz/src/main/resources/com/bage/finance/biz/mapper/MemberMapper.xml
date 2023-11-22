@@ -9,16 +9,23 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-    <result column="sys_role_id" jdbcType="INTEGER" property="sysRoleId" />
     <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bage.finance.biz.domain.Member">
+    <result column="sys_role_ids" jdbcType="LONGVARCHAR" property="sysRoleIds" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, nick_name, disable, create_time, update_time, name, avatar_url, sys_role_id, 
-    tenant_id
+    id, nick_name, disable, create_time, update_time, name, avatar_url, tenant_id, email
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    sys_role_ids
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from member
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -32,10 +39,12 @@
     </selectKey>
     insert into member (nick_name, disable, create_time, 
       update_time, name, avatar_url, 
-      sys_role_id, tenant_id)
+      tenant_id, email, sys_role_ids
+      )
     values (#{nickName,jdbcType=VARCHAR}, #{disable,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
-      #{sysRoleId,jdbcType=INTEGER}, #{tenantId,jdbcType=BIGINT})
+      #{tenantId,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{sysRoleIds,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.bage.finance.biz.domain.Member">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -61,11 +70,14 @@
       <if test="avatarUrl != null">
         avatar_url,
       </if>
-      <if test="sysRoleId != null">
-        sys_role_id,
-      </if>
       <if test="tenantId != null">
         tenant_id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sysRoleIds != null">
+        sys_role_ids,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -87,11 +99,14 @@
       <if test="avatarUrl != null">
         #{avatarUrl,jdbcType=VARCHAR},
       </if>
-      <if test="sysRoleId != null">
-        #{sysRoleId,jdbcType=INTEGER},
-      </if>
       <if test="tenantId != null">
         #{tenantId,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRoleIds != null">
+        #{sysRoleIds,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -116,13 +131,29 @@
       <if test="avatarUrl != null">
         avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       </if>
-      <if test="sysRoleId != null">
-        sys_role_id = #{sysRoleId,jdbcType=INTEGER},
-      </if>
       <if test="tenantId != null">
         tenant_id = #{tenantId,jdbcType=BIGINT},
       </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sysRoleIds != null">
+        sys_role_ids = #{sysRoleIds,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bage.finance.biz.domain.Member">
+    update member
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      disable = #{disable,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      tenant_id = #{tenantId,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR},
+      sys_role_ids = #{sysRoleIds,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bage.finance.biz.domain.Member">
@@ -133,8 +164,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       name = #{name,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
-      sys_role_id = #{sysRoleId,jdbcType=INTEGER},
-      tenant_id = #{tenantId,jdbcType=BIGINT}
+      tenant_id = #{tenantId,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="list" parameterType="com.bage.mybatis.help.MyBatisWrapper" resultMap="BaseResultMap">
@@ -372,19 +403,28 @@
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="sys_role_id = case" suffix="end,">
+      <trim prefix="tenant_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.sysRoleId != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.sysRoleId,jdbcType=INTEGER}
+          <if test="item.tenantId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.tenantId,jdbcType=BIGINT}
           </if>
         </foreach>
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="tenant_id = case" suffix="end,">
+      <trim prefix="email = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.tenantId != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.tenantId,jdbcType=BIGINT}
+          <if test="item.email != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+  </trim>
+   <trim prefix="set" suffixOverrides=",">
+      <trim prefix="sys_role_ids = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sysRoleIds != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.sysRoleIds,jdbcType=LONGVARCHAR}
           </if>
         </foreach>
       </trim>

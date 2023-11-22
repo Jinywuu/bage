@@ -19,9 +19,11 @@ public class MemberField {
 
     public static DbField AvatarUrl = new DbField("avatar_url","avatarUrl","VARCHAR","java.lang.String");
 
-    public static DbField SysRoleId = new DbField("sys_role_id","sysRoleId","INTEGER","java.lang.Integer");
-
     public static DbField TenantId = new DbField("tenant_id","tenantId","BIGINT","java.lang.Long");
+
+    public static DbField Email = new DbField("email","email","VARCHAR","java.lang.String");
+
+    public static DbField SysRoleIds = new DbField("sys_role_ids","sysRoleIds","LONGVARCHAR","java.lang.String");
 
     public static FieldResult setId(Long id) {
         return new FieldResult(Id, Collections.singletonList(id));
@@ -51,11 +53,15 @@ public class MemberField {
         return new FieldResult(AvatarUrl, Collections.singletonList(avatarUrl));
     }
 
-    public static FieldResult setSysRoleId(Integer sysRoleId) {
-        return new FieldResult(SysRoleId, Collections.singletonList(sysRoleId));
-    }
-
     public static FieldResult setTenantId(Long tenantId) {
         return new FieldResult(TenantId, Collections.singletonList(tenantId));
+    }
+
+    public static FieldResult setEmail(String email) {
+        return new FieldResult(Email, Collections.singletonList(email));
+    }
+
+    public static FieldResult setSysRoleIds(String sysRoleIds) {
+        return new FieldResult(SysRoleIds, Collections.singletonList(sysRoleIds));
     }
 }
