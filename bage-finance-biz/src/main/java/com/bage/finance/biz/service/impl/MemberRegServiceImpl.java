@@ -2,11 +2,18 @@ package com.bage.finance.biz.service.impl;
 
 import com.bage.common.exception.BizException;
 import com.bage.common.exception.ParameterException;
+import com.bage.finance.biz.config.ObjectConvertor;
 import com.bage.finance.biz.constant.RedisKeyConstant;
 import com.bage.finance.biz.domain.MemberBindPhone;
 import com.bage.finance.biz.dto.form.PhoneRegisterForm;
+import com.bage.finance.biz.dto.vo.GenerateMpRegCodeVo;
 import com.bage.finance.biz.enums.SmsCodeTypeEnum;
 import com.bage.finance.biz.service.*;
+import com.bage.wx.config.WxConfig;
+import com.bage.wx.dto.AccessTokenResult;
+import com.bage.wx.dto.MpQrCodeCreateRequest;
+import com.bage.wx.dto.MpQrCodeCreateResult;
+import com.bage.wx.service.WXService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
@@ -31,6 +38,10 @@ public class MemberRegServiceImpl implements MemberRegService {
     final TransactionTemplate transactionTemplate;
     final TenantService tenantService;
     final MemberService memberService;
+    final WxConfig wxConfig;
+    final WXService wxService;
+    final ObjectConvertor objectConvertor;
+    final RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 注册 保存到数据库
@@ -72,5 +83,28 @@ public class MemberRegServiceImpl implements MemberRegService {
         } finally {
             rLock.unlock();
         }
+    }
+
+    /**
+     * 生成微信公众号二维码 用于关注注册
+     *
+     * @param clientId
+     * @return
+     */
+    @Override
+    public GenerateMpRegCodeVo generateMpRegCode(String clientId) {
+        AccessTokenResult accessTokenResult = wxService.getMpAccessToken(wxConfig.getMp().getAppId(), wxConfig.getMp().getSecret());
+        MpQrCodeCreateRequest request = new MpQrCodeCreateRequest();
+        request.setExpireSeconds(wxConfig.getMp().getCodeExpire());
+        request.setActionName("QR_STR_SCENE");
+        request.setActionInfo(request.new ActionInfo());
+        request.getActionInfo().setScene(request.new scene());
+        request.getActionInfo().getScene().setSceneStr("ScanReg_" + wxConfig.getMp().getAppId() + "_" + clientId);
+        MpQrCodeCreateResult result = wxService.createMpQrcodeCreate(accessTokenResult.getAccessToken(), request);
+
+        GenerateMpRegCodeVo response = objectConvertor.toGenerateMpRegCodeResponse(result);
+        response.setClientId(clientId);
+        redisTemplate.opsForValue().set(RedisKeyConstant.REG_CODE_KEY + clientId, clientId, request.getExpireSeconds() + 300, TimeUnit.SECONDS);
+        return response;
     }
 }

@@ -97,3 +97,5 @@ sys:
   rest-template-config: true
   #是否开启json配置(默认关闭)
   json-config: true
+  #是否启用自定义安全框架
+  enable-my-security: true

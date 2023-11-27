@@ -32,3 +32,9 @@ logging:
 
 redisson:
   address: redis://127.0.0.1:6379
+
+wx:
+  mp:
+    appid: wx704a38aacbc1e64d
+    secret: 3725a9046403754a25b44332633dd22b
+    codeExpire: 3600

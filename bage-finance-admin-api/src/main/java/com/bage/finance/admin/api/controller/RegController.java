@@ -1,7 +1,9 @@
 package com.bage.finance.admin.api.controller;
 
 import com.bage.common.dto.ApiResponse;
+import com.bage.finance.biz.dto.form.GenerateMpRegCodeForm;
 import com.bage.finance.biz.dto.form.PhoneRegisterForm;
+import com.bage.finance.biz.dto.vo.GenerateMpRegCodeVo;
 import com.bage.finance.biz.service.MemberRegService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,5 +24,12 @@ public class RegController {
     @PostMapping(value = "/phoneReg")
     public ApiResponse<Long> phoneReg(@Validated @RequestBody PhoneRegisterForm form) {
         return ApiResponse.success(memberRegService.phoneReg(form));
+    }
+
+    @ApiOperation(value = "生成微信公众号二维码（关注注册）")
+    @GetMapping(value = "/generateMpRegCode")
+    public ApiResponse<GenerateMpRegCodeVo> generateMpRegCode(@Validated @ModelAttribute GenerateMpRegCodeForm request) {
+        GenerateMpRegCodeVo result = memberRegService.generateMpRegCode(request.getClientId());
+        return ApiResponse.success(result);
     }
 }

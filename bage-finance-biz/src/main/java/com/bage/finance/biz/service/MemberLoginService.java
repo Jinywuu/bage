@@ -4,6 +4,7 @@ import com.bage.common.dto.TokenResponse;
 import com.bage.finance.biz.dto.form.GetBase64CodeForm;
 import com.bage.finance.biz.dto.form.GetSmsCodeForm;
 import com.bage.finance.biz.dto.form.PhonePasswordLoginForm;
+import com.bage.finance.biz.dto.form.PhoneSmsCodeLoginForm;
 
 public interface MemberLoginService {
     /**
@@ -54,4 +55,12 @@ public interface MemberLoginService {
      * @return
      */
     TokenResponse phonePasswordLogin(PhonePasswordLoginForm form);
+
+    /**
+     * 手机短信登录
+     *
+     * @param form
+     * @return
+     */
+    TokenResponse phoneSmsCodeLogin(PhoneSmsCodeLoginForm form);
 }

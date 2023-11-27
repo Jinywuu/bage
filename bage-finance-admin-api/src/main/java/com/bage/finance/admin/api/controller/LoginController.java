@@ -5,6 +5,7 @@ import com.bage.common.dto.TokenResponse;
 import com.bage.finance.biz.dto.form.GetBase64CodeForm;
 import com.bage.finance.biz.dto.form.GetSmsCodeForm;
 import com.bage.finance.biz.dto.form.PhonePasswordLoginForm;
+import com.bage.finance.biz.dto.form.PhoneSmsCodeLoginForm;
 import com.bage.finance.biz.service.MemberLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +47,13 @@ public class LoginController {
     @PostMapping(value = "/phonePasswordLogin")
     public ApiResponse<TokenResponse> phonePasswordLogin(@Validated @RequestBody PhonePasswordLoginForm form) {
         TokenResponse tokenResponse = memberLoginService.phonePasswordLogin(form);
+        return ApiResponse.success(tokenResponse);
+    }
+
+    @ApiOperation(value = "手机短信登录")
+    @PostMapping(value = "/phoneSmsCodeLogin")
+    public ApiResponse<TokenResponse> phoneSmsCodeLogin(@Validated @RequestBody PhoneSmsCodeLoginForm request) {
+        TokenResponse tokenResponse = memberLoginService.phoneSmsCodeLogin(request);
         return ApiResponse.success(tokenResponse);
     }
 }

@@ -10,15 +10,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.bage.common.config.SecurityConfig;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
-
-import com.bage.common.exception.BizException;
+import org.springframework.stereotype.Component;
 import com.bage.common.exception.LoginException;import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-@Service
+@ConditionalOnProperty(prefix = "sys",name = "enable-my-security",havingValue = "true")
+@Component
 @Slf4j
 @RequiredArgsConstructor
 public class TokenServiceImpl<T extends BaseUserInfoDTO> implements TokenService<T> {

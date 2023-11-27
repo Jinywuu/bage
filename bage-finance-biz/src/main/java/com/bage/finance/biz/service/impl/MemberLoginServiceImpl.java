@@ -13,10 +13,7 @@ import com.bage.finance.biz.constant.RedisKeyConstant;
 import com.bage.finance.biz.domain.Member;
 import com.bage.finance.biz.domain.MemberBindPhone;
 import com.bage.finance.biz.dto.AdminDTO;
-import com.bage.finance.biz.dto.form.GetBase64CodeForm;
-import com.bage.finance.biz.dto.form.GetSmsCodeForm;
-import com.bage.finance.biz.dto.form.PhonePasswordLoginForm;
-import com.bage.finance.biz.dto.form.SmsCodeResult;
+import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.enums.SmsCodeTypeEnum;
 import com.bage.finance.biz.service.MemberBindPhoneService;
 import com.bage.finance.biz.service.MemberLoginService;
@@ -160,6 +157,24 @@ public class MemberLoginServiceImpl implements MemberLoginService {
         if (!passwordEncoder.matches(form.getPassword(), memberBindPhone.getPassword())) {
             throw new BizException(ApiResponseCode.ACCOUNT_PASSWORD_ERROR.getCode(),
                     ApiResponseCode.ACCOUNT_PASSWORD_ERROR.getMessage());
+        }
+        Member member = memberService.get(memberBindPhone.getMemberId());
+        return loginSuccess(memberBindPhone.getMemberId(), member.getTenantId(), member.getSysRoleIds());
+    }
+    /**
+     * 手机短信登录
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public TokenResponse phoneSmsCodeLogin(PhoneSmsCodeLoginForm form) {
+        checkSmsCode(form.getPhone(), form.getSmsCode(), SmsCodeTypeEnum.LOGIN.getCode());
+        MemberBindPhone memberBindPhone = memberBindPhoneService.getMemberByPhone(form.getPhone());
+        //手机号未注册
+        if (memberBindPhone == null) {
+            throw new ParameterException("phone",
+                    "该手机号未注册");
         }
         Member member = memberService.get(memberBindPhone.getMemberId());
         return loginSuccess(memberBindPhone.getMemberId(), member.getTenantId(), member.getSysRoleIds());
