@@ -102,9 +102,6 @@ public class MemberRegServiceImpl implements MemberRegService {
         request.getActionInfo().getScene().setSceneStr("ScanReg_" + wxConfig.getMp().getAppId() + "_" + clientId);
         MpQrCodeCreateResult result = wxService.createMpQrcodeCreate(accessTokenResult.getAccessToken(), request);
 
-        GenerateMpRegCodeVo response = objectConvertor.toGenerateMpRegCodeResponse(result);
-        response.setClientId(clientId);
-        redisTemplate.opsForValue().set(RedisKeyConstant.REG_CODE_KEY + clientId, clientId, request.getExpireSeconds() + 300, TimeUnit.SECONDS);
-        return response;
+        return objectConvertor.toGenerateMpRegCodeResponse(result);
     }
 }

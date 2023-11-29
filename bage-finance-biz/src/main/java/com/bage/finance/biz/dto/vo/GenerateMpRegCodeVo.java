@@ -5,13 +5,6 @@ import lombok.Data;
 
 @Data
 public class GenerateMpRegCodeVo {
-
-    /**
-     * 客户端id
-     */
-    @ApiModelProperty(value = "客户端id")
-    private String clientId;
-
     /**
      * 该二维码有效时间，以秒为单位。 最大不超过2592000（即30天）。
      */
