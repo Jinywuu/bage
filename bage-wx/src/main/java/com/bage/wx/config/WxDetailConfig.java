@@ -20,4 +20,14 @@ public class WxDetailConfig {
      * 默认15分钟
      */
     private Integer codeExpire = 900;
+
+    /**
+     * token
+     */
+    private String token;
+
+    /**
+     * 消息加密密钥
+     */
+    private String encodingAESKey;
 }

@@ -1,10 +1,14 @@
 package com.bage.finance.biz.service.impl;
 
+import com.bage.common.dto.TokenResponse;
 import com.bage.common.exception.BizException;
 import com.bage.common.exception.ParameterException;
+import com.bage.common.service.TokenService;
 import com.bage.finance.biz.config.ObjectConvertor;
 import com.bage.finance.biz.constant.RedisKeyConstant;
 import com.bage.finance.biz.domain.MemberBindPhone;
+import com.bage.finance.biz.domain.MemberBindWxOpenId;
+import com.bage.finance.biz.dto.AdminDTO;
 import com.bage.finance.biz.dto.form.PhoneRegisterForm;
 import com.bage.finance.biz.dto.vo.GenerateMpRegCodeVo;
 import com.bage.finance.biz.enums.SmsCodeTypeEnum;
@@ -13,6 +17,7 @@ import com.bage.wx.config.WxConfig;
 import com.bage.wx.dto.AccessTokenResult;
 import com.bage.wx.dto.MpQrCodeCreateRequest;
 import com.bage.wx.dto.MpQrCodeCreateResult;
+import com.bage.wx.dto.MpSubscribeEventRequest;
 import com.bage.wx.service.WXService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +47,8 @@ public class MemberRegServiceImpl implements MemberRegService {
     final WXService wxService;
     final ObjectConvertor objectConvertor;
     final RedisTemplate<String, Object> redisTemplate;
+    final TokenService<AdminDTO> adminTokenService;
+    final MemberBindWxOpenIdService memberBindWxOpenIdService;
 
     /**
      * 注册 保存到数据库
@@ -103,5 +110,69 @@ public class MemberRegServiceImpl implements MemberRegService {
         MpQrCodeCreateResult result = wxService.createMpQrcodeCreate(accessTokenResult.getAccessToken(), request);
 
         return objectConvertor.toGenerateMpRegCodeResponse(result);
+    }
+
+    @EventListener
+    @Override
+    public void handleMpSubscribeEventRequest(MpSubscribeEventRequest mpSubscribeEventRequest) {
+        log.info("接收到消息：MpSubscribeEventRequest：{}", mpSubscribeEventRequest.toString());
+        log.info("0:{}", mpSubscribeEventRequest.getEvent());
+        if ("subscribe".equals(mpSubscribeEventRequest.getEvent())
+                && Strings.isNotBlank(mpSubscribeEventRequest.getEventKey())) {
+            String[] keys = mpSubscribeEventRequest.getEventKey().split("_");
+            if ("qrscene".equals(keys[0]) && "ScanReg".equals(keys[1])) {
+                log.info("AppId：{}，ClientId：{}", keys[2], keys[3]);
+                registerByMpOpenId(keys[2], keys[3], mpSubscribeEventRequest.getToUserName());
+                return;
+            }
+        }
+
+        if ("SCAN".equals(mpSubscribeEventRequest.getEvent()) &&
+                Strings.isNotBlank(mpSubscribeEventRequest.getEventKey())) {
+            String[] keys = mpSubscribeEventRequest.getEventKey().split("_");
+            if ("ScanReg".equals(keys[0])) {
+                log.info("AppId：{}，ClientId：{}", keys[1], keys[2]);
+                registerByMpOpenId(keys[1], keys[2], mpSubscribeEventRequest.getToUserName());
+                return;
+            }
+        }
+    }
+
+    @Override
+    public TokenResponse registerByMpOpenId(String appId, String clientId, String openId) {
+        long memberId = scReg(appId, openId);
+        AdminDTO adminDTO = new AdminDTO();
+        adminDTO.setId(memberId);
+        adminTokenService.setToken(adminDTO);
+        redisTemplate.opsForValue().set(RedisKeyConstant.CLIENT_TOKEN_KEY + clientId, adminDTO.getToken(), 10, TimeUnit.MINUTES);
+        return adminDTO.getToken();
+    }
+
+    /**
+     * 扫描注册
+     *
+     * @param appId
+     * @param openId
+     * @return
+     */
+    @Override
+    public long scReg(String appId, String openId) {
+        MemberBindWxOpenId memberBindWxOpenId = memberBindWxOpenIdService.get(appId, openId);
+        if (Objects.nonNull(memberBindWxOpenId)) {
+            return memberBindWxOpenId.getMemberId();
+        }
+
+        //将游客数据入口（保证数据一致性）
+        Long memberId = transactionTemplate.execute(transactionStatus -> {
+            //创建租户id
+            long tenantId = tenantService.add();
+            long id = memberService.reg(tenantId);
+            memberBindWxOpenIdService.reg(appId, openId, id);
+            return id;
+        });
+        if (memberId == null) {
+            throw new BizException("注册失败");
+        }
+        return memberId;
     }
 }

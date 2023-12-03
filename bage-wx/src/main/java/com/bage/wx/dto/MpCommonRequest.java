@@ -20,7 +20,7 @@ public class MpCommonRequest {
     /**
      * 随机数
      */
-    private Integer nonce;
+    private String nonce;
 
     /**
      * 随机字符串

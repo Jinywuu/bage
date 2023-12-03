@@ -10,4 +10,6 @@ public class RedisKeyConstant {
     public static final String SMS_CODE = "SMS_CODE:";
 
     public static final String REG_CODE_KEY = "REG_CODE:";
+
+    public static final String CLIENT_TOKEN_KEY = "CLIENT_TOKEN_KEY:";
 }
