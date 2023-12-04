@@ -180,6 +180,17 @@ public class MemberLoginServiceImpl implements MemberLoginService {
         return loginSuccess(memberBindPhone.getMemberId(), member.getTenantId(), member.getSysRoleIds());
     }
 
+    /**
+     * 获取客户端token
+     *
+     * @param clientId
+     * @return
+     */
+    @Override
+    public TokenResponse getClientToken(String clientId) {
+        return (TokenResponse) redisTemplate.opsForValue().get(RedisKeyConstant.CLIENT_TOKEN_KEY + clientId);
+    }
+
     private TokenResponse loginSuccess(long memberId, long tenantId, String sysRoleIds) {
         try {
             AdminDTO adminDTO = new AdminDTO();

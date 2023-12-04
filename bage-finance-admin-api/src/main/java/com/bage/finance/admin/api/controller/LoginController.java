@@ -2,10 +2,7 @@ package com.bage.finance.admin.api.controller;
 
 import com.bage.common.dto.ApiResponse;
 import com.bage.common.dto.TokenResponse;
-import com.bage.finance.biz.dto.form.GetBase64CodeForm;
-import com.bage.finance.biz.dto.form.GetSmsCodeForm;
-import com.bage.finance.biz.dto.form.PhonePasswordLoginForm;
-import com.bage.finance.biz.dto.form.PhoneSmsCodeLoginForm;
+import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.service.MemberLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -55,5 +52,12 @@ public class LoginController {
     public ApiResponse<TokenResponse> phoneSmsCodeLogin(@Validated @RequestBody PhoneSmsCodeLoginForm request) {
         TokenResponse tokenResponse = memberLoginService.phoneSmsCodeLogin(request);
         return ApiResponse.success(tokenResponse);
+    }
+
+    @ApiOperation(value = "获取客户端token")
+    @GetMapping(value = "/getClientToken")
+    public ApiResponse<TokenResponse> getClientToken(@Validated @ModelAttribute GetClientTokenForm request) {
+        TokenResponse result = memberLoginService.getClientToken(request.getClientId());
+        return ApiResponse.success(result);
     }
 }
