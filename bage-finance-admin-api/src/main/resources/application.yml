@@ -88,7 +88,6 @@ security:
     - /favicon.ico
     - /login/*
     - /reg/*
-    - /wxEvent/receiveMpEvent
   expire: 36000
 sys:
   #是否开启redisTemplate配置(默认关闭)
