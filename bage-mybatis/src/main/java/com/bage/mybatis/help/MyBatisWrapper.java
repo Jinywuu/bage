@@ -3,10 +3,7 @@ package com.bage.mybatis.help;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MyBatisWrapper<T> {
     public MyBatisWrapper() {
@@ -26,9 +23,9 @@ public class MyBatisWrapper<T> {
     private Integer pageSize;
 
     //查询条件
-    protected List<Criteria> oredCriteria;
+    protected List<Criteria<T>> oredCriteria;
 
-    public MyBatisWrapper distinct(DbField... fields) {
+    public MyBatisWrapper<T> distinct(DbField... fields) {
         select(fields);
         selectBuilder.insert(0, "distinct ");
         return this;
@@ -40,7 +37,7 @@ public class MyBatisWrapper<T> {
      * @param fields
      * @return
      */
-    public MyBatisWrapper select(DbField... fields) {
+    public MyBatisWrapper<T> select(DbField... fields) {
         if (fields == null || fields.length == 0) {
             return this;
         }
@@ -56,19 +53,19 @@ public class MyBatisWrapper<T> {
         return this;
     }
 
-    public MyBatisWrapper sum(DbField field) {
+    public MyBatisWrapper<T> sum(DbField field) {
         sum(field, null);
         return this;
     }
 
-    public MyBatisWrapper sum(DbField... fields) {
+    public MyBatisWrapper<T> sum(DbField... fields) {
         for (DbField field : fields) {
             sum(field, null);
         }
         return this;
     }
 
-    public MyBatisWrapper sum(DbField field, String asName) {
+    public MyBatisWrapper<T> sum(DbField field, String asName) {
         if (selectBuilder == null) {
             selectBuilder = new StringBuilder();
         }
@@ -86,7 +83,7 @@ public class MyBatisWrapper<T> {
         return this;
     }
 
-    public MyBatisWrapper limit(int... limit) {
+    public MyBatisWrapper<T> limit(int... limit) {
         this.offset = limit[0];
         if (limit.length > 1) {
             this.rows = limit[1];
@@ -101,19 +98,19 @@ public class MyBatisWrapper<T> {
      * @param pageSize  页大小
      * @return
      */
-    public MyBatisWrapper page(int pageIndex, int pageSize) {
+    public MyBatisWrapper<T> page(int pageIndex, int pageSize) {
         return page(pageIndex, pageSize, true);
     }
 
     /**
      * 设置要查询的分页信息
      *
-     * @param pageIndex 页号
-     * @param pageSize  页大小
+     * @param pageIndex   页号
+     * @param pageSize    页大小
      * @param selectCount 是否查询记录条数
      * @return
      */
-    public MyBatisWrapper page(int pageIndex, int pageSize, boolean selectCount) {
+    public MyBatisWrapper<T> page(int pageIndex, int pageSize, boolean selectCount) {
         // 如果页码小于等于0，则返回第一页的数据
         if (pageIndex <= 0) {
             pageIndex = 1;
@@ -126,19 +123,19 @@ public class MyBatisWrapper<T> {
         return limit(offset, pageSize);
     }
 
-    public MyBatisWrapper orderByAsc(DbField... fields) {
+    public MyBatisWrapper<T> orderByAsc(DbField... fields) {
         orderBy(fields);
         this.orderByClause.append(" asc");
         return this;
     }
 
-    public MyBatisWrapper orderByDesc(DbField... fields) {
+    public MyBatisWrapper<T> orderByDesc(DbField... fields) {
         orderBy(fields);
         this.orderByClause.append(" desc");
         return this;
     }
 
-    private MyBatisWrapper orderBy(DbField... fields) {
+    private MyBatisWrapper<T> orderBy(DbField... fields) {
         if (fields == null || fields.length == 0) {
             return this;
         }
@@ -155,7 +152,7 @@ public class MyBatisWrapper<T> {
         return this;
     }
 
-    public MyBatisWrapper groupBy(DbField... fields) {
+    public MyBatisWrapper<T> groupBy(DbField... fields) {
         if (fields == null || fields.length == 0) {
             return this;
         }
@@ -172,7 +169,11 @@ public class MyBatisWrapper<T> {
         return this;
     }
 
-    public MyBatisWrapper update(FieldResult fieldResult) {
+    public MyBatisWrapper<T> update(DbField dbField, Object value) {
+        return update(new FieldResult(dbField, Collections.singletonList(value)));
+    }
+
+    public MyBatisWrapper<T> update(FieldResult fieldResult) {
         if (this.updateSql == null) {
             this.updateSql = new StringBuilder();
         }
@@ -190,7 +191,11 @@ public class MyBatisWrapper<T> {
         return this;
     }
 
-    public MyBatisWrapper updateIncr(FieldResult fieldResult) {
+    public MyBatisWrapper<T> updateIncr(DbField dbField, Object value) {
+        return updateIncr(new FieldResult(dbField, Collections.singletonList(value)));
+    }
+
+    public MyBatisWrapper<T> updateIncr(FieldResult fieldResult) {
         if (this.updateSql == null) {
             this.updateSql = new StringBuilder();
         }
@@ -211,7 +216,11 @@ public class MyBatisWrapper<T> {
         return this;
     }
 
-    public MyBatisWrapper updateDecr(FieldResult fieldResult) {
+    public MyBatisWrapper<T> updateDecr(DbField dbField, Object value) {
+        return updateDecr(new FieldResult(dbField, Collections.singletonList(value)));
+    }
+
+    public MyBatisWrapper<T> updateDecr(FieldResult fieldResult) {
         if (this.updateSql == null) {
             this.updateSql = new StringBuilder();
         }
@@ -234,10 +243,22 @@ public class MyBatisWrapper<T> {
 
     /**
      * 联接字符串
+     *
+     * @param dbField
+     * @param value
+     * @return
+     */
+    public MyBatisWrapper<T> updateConcat(DbField dbField, Object value) {
+        return updateConcat(new FieldResult(dbField, Collections.singletonList(value)));
+    }
+
+    /**
+     * 联接字符串
+     *
      * @param fieldResult
      * @return
      */
-    public MyBatisWrapper updateConcat(FieldResult fieldResult) {
+    public MyBatisWrapper<T> updateConcat(FieldResult fieldResult) {
         if (this.updateSql == null) {
             this.updateSql = new StringBuilder();
         }
@@ -258,35 +279,34 @@ public class MyBatisWrapper<T> {
         return this;
     }
 
-    public MyBatisWrapper selectCount(boolean countFlag) {
+    public MyBatisWrapper<T> selectCount(boolean countFlag) {
         this.countFlag = countFlag;
         return this;
     }
 
-    public List<Criteria> getOredCriteria() {
+    public List<Criteria<T>> getOredCriteria() {
         return oredCriteria;
     }
 
-    public void or(Criteria criteria) {
+    public void or(Criteria<T> criteria) {
         criteria.setAndOrOr(false);
         oredCriteria.add(criteria);
     }
 
-    public Criteria or() {
-        Criteria criteria = createCriteriaInternal();
+    public Criteria<T> or() {
+        Criteria<T> criteria = createCriteriaInternal();
         criteria.setAndOrOr(false);
         oredCriteria.add(criteria);
-        criteria.setHelp(this);
         return criteria;
     }
 
-    public void and(Criteria criteria) {
+    public void and(Criteria<T> criteria) {
         criteria.setAndOrOr(true);
         oredCriteria.add(criteria);
     }
 
-    public Criteria and() {
-        Criteria criteria = createCriteriaInternal();
+    public Criteria<T> and() {
+        Criteria<T> criteria = createCriteriaInternal();
         criteria.setAndOrOr(true);
         oredCriteria.add(criteria);
         return criteria;
@@ -297,17 +317,16 @@ public class MyBatisWrapper<T> {
      *
      * @return
      */
-    public Criteria whereBuilder() {
-        Criteria criteria = createCriteriaInternal();
+    public Criteria<T> whereBuilder() {
+        Criteria<T> criteria = createCriteriaInternal();
         if (oredCriteria.size() == 0) {
             oredCriteria.add(criteria);
         }
         return criteria;
     }
 
-    protected Criteria createCriteriaInternal() {
-        Criteria criteria = new Criteria();
-        criteria.setHelp(this);
+    protected Criteria<T> createCriteriaInternal() {
+        Criteria<T> criteria = new Criteria<>();
         return criteria;
     }
 
@@ -384,7 +403,7 @@ public class MyBatisWrapper<T> {
         this.updateRow = updateRow;
     }
 
-    public void setOredCriteria(List<Criteria> oredCriteria) {
+    public void setOredCriteria(List<Criteria<T>> oredCriteria) {
         this.oredCriteria = oredCriteria;
     }
 

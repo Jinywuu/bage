@@ -1,21 +1,11 @@
 package com.bage.mybatis.help;
 
-public class Criteria extends GeneratedCriteria {
-    private MyBatisWrapper help;
-
+public class Criteria<T> extends GeneratedCriteria<T> {
     //true 表示and false表示or
     private boolean andOrOr = true;
 
     protected Criteria() {
         super();
-    }
-
-    public MyBatisWrapper getHelp() {
-        return help;
-    }
-
-    public void setHelp(MyBatisWrapper help) {
-        this.help = help;
     }
 
     public boolean isAndOrOr() {

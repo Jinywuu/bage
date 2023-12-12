@@ -15,35 +15,6 @@ public class CountPlugin extends PluginAdapter {
         return true;
     }
 
-    /**
-     * 修改Mapper类
-     */
-//    @Override
-//    public boolean clientGenerated(Interface interfaze, IntrospectedTable introspectedTable) {
-//        Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-//        importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
-//
-//        Method method = new Method("count");
-//        // 1.设置方法可见性
-//        method.setVisibility(JavaVisibility.PUBLIC);
-//        method.setAbstract(true);
-//        // 2.设置返回值类型
-//        FullyQualifiedJavaType returnType = new FullyQualifiedJavaType("java.lang.Long");
-//
-//        method.setReturnType(returnType);
-//
-//        // 4.设置参数列表
-//        FullyQualifiedJavaType paramType = new FullyQualifiedJavaType("com.bage.common.mybatishelp.MyBatisWrapper");
-////        method.addParameter(new Parameter(paramType, "example", "@Param(\"example\")"));
-//        method.addParameter(new Parameter(paramType, "example"));
-//        importedTypes.add(paramType);
-//
-//        // 设置需要导入的类
-//        interfaze.addImportedTypes(importedTypes);
-//        interfaze.addMethod(method);
-//        return super.clientGenerated(interfaze, introspectedTable);
-//    }
-
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
         XmlElement rootElement = document.getRootElement();

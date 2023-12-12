@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class GeneratedCriteria {
+public abstract class GeneratedCriteria<T> {
     protected List<Criterion> criteria;
 
     protected GeneratedCriteria() {
@@ -46,163 +46,163 @@ public abstract class GeneratedCriteria {
     }
 
 
-    public Criteria andIsNull(DbField field) {
+    public Criteria<T> andIsNull(DbField field) {
         addCriterion(" and " + field.getDbName() + " is null");
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andIsNotNull(DbField field) {
+    public Criteria<T> andIsNotNull(DbField field) {
         addCriterion(" and " + field.getDbName() + " is not null");
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andEq(FieldResult fieldResult) {
+    public Criteria<T> andEq(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " =",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andEq(DbField dbField, Object value) {
+    public Criteria<T> andEq(DbField dbField, Object value) {
         checkFieldValueType(dbField, value);
 
         addCriterion(" and " + dbField.getDbName() + " =",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andEq(DbField dbField1, DbField dbField2) {
+    public Criteria<T> andEq(DbField dbField1, DbField dbField2) {
         addCriterion(" and " + dbField1.getDbName() + " = " + dbField2.getDbName());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNE(FieldResult fieldResult) {
+    public Criteria<T> andNE(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " <>",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNE(DbField dbField, Object value) {
+    public Criteria<T> andNE(DbField dbField, Object value) {
         checkFieldValueType(dbField, value);
         addCriterion(" and " + dbField.getDbName() + " <>",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNE(DbField dbField1, DbField dbField2) {
+    public Criteria<T> andNE(DbField dbField1, DbField dbField2) {
         addCriterion(" and " + dbField1.getDbName() + " <>" + dbField2.getDbName());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andGT(FieldResult fieldResult) {
+    public Criteria<T> andGT(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " >",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andGT(DbField dbField, Object value) {
+    public Criteria<T> andGT(DbField dbField, Object value) {
         checkFieldValueType(dbField, value);
         addCriterion(" and " + dbField.getDbName() + " >",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andGT(DbField dbField1, DbField dbField2) {
+    public Criteria<T> andGT(DbField dbField1, DbField dbField2) {
         addCriterion(" and " + dbField1.getDbName() + " >" + dbField2.getDbName());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andGTE(FieldResult fieldResult) {
+    public Criteria<T> andGTE(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " >=",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andGTE(DbField dbField, Object value) {
+    public Criteria<T> andGTE(DbField dbField, Object value) {
         addCriterion(" and " + dbField.getDbName() + " >=",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andGTE(DbField dbField1, DbField dbField2) {
+    public Criteria<T> andGTE(DbField dbField1, DbField dbField2) {
         addCriterion(" and " + dbField1.getDbName() + " >=" + dbField2.getDbName());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andLT(FieldResult fieldResult) {
+    public Criteria<T> andLT(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " <",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andLT(DbField dbField, Object value) {
+    public Criteria<T> andLT(DbField dbField, Object value) {
         checkFieldValueType(dbField, value);
         addCriterion(" and " + dbField.getDbName() + " <",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andLT(DbField dbField1, DbField dbField2) {
+    public Criteria<T> andLT(DbField dbField1, DbField dbField2) {
         addCriterion(" and " + dbField1.getDbName() + " <" + dbField2.getDbName());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andLTE(FieldResult fieldResult) {
+    public Criteria<T> andLTE(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " <=",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andLTE(DbField dbField, Object value) {
+    public Criteria<T> andLTE(DbField dbField, Object value) {
         checkFieldValueType(dbField, value);
         addCriterion(" and " + dbField.getDbName() + " <=",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andLTE(DbField dbField1, DbField dbField2) {
+    public Criteria<T> andLTE(DbField dbField1, DbField dbField2) {
         addCriterion(" and " + dbField1.getDbName() + " <=" + dbField2.getDbName());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andIn(FieldResult fieldResult) {
+    public Criteria<T> andIn(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " in",
                 fieldResult.getValues(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andIn(DbField dbField, Object value) {
+    public Criteria<T> andIn(DbField dbField, Object value) {
         checkFieldListValueType(dbField, value);
         addCriterion(" and " + dbField.getDbName() + " in",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
     /**
@@ -211,12 +211,12 @@ public abstract class GeneratedCriteria {
      * @param fieldResult
      * @return
      */
-    public Criteria andLike(FieldResult fieldResult) {
+    public Criteria<T> andLike(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " like",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
     /**
@@ -226,58 +226,58 @@ public abstract class GeneratedCriteria {
      * @param value
      * @return
      */
-    public Criteria andLike(DbField dbField, Object value) {
+    public Criteria<T> andLike(DbField dbField, Object value) {
         checkFieldValueType(dbField, value);
         addCriterion(" and " + dbField.getDbName() + " like",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNotLike(FieldResult fieldResult) {
+    public Criteria<T> andNotLike(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " not like",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNotLike(DbField dbField, Object value) {
+    public Criteria<T> andNotLike(DbField dbField, Object value) {
         addCriterion(" and " + dbField.getDbName() + " not like",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNotIn(FieldResult fieldResult) {
+    public Criteria<T> andNotIn(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " not in",
                 fieldResult.getValues(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNotIn(DbField dbField, Object value) {
+    public Criteria<T> andNotIn(DbField dbField, Object value) {
         checkFieldListValueType(dbField, value);
         addCriterion(" and " + dbField.getDbName() + " not in",
                 value,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andBetween(FieldResult fieldResult) {
+    public Criteria<T> andBetween(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " between",
                 fieldResult.getValues().get(0),
                 fieldResult.getValues().get(1),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andBetween(DbField dbField, Object value1, Object value2) {
+    public Criteria<T> andBetween(DbField dbField, Object value1, Object value2) {
         checkFieldValueType(dbField, value1);
         checkFieldValueType(dbField, value2);
         addCriterion(" and " + dbField.getDbName() + " between",
@@ -285,19 +285,19 @@ public abstract class GeneratedCriteria {
                 value2,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNotBetween(FieldResult fieldResult) {
+    public Criteria<T> andNotBetween(FieldResult fieldResult) {
         addCriterion(" and " + fieldResult.getField().getDbName() + " not between",
                 fieldResult.getValues().get(0),
                 fieldResult.getValues().get(1),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria andNotBetween(DbField dbField, Object value1, Object value2) {
+    public Criteria<T> andNotBetween(DbField dbField, Object value1, Object value2) {
         checkFieldValueType(dbField, value1);
         checkFieldValueType(dbField, value2);
         addCriterion(" and " + dbField.getDbName() + " not between",
@@ -305,144 +305,241 @@ public abstract class GeneratedCriteria {
                 value2,
                 dbField.getPropertyName(),
                 dbField.getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orIsNull(DbField field) {
+    public Criteria<T> orIsNull(DbField field) {
         addCriterion(" or " + field.getDbName() + " is null");
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orIsNotNull(DbField field) {
+    public Criteria<T> orIsNotNull(DbField field) {
         addCriterion(" or " + field.getDbName() + " is not null");
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orEq(FieldResult fieldResult) {
+    public Criteria<T> orEq(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " =",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orEq(FieldResult fieldResult1, FieldResult fieldResult2) {
-        addCriterion(" or " + fieldResult1.getField().getDbName() + " = " + fieldResult2.getField().getDbName());
-        return (Criteria) this;
+    public Criteria<T> orEq(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " =",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
     }
 
-    public Criteria orNE(FieldResult fieldResult) {
+    public Criteria<T> orEq(DbField dbField1, DbField dbField2) {
+        addCriterion(" or " + dbField1.getDbName() + " = " + dbField2.getDbName());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orNE(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " <>",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orNE(FieldResult fieldResult1, FieldResult fieldResult2) {
-        addCriterion(" or " + fieldResult1.getField().getDbName() + " <>" + fieldResult2.getField().getDbName());
-        return (Criteria) this;
+    public Criteria<T> orNE(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " <>",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
     }
 
-    public Criteria orGT(FieldResult fieldResult) {
+    public Criteria<T> orNE(DbField dbField1, DbField dbField2) {
+        addCriterion(" or " + dbField1.getDbName() + " <>" + dbField2.getDbName());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orGT(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " >",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orGT(FieldResult fieldResult1, FieldResult fieldResult2) {
-        addCriterion(" or " + fieldResult1.getField().getDbName() + " >" + fieldResult2.getField().getDbName());
-        return (Criteria) this;
+    public Criteria<T> orGT(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " >",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
     }
 
-    public Criteria orGTE(FieldResult fieldResult) {
+    public Criteria<T> orGT(DbField dbField1, DbField dbField2) {
+        addCriterion(" or " + dbField1.getDbName() + " >" + dbField2.getDbName());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orGTE(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " >=",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orGTE(FieldResult fieldResult1, FieldResult fieldResult2) {
-        addCriterion(" or " + fieldResult1.getField().getDbName() + " >=" + fieldResult2.getField().getDbName());
-        return (Criteria) this;
+    public Criteria<T> orGTE(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " >=",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
     }
 
-    public Criteria orLT(FieldResult fieldResult) {
+    public Criteria<T> orGTE(DbField dbField1, DbField dbField2) {
+        addCriterion(" or " + dbField1.getDbName() + " >=" + dbField2.getDbName());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orLT(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " <",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orLT(FieldResult fieldResult1, FieldResult fieldResult2) {
-        addCriterion(" or " + fieldResult1.getField().getDbName() + " <" + fieldResult2.getField().getDbName());
-        return (Criteria) this;
+    public Criteria<T> orLT(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " <",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
     }
 
-    public Criteria orLTE(FieldResult fieldResult) {
+    public Criteria<T> orLT(DbField dbField1, DbField dbField2) {
+        addCriterion(" or " + dbField1.getDbName() + " <" + dbField2.getDbName());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orLTE(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " <=",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orLTE(FieldResult fieldResult1, FieldResult fieldResult2) {
-        addCriterion(" or " + fieldResult1.getField().getDbName() + " <=" + fieldResult2.getField().getDbName());
-        return (Criteria) this;
+    public Criteria<T> orLTE(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " <=",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
     }
 
-    public Criteria orIn(FieldResult fieldResult) {
+    public Criteria<T> orLTE(DbField dbField1, DbField dbField2) {
+        addCriterion(" or " + dbField1.getDbName() + " <=" + dbField2.getDbName());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orIn(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " in",
                 fieldResult.getValues(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orNotIn(FieldResult fieldResult) {
+    public Criteria<T> orIn(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " in",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orNotIn(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " not in",
                 fieldResult.getValues(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orBetween(FieldResult fieldResult) {
+    public Criteria<T> orNotIn(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " not in",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orBetween(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " between",
                 fieldResult.getValues().get(0), fieldResult.getValues().get(1),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orNotBetween(FieldResult fieldResult) {
+    public Criteria<T> orBetween(DbField dbField, Object value1, Object value2) {
+        addCriterion(" or " + dbField.getDbName() + " between",
+                value1, value2,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orNotBetween(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " not between",
                 fieldResult.getValues().get(0),
                 fieldResult.getValues().get(1),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orLike(FieldResult fieldResult) {
+    public Criteria<T> orNotBetween(DbField dbField, Object value1, Object value2) {
+        addCriterion(" or " + dbField.getDbName() + " not between",
+                value1,
+                value2,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orLike(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " like",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
     }
 
-    public Criteria orNotLike(FieldResult fieldResult) {
+    public Criteria<T> orLike(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " like",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orNotLike(FieldResult fieldResult) {
         addCriterion(" or " + fieldResult.getField().getDbName() + " not like",
                 fieldResult.getValue(),
                 fieldResult.getField().getPropertyName(),
                 fieldResult.getField().getJdbcType());
-        return (Criteria) this;
+        return (Criteria<T>) this;
+    }
+
+    public Criteria<T> orNotLike(DbField dbField, Object value) {
+        addCriterion(" or " + dbField.getDbName() + " not like",
+                value,
+                dbField.getPropertyName(),
+                dbField.getJdbcType());
+        return (Criteria<T>) this;
     }
 
     /**
