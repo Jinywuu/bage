@@ -27,7 +27,7 @@ public class FieldAttributePlugin extends PluginAdapter {
         String model = context.getJavaModelGeneratorConfiguration().getTargetPackage();
         String querVoSuffix = properties.getProperty("QUERVO_VO_SUFFIX", "Field");
         TopLevelClass root = new TopLevelClass(join(model, queryVoName + querVoSuffix));
-        root.addImportedType(model + "." + queryVoName);
+//        root.addImportedType(model + "." + queryVoName);
         root.setVisibility(JavaVisibility.PUBLIC);
         root.addImportedType("com.bage.mybatis.help.DbField");
         root.addImportedType("com.bage.mybatis.help.FieldResult");
