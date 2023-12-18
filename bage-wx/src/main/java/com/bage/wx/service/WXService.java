@@ -6,6 +6,21 @@ import com.bage.wx.dto.MpQrCodeCreateResult;
 
 public interface WXService {
     /**
+     * 从缓存中获取公众号token
+     * @param appid
+     * @return
+     */
+    AccessTokenResult getMpAccessTokenByCache(String appid);
+
+    /**
+     * 设置公众号token的redis缓存
+     *
+     * @param appid
+     * @param secret
+     */
+    void setMpAccessTokenCache(String appid, String secret);
+
+    /**
      * 获取微信公众号token
      * 参考接口文档：https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/access-token/auth.getAccessToken.html
      *

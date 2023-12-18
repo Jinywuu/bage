@@ -8,6 +8,7 @@ import com.bage.wx.service.WXService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -17,10 +18,33 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Slf4j
 @RequiredArgsConstructor
 public class WXServiceImpl implements WXService {
-    //    final RestTemplate restTemplate;
     final WebClient webClient;
+    final RedisTemplate<String, Object> redisTemplate;
+    final String MP_TOKEN_REDIS_CACHE_KEY = "MP_TOKEN_REDIS_CACHE_KEY:";
     //接口重试次数
     int retry = 3;
+
+    /**
+     * 从缓存中获取公众号token
+     * @param appid
+     * @return
+     */
+    @Override
+    public AccessTokenResult getMpAccessTokenByCache(String appid) {
+        return (AccessTokenResult) redisTemplate.opsForValue().get(MP_TOKEN_REDIS_CACHE_KEY + appid);
+    }
+
+    /**
+     * 设置公众号token的redis缓存
+     *
+     * @param appid
+     * @param secret
+     */
+    @Override
+    public void setMpAccessTokenCache(String appid, String secret) {
+        AccessTokenResult accessTokenResult = getMpAccessToken(appid, secret);
+        redisTemplate.opsForValue().set(MP_TOKEN_REDIS_CACHE_KEY + appid, accessTokenResult);
+    }
 
     /**
      * 获取微信公众号token
