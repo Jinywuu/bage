@@ -18,6 +18,7 @@ import com.bage.finance.biz.enums.SmsCodeTypeEnum;
 import com.bage.finance.biz.service.MemberBindPhoneService;
 import com.bage.finance.biz.service.MemberLoginService;
 import com.bage.finance.biz.service.MemberService;
+import com.bage.finance.biz.service.SmsService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,7 @@ public class MemberLoginServiceImpl implements MemberLoginService {
     final PasswordEncoder passwordEncoder;
     final ObjectMapper jsonMapper;
     final TokenService<AdminDTO> adminTokenService;
+    final SmsService smsService;
 
     /**
      * 获取客户端id
@@ -101,7 +103,7 @@ public class MemberLoginServiceImpl implements MemberLoginService {
         smsCodeResult.setGetTime(DateUtil.getSystemTime());
         redisTemplate.opsForValue().set(key, smsCodeResult, 15, TimeUnit.MINUTES);
         log.info("客户端id{},手机号：{},短信验证码：{}", form.getClientId(), form.getPhone(), smsCode);
-        //todo 调用第三方短信发送接口
+        smsService.sendSmsCode(form.getPhone(), smsCodeResult.getCode(), form.getSmsCodeType());
     }
 
     /**
@@ -161,6 +163,7 @@ public class MemberLoginServiceImpl implements MemberLoginService {
         Member member = memberService.get(memberBindPhone.getMemberId());
         return loginSuccess(memberBindPhone.getMemberId(), member.getTenantId(), member.getSysRoleIds());
     }
+
     /**
      * 手机短信登录
      *

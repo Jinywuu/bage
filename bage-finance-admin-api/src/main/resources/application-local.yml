@@ -48,3 +48,11 @@ xxl:
       addresses: http://localhost:8080/xxl-job-admin
     ### 执行器通讯TOKEN [选填]：非空时启用；
     accessToken: e1c717f2-9d58-11ee-a3a0-00155d9bf92e
+
+ali:
+  accessKeyId: 你的阿里云账号accessKeyId
+  accessKeySecret: 你的阿里云账号accessKeySecret
+  sms:
+    enable: true
+    endpoint: dysmsapi.aliyuncs.com
+    region: cn-hangzhou
