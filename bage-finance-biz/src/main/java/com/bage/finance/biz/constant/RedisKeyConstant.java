@@ -12,4 +12,9 @@ public class RedisKeyConstant {
     public static final String REG_CODE_KEY = "REG_CODE:";
 
     public static final String CLIENT_TOKEN_KEY = "CLIENT_TOKEN_KEY:";
+
+    /**
+     * 修改菜单锁
+     */
+    public static final String CHANGE_MENU_LOCK = "CHANGE_MENU_LOCK";
 }

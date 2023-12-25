@@ -146,5 +146,10 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="config_value" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </table>
+        <table tableName="sys_menu" domainObjectName="SysMenu" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

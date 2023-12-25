@@ -6,7 +6,7 @@ import java.util.Date;
  * 系统配置（表：sys_config）
  *
  * @author bage
- * @date 2023-12-22 10:04:28
+ * @date 2023-12-26 02:05:30
  */
 public class SysConfig {
     /**
@@ -70,7 +70,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.id
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public Integer getId() {
         return id;
@@ -82,7 +82,7 @@ public class SysConfig {
      *
      * @param id the value for sys_config.id
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setId(Integer id) {
         this.id = id;
@@ -94,7 +94,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.config_name
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public String getConfigName() {
         return configName;
@@ -106,7 +106,7 @@ public class SysConfig {
      *
      * @param configName the value for sys_config.config_name
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setConfigName(String configName) {
         this.configName = configName;
@@ -118,7 +118,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.type
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public String getType() {
         return type;
@@ -130,7 +130,7 @@ public class SysConfig {
      *
      * @param type the value for sys_config.type
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setType(String type) {
         this.type = type;
@@ -142,7 +142,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.config_key
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public String getConfigKey() {
         return configKey;
@@ -154,7 +154,7 @@ public class SysConfig {
      *
      * @param configKey the value for sys_config.config_key
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setConfigKey(String configKey) {
         this.configKey = configKey;
@@ -166,7 +166,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.config_value
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public String getConfigValue() {
         return configValue;
@@ -178,7 +178,7 @@ public class SysConfig {
      *
      * @param configValue the value for sys_config.config_value
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setConfigValue(String configValue) {
         this.configValue = configValue;
@@ -190,7 +190,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.create_time
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public Date getCreateTime() {
         return createTime;
@@ -202,7 +202,7 @@ public class SysConfig {
      *
      * @param createTime the value for sys_config.create_time
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -214,7 +214,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.update_time
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -226,7 +226,7 @@ public class SysConfig {
      *
      * @param updateTime the value for sys_config.update_time
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -238,7 +238,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.member_id
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public Long getMemberId() {
         return memberId;
@@ -250,7 +250,7 @@ public class SysConfig {
      *
      * @param memberId the value for sys_config.member_id
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -262,7 +262,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.update_member_id
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public Long getUpdateMemberId() {
         return updateMemberId;
@@ -274,7 +274,7 @@ public class SysConfig {
      *
      * @param updateMemberId the value for sys_config.update_member_id
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setUpdateMemberId(Long updateMemberId) {
         this.updateMemberId = updateMemberId;
@@ -286,7 +286,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.del_flag
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public Boolean getDelFlag() {
         return delFlag;
@@ -298,7 +298,7 @@ public class SysConfig {
      *
      * @param delFlag the value for sys_config.del_flag
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
@@ -310,7 +310,7 @@ public class SysConfig {
      *
      * @return the value of sys_config.disable
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public Boolean getDisable() {
         return disable;
@@ -322,7 +322,7 @@ public class SysConfig {
      *
      * @param disable the value for sys_config.disable
      *
-     * @mbg.generated Fri Dec 22 10:04:29 CST 2023
+     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;

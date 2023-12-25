@@ -1,0 +1,12 @@
+package com.bage.finance.biz.dto.vo;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+public class CurrentInfoVo {
+    @ApiModelProperty(value = "昵称")
+    private String name;
+    @ApiModelProperty(value = "头像")
+    private String avatar;
+}
