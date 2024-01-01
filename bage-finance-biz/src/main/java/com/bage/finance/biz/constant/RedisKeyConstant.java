@@ -17,4 +17,9 @@ public class RedisKeyConstant {
      * 修改菜单锁
      */
     public static final String CHANGE_MENU_LOCK = "CHANGE_MENU_LOCK";
+
+    /**
+     * 修改资源锁
+     */
+    public static final String CHANGE_RESOURCE_LOCK = "CHANGE_RESOURCE_LOCK";
 }

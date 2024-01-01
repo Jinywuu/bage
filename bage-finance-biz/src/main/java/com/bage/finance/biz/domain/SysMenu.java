@@ -6,7 +6,7 @@ import java.util.Date;
  * 系统菜单（表：sys_menu）
  *
  * @author bage
- * @date 2023-12-26 02:05:30
+ * @date 2023-12-31 01:39:23
  */
 public class SysMenu {
     /**
@@ -100,7 +100,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.id
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Integer getId() {
         return id;
@@ -112,7 +112,7 @@ public class SysMenu {
      *
      * @param id the value for sys_menu.id
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setId(Integer id) {
         this.id = id;
@@ -124,7 +124,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.pid
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Integer getPid() {
         return pid;
@@ -136,7 +136,7 @@ public class SysMenu {
      *
      * @param pid the value for sys_menu.pid
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setPid(Integer pid) {
         this.pid = pid;
@@ -148,7 +148,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.name
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public String getName() {
         return name;
@@ -160,7 +160,7 @@ public class SysMenu {
      *
      * @param name the value for sys_menu.name
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setName(String name) {
         this.name = name;
@@ -172,7 +172,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.path
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public String getPath() {
         return path;
@@ -184,7 +184,7 @@ public class SysMenu {
      *
      * @param path the value for sys_menu.path
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setPath(String path) {
         this.path = path;
@@ -196,7 +196,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.component
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public String getComponent() {
         return component;
@@ -208,7 +208,7 @@ public class SysMenu {
      *
      * @param component the value for sys_menu.component
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setComponent(String component) {
         this.component = component;
@@ -220,7 +220,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.icon
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public String getIcon() {
         return icon;
@@ -232,7 +232,7 @@ public class SysMenu {
      *
      * @param icon the value for sys_menu.icon
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setIcon(String icon) {
         this.icon = icon;
@@ -244,7 +244,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.layout
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Boolean getLayout() {
         return layout;
@@ -256,7 +256,7 @@ public class SysMenu {
      *
      * @param layout the value for sys_menu.layout
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setLayout(Boolean layout) {
         this.layout = layout;
@@ -268,7 +268,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.hide_in_menu
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Boolean getHideInMenu() {
         return hideInMenu;
@@ -280,7 +280,7 @@ public class SysMenu {
      *
      * @param hideInMenu the value for sys_menu.hide_in_menu
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setHideInMenu(Boolean hideInMenu) {
         this.hideInMenu = hideInMenu;
@@ -292,7 +292,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.redirect
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public String getRedirect() {
         return redirect;
@@ -304,7 +304,7 @@ public class SysMenu {
      *
      * @param redirect the value for sys_menu.redirect
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setRedirect(String redirect) {
         this.redirect = redirect;
@@ -316,7 +316,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.sort
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Integer getSort() {
         return sort;
@@ -328,7 +328,7 @@ public class SysMenu {
      *
      * @param sort the value for sys_menu.sort
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setSort(Integer sort) {
         this.sort = sort;
@@ -340,7 +340,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.create_time
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Date getCreateTime() {
         return createTime;
@@ -352,7 +352,7 @@ public class SysMenu {
      *
      * @param createTime the value for sys_menu.create_time
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -364,7 +364,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.update_time
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -376,7 +376,7 @@ public class SysMenu {
      *
      * @param updateTime the value for sys_menu.update_time
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -388,7 +388,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.member_id
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Long getMemberId() {
         return memberId;
@@ -400,7 +400,7 @@ public class SysMenu {
      *
      * @param memberId the value for sys_menu.member_id
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -412,7 +412,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.update_member_id
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Long getUpdateMemberId() {
         return updateMemberId;
@@ -424,7 +424,7 @@ public class SysMenu {
      *
      * @param updateMemberId the value for sys_menu.update_member_id
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setUpdateMemberId(Long updateMemberId) {
         this.updateMemberId = updateMemberId;
@@ -436,7 +436,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.del_flag
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Boolean getDelFlag() {
         return delFlag;
@@ -448,7 +448,7 @@ public class SysMenu {
      *
      * @param delFlag the value for sys_menu.del_flag
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
@@ -460,7 +460,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.disable
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Boolean getDisable() {
         return disable;
@@ -472,7 +472,7 @@ public class SysMenu {
      *
      * @param disable the value for sys_menu.disable
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -484,7 +484,7 @@ public class SysMenu {
      *
      * @return the value of sys_menu.node_path
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public Integer getNodePath() {
         return nodePath;
@@ -496,7 +496,7 @@ public class SysMenu {
      *
      * @param nodePath the value for sys_menu.node_path
      *
-     * @mbg.generated Tue Dec 26 02:05:30 CST 2023
+     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
      */
     public void setNodePath(Integer nodePath) {
         this.nodePath = nodePath;

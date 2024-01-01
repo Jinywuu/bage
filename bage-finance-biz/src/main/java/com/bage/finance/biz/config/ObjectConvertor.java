@@ -2,7 +2,9 @@ package com.bage.finance.biz.config;
 
 import com.bage.finance.biz.domain.Member;
 import com.bage.finance.biz.domain.SysMenu;
+import com.bage.finance.biz.domain.SysResource;
 import com.bage.finance.biz.dto.form.CreateMenuForm;
+import com.bage.finance.biz.dto.form.CreateSysResourceForm;
 import com.bage.finance.biz.dto.vo.*;
 import com.bage.wx.dto.MpQrCodeCreateResult;
 import org.mapstruct.Mapper;
@@ -33,4 +35,8 @@ public interface ObjectConvertor {
     GetMenuByIdVo toGetMenuByIdVo(SysMenu source);
 
     SysMenu toSysMenu(CreateMenuForm source);
+
+    SysResource toSysResource(CreateSysResourceForm source);
+    GetSysResourceVo toGetSysResourceVo(SysResource source);
+    List<ListSysResourceVo> toListSysResourceVo(List<SysResource> source);
 }
