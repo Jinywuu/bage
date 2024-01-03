@@ -104,8 +104,6 @@
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-            <columnOverride column="role_menu_route_ids" javaType="java.lang.String" jdbcType="VARCHAR"/>
-            <columnOverride column="role_menu_route" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </table>
         <table tableName="assist_calculate" domainObjectName="AssistCalculate" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"

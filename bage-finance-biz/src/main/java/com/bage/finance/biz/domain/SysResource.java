@@ -6,7 +6,7 @@ import java.util.Date;
  * 系统资源（表：sys_resource）
  *
  * @author bage
- * @date 2023-12-31 01:39:23
+ * @date 2024-01-02 15:43:39
  */
 public class SysResource {
     /**
@@ -75,7 +75,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.id
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Integer getId() {
         return id;
@@ -87,7 +87,7 @@ public class SysResource {
      *
      * @param id the value for sys_resource.id
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setId(Integer id) {
         this.id = id;
@@ -99,7 +99,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.pid
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Integer getPid() {
         return pid;
@@ -111,7 +111,7 @@ public class SysResource {
      *
      * @param pid the value for sys_resource.pid
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setPid(Integer pid) {
         this.pid = pid;
@@ -123,7 +123,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.name
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public String getName() {
         return name;
@@ -135,7 +135,7 @@ public class SysResource {
      *
      * @param name the value for sys_resource.name
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setName(String name) {
         this.name = name;
@@ -147,7 +147,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.path
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public String getPath() {
         return path;
@@ -159,7 +159,7 @@ public class SysResource {
      *
      * @param path the value for sys_resource.path
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setPath(String path) {
         this.path = path;
@@ -171,7 +171,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.sort
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Integer getSort() {
         return sort;
@@ -183,7 +183,7 @@ public class SysResource {
      *
      * @param sort the value for sys_resource.sort
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setSort(Integer sort) {
         this.sort = sort;
@@ -195,7 +195,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.create_time
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -207,7 +207,7 @@ public class SysResource {
      *
      * @param createTime the value for sys_resource.create_time
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -219,7 +219,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.update_time
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -231,7 +231,7 @@ public class SysResource {
      *
      * @param updateTime the value for sys_resource.update_time
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -243,7 +243,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.member_id
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Long getMemberId() {
         return memberId;
@@ -255,7 +255,7 @@ public class SysResource {
      *
      * @param memberId the value for sys_resource.member_id
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -267,7 +267,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.update_member_id
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Long getUpdateMemberId() {
         return updateMemberId;
@@ -279,7 +279,7 @@ public class SysResource {
      *
      * @param updateMemberId the value for sys_resource.update_member_id
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setUpdateMemberId(Long updateMemberId) {
         this.updateMemberId = updateMemberId;
@@ -291,7 +291,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.del_flag
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Boolean getDelFlag() {
         return delFlag;
@@ -303,7 +303,7 @@ public class SysResource {
      *
      * @param delFlag the value for sys_resource.del_flag
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
@@ -315,7 +315,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.disable
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -327,7 +327,7 @@ public class SysResource {
      *
      * @param disable the value for sys_resource.disable
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -339,7 +339,7 @@ public class SysResource {
      *
      * @return the value of sys_resource.node_path
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public Integer getNodePath() {
         return nodePath;
@@ -351,7 +351,7 @@ public class SysResource {
      *
      * @param nodePath the value for sys_resource.node_path
      *
-     * @mbg.generated Sun Dec 31 01:39:23 CST 2023
+     * @mbg.generated Tue Jan 02 15:43:40 CST 2024
      */
     public void setNodePath(Integer nodePath) {
         this.nodePath = nodePath;
