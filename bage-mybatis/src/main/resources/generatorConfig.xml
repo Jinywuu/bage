@@ -26,6 +26,10 @@
         </plugin>
         <plugin type="com.bage.mybatis.generator.plugin.UpdateBatchSelectivePlugin">
         </plugin>
+        <plugin type="com.bage.mybatis.generator.plugin.InsertBatchPlugin">
+        </plugin>
+        <plugin type="com.bage.mybatis.generator.plugin.InsertSelectiveBatchPlugin">
+        </plugin>
         <commentGenerator type="com.bage.mybatis.generator.plugin.GeneratorCommentPlugin">
             <!-- 是否去除所有自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
@@ -151,6 +155,11 @@
         </table>
 
         <table tableName="sys_resource" domainObjectName="SysResource" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_role_bind_menu" domainObjectName="SysRoleBindMenu" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>

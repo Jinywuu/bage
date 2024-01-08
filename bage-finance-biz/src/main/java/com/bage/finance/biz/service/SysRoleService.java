@@ -3,12 +3,10 @@ package com.bage.finance.biz.service;
 
 import com.bage.common.dto.PageHelperRequest;
 import com.bage.finance.biz.domain.SysRole;
-import com.bage.finance.biz.dto.form.CreateSysRoleForm;
-import com.bage.finance.biz.dto.form.ListRoleForm;
-import com.bage.finance.biz.dto.form.UpdateRoleDisableForm;
-import com.bage.finance.biz.dto.form.UpdateRoleForm;
+import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.dto.vo.GetRoleDetailVo;
 import com.bage.finance.biz.dto.vo.ListRoleVo;
+import com.bage.finance.biz.dto.vo.MenuDataItemVo;
 import com.bage.mybatis.help.PageInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -71,5 +69,25 @@ public interface SysRoleService {
      * @return
      */
     GetRoleDetailVo getById(int id);
+
+    /**
+     * 角色绑定踩菜单列表
+     *
+     * @param form
+     * @return
+     */
+    boolean roleBindMenu(RoleBindMenuForm form);
+
+    /**
+     * 将所有角色绑定的菜单设置到缓存中(通过定时任务触发)
+     */
+    void setSysRoleMenuCache();
+
+    /**
+     * 查询当前登录用户角色绑定的菜单列表
+     *
+     * @return
+     */
+    List<MenuDataItemVo> listRoleBindMenu();
 }
 

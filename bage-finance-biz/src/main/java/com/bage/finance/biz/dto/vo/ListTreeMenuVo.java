@@ -21,6 +21,10 @@ public class ListTreeMenuVo {
     private Integer pid;
     @ApiModelProperty(value = "菜单路由")
     private String path;
+    @ApiModelProperty(value = "顺序")
+    private Integer sort;
+    @ApiModelProperty(value = "是否隐藏菜单")
+    private Boolean hideInMenu;
     @ApiModelProperty(value = "子菜单")
     private List<ListTreeMenuVo> children;
 }

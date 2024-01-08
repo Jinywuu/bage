@@ -354,4 +354,63 @@
     </foreach>
 </update>
 
+  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+    insert into member_bind_wx_openid (app_id, open_id, member_id, disable, create_time, update_time) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        #{item.appId, jdbcType=VARCHAR},
+        #{item.openId, jdbcType=VARCHAR},
+        #{item.memberId, jdbcType=BIGINT},
+        #{item.disable, jdbcType=BIT},
+        #{item.createTime, jdbcType=TIMESTAMP},
+        #{item.updateTime, jdbcType=TIMESTAMP},
+      </trim>
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" keyColumn="id" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      insert into member_bind_wx_openid 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.appId != null">
+          app_id,
+        </if>
+        <if test="item.openId != null">
+          open_id,
+        </if>
+        <if test="item.memberId != null">
+          member_id,
+        </if>
+        <if test="item.disable != null">
+          disable,
+        </if>
+        <if test="item.createTime != null">
+          create_time,
+        </if>
+        <if test="item.updateTime != null">
+          update_time,
+        </if>
+      </trim>
+       values 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.appId != null">
+          #{item.appId, jdbcType=VARCHAR},
+        </if>
+        <if test="item.openId != null">
+          #{item.openId, jdbcType=VARCHAR},
+        </if>
+        <if test="item.memberId != null">
+          #{item.memberId, jdbcType=BIGINT},
+        </if>
+        <if test="item.disable != null">
+          #{item.disable, jdbcType=BIT},
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime, jdbcType=TIMESTAMP},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
 </mapper>

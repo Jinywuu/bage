@@ -562,4 +562,133 @@
     </foreach>
 </update>
 
+  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+    insert into account_book (company_name, unified_social_credit_code, industry_id, value_added_tax_cate, enable_voucher_verify, start_time, accounting_standard, enable_fixed_assets, enable_capital, enable_psi, disable, create_time, update_time, member_id, update_member_id, del_flag) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        #{item.companyName, jdbcType=VARCHAR},
+        #{item.unifiedSocialCreditCode, jdbcType=VARCHAR},
+        #{item.industryId, jdbcType=INTEGER},
+        #{item.valueAddedTaxCate, jdbcType=TINYINT},
+        #{item.enableVoucherVerify, jdbcType=BIT},
+        #{item.startTime, jdbcType=TIMESTAMP},
+        #{item.accountingStandard, jdbcType=TINYINT},
+        #{item.enableFixedAssets, jdbcType=BIT},
+        #{item.enableCapital, jdbcType=BIT},
+        #{item.enablePsi, jdbcType=BIT},
+        #{item.disable, jdbcType=BIT},
+        #{item.createTime, jdbcType=TIMESTAMP},
+        #{item.updateTime, jdbcType=TIMESTAMP},
+        #{item.memberId, jdbcType=BIGINT},
+        #{item.updateMemberId, jdbcType=BIGINT},
+        #{item.delFlag, jdbcType=BIT},
+      </trim>
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" keyColumn="id" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      insert into account_book 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.companyName != null">
+          company_name,
+        </if>
+        <if test="item.unifiedSocialCreditCode != null">
+          unified_social_credit_code,
+        </if>
+        <if test="item.industryId != null">
+          industry_id,
+        </if>
+        <if test="item.valueAddedTaxCate != null">
+          value_added_tax_cate,
+        </if>
+        <if test="item.enableVoucherVerify != null">
+          enable_voucher_verify,
+        </if>
+        <if test="item.startTime != null">
+          start_time,
+        </if>
+        <if test="item.accountingStandard != null">
+          accounting_standard,
+        </if>
+        <if test="item.enableFixedAssets != null">
+          enable_fixed_assets,
+        </if>
+        <if test="item.enableCapital != null">
+          enable_capital,
+        </if>
+        <if test="item.enablePsi != null">
+          enable_psi,
+        </if>
+        <if test="item.disable != null">
+          disable,
+        </if>
+        <if test="item.createTime != null">
+          create_time,
+        </if>
+        <if test="item.updateTime != null">
+          update_time,
+        </if>
+        <if test="item.memberId != null">
+          member_id,
+        </if>
+        <if test="item.updateMemberId != null">
+          update_member_id,
+        </if>
+        <if test="item.delFlag != null">
+          del_flag,
+        </if>
+      </trim>
+       values 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.companyName != null">
+          #{item.companyName, jdbcType=VARCHAR},
+        </if>
+        <if test="item.unifiedSocialCreditCode != null">
+          #{item.unifiedSocialCreditCode, jdbcType=VARCHAR},
+        </if>
+        <if test="item.industryId != null">
+          #{item.industryId, jdbcType=INTEGER},
+        </if>
+        <if test="item.valueAddedTaxCate != null">
+          #{item.valueAddedTaxCate, jdbcType=TINYINT},
+        </if>
+        <if test="item.enableVoucherVerify != null">
+          #{item.enableVoucherVerify, jdbcType=BIT},
+        </if>
+        <if test="item.startTime != null">
+          #{item.startTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.accountingStandard != null">
+          #{item.accountingStandard, jdbcType=TINYINT},
+        </if>
+        <if test="item.enableFixedAssets != null">
+          #{item.enableFixedAssets, jdbcType=BIT},
+        </if>
+        <if test="item.enableCapital != null">
+          #{item.enableCapital, jdbcType=BIT},
+        </if>
+        <if test="item.enablePsi != null">
+          #{item.enablePsi, jdbcType=BIT},
+        </if>
+        <if test="item.disable != null">
+          #{item.disable, jdbcType=BIT},
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.memberId != null">
+          #{item.memberId, jdbcType=BIGINT},
+        </if>
+        <if test="item.updateMemberId != null">
+          #{item.updateMemberId, jdbcType=BIGINT},
+        </if>
+        <if test="item.delFlag != null">
+          #{item.delFlag, jdbcType=BIT},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
 </mapper>

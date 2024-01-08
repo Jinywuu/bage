@@ -20,11 +20,25 @@ public interface CommonMapper<T> {
     int insert(T row);
 
     /**
+     * 批量插入插入数据（所有字段）
+     * @param list
+     * @return
+     */
+    int insertBatch(@Param("list") List<T> list);
+
+    /**
      * 插入数据（不为null的字段）
      * @param row
      * @return
      */
     int insertSelective(T row);
+
+    /**
+     * 批量插入（不为null的字段）
+     * @param list
+     * @return
+     */
+    int insertBatchSelective(@Param("list") List<T> list);
 
     /**
      * 通过id查询记录

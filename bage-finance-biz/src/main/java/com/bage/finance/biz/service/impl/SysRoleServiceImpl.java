@@ -10,17 +10,12 @@ import com.bage.finance.biz.domain.SysMenu;
 import com.bage.finance.biz.domain.SysResource;
 import com.bage.finance.biz.domain.SysRole;
 import com.bage.finance.biz.dto.AdminDTO;
-import com.bage.finance.biz.dto.form.CreateSysRoleForm;
-import com.bage.finance.biz.dto.form.ListRoleForm;
-import com.bage.finance.biz.dto.form.UpdateRoleDisableForm;
-import com.bage.finance.biz.dto.form.UpdateRoleForm;
+import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.dto.vo.GetRoleDetailVo;
 import com.bage.finance.biz.dto.vo.ListRoleVo;
+import com.bage.finance.biz.dto.vo.MenuDataItemVo;
 import com.bage.finance.biz.mapper.SysRoleMapper;
-import com.bage.finance.biz.service.MemberService;
-import com.bage.finance.biz.service.SysMenuService;
-import com.bage.finance.biz.service.SysResourceService;
-import com.bage.finance.biz.service.SysRoleService;
+import com.bage.finance.biz.service.*;
 import com.bage.mybatis.help.Criteria;
 import com.bage.mybatis.help.MyBatisWrapper;
 import com.bage.mybatis.help.PageInfo;
@@ -51,6 +46,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     final SysMenuService sysMenuService;
     final MemberService memberService;
     final SysResourceService sysResourceService;
+    final SysRoleBindMenuService sysRoleBindMenuService;
 
     /**
      * 保存角色路由
@@ -133,6 +129,8 @@ public class SysRoleServiceImpl implements SysRoleService {
         if (sysRoleMapper.updateField(wrapper) == 0) {
             return false;
         }
+        //删除角色绑定的菜单缓存
+        deleteSysRoleMenuCache(id);
         //删除会员角色id
         //todo 后续通过mq发送消息调用删除
         //memberService.delRoleIds(id);
@@ -190,5 +188,138 @@ public class SysRoleServiceImpl implements SysRoleService {
                 .andEq(setDelFlag(false));
         SysRole sysRole = sysRoleMapper.get(wrapper);
         return objectConvertor.toGetRoleDetailVo(sysRole);
+    }
+
+    /**
+     * 角色绑定资源列表
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public boolean roleBindMenu(RoleBindMenuForm form) {
+        if (!CollectionUtils.isEmpty(form.getBindMenuIds())) {
+            List<SysMenu> sysMenus = sysMenuService.listByIds(form.getBindMenuIds());
+            if (form.getBindMenuIds().size() != sysMenus.size()) {
+                throw new BizException("资源非法");
+            }
+        }
+        if (sysRoleBindMenuService.roleBindMenu(form)) {
+            setSysRoleMenuCache(form.getRoleId());
+        }
+        return true;
+    }
+
+    /**
+     * 将所有角色绑定的资源设置到缓存中(通过定时任务触发)
+     */
+    @Override
+    public void setSysRoleMenuCache() {
+        PageHelperRequest form = new PageHelperRequest();
+        form.setPageNum(1);
+        form.setPageSize(100);
+        List<SysRole> sysRoles = null;
+        List<SysMenu> sysMenus = sysMenuService.list();
+        while (!CollectionUtils.isEmpty(sysRoles = list(form))) {
+            for (SysRole sysRole : sysRoles) {
+                if (sysRole.getDisable() || sysRole.getDelFlag()) {
+                    deleteSysRoleMenuCache(sysRole.getId());
+                    continue;
+                }
+                //查询绑定的资源id列表
+                List<Integer> menuIds = sysRoleBindMenuService.listBindMenuIdByRoleId(sysRole.getId());
+                List<MenuDataItemVo> menuDataItemVos = listRoleBindMenu(sysRole.getId(), menuIds, sysMenus);
+                updateSysRoleMenuCache(sysRole.getId(), menuDataItemVos);
+            }
+            form.setPageNum(form.getPageNum() + 1);
+        }
+    }
+
+    /**
+     * 查询当前登录用户角色绑定的菜单列表
+     *
+     * @return
+     */
+    @Override
+    public List<MenuDataItemVo> listRoleBindMenu() {
+        Set<Long> roleIds = tokenService.getThreadLocalUser().getSysRoleIds();
+        return listRoleMenuIdByCache(roleIds);
+    }
+
+    /**
+     * 将某个角色绑定的菜单设置到缓存中
+     *
+     * @param roleId
+     */
+    private void setSysRoleMenuCache(int roleId) {
+        List<SysMenu> sysMenus = sysMenuService.list();
+        //查询绑定的资源id列表
+        List<Integer> menuIds = sysRoleBindMenuService.listBindMenuIdByRoleId(roleId);
+        List<MenuDataItemVo> menuDataItemVos = listRoleBindMenu(roleId, menuIds, sysMenus);
+        updateSysRoleMenuCache(roleId, menuDataItemVos);
+    }
+
+    /**
+     * 更新角色资源路由缓存
+     *
+     * @param roleId          角色id
+     * @param menuDataItemVos 资源路由
+     */
+    private void updateSysRoleMenuCache(int roleId, List<MenuDataItemVo> menuDataItemVos) {
+        String cacheKey = CommonConstant.ROLE_MENU_PERMISSIONS;
+        HashOperations<String, String, List<MenuDataItemVo>> hashOps = redisTemplate.opsForHash();
+        hashOps.put(cacheKey, String.valueOf(roleId), menuDataItemVos);
+    }
+    /**
+     * 删除角色资源路由缓存
+     *
+     * @param roleId 角色id
+     */
+    private void deleteSysRoleMenuCache(int roleId) {
+        String cacheKey = CommonConstant.ROLE_MENU_PERMISSIONS;
+        HashOperations<String, String, List<MenuDataItemVo>> hashOps = redisTemplate.opsForHash();
+        hashOps.delete(cacheKey, String.valueOf(roleId));
+    }
+    /**
+     * 从缓存中获取角色绑定的菜单
+     *
+     * @param roleIds
+     * @return
+     */
+    private List<MenuDataItemVo> listRoleMenuIdByCache(Set<Long> roleIds) {
+        HashOperations<String, String, List<MenuDataItemVo>> hashOps = redisTemplate.opsForHash();
+        List<List<MenuDataItemVo>> roleMenuIds = hashOps.multiGet(CommonConstant.ROLE_MENU_PERMISSIONS, roleIds.stream().map(String::valueOf).collect(Collectors.toSet()));
+        // 对结果进行处理，将 List<List<Integer>> 转为 List<Integer>
+        return roleMenuIds.stream()
+                .filter(p -> !CollectionUtils.isEmpty(p))
+                .flatMap(List::stream).collect(Collectors.toList());
+    }
+
+    /**
+     * 查询角色绑定的菜单列表
+     *
+     * @return
+     */
+    private List<MenuDataItemVo> listRoleBindMenu(int roleId, List<Integer> menuIds, List<SysMenu> sysMenus) {
+        Set<Integer> parentIds = sysMenus.stream().filter(p -> (CommonConstant.ROLE_ADMIN == roleId || menuIds.contains(p.getId()))
+                && p.getPid() > 0)
+                .map(SysMenu::getPid).collect(Collectors.toSet());
+        //查询所有子节点
+        List<SysMenu> parentMenus = sysMenus.stream().filter(p -> parentIds.contains(p.getId())).collect(Collectors.toList());
+        List<MenuDataItemVo> parentMenuDataItemVos = objectConvertor.toMenuDataItemVo(parentMenus);
+        for (MenuDataItemVo parentMenuDataItemVo : parentMenuDataItemVos) {
+            if (parentMenuDataItemVo.getLayout()) {
+                parentMenuDataItemVo.setLayout(null);
+            }
+            List<SysMenu> childMenus = sysMenus.stream().filter(p -> p.getPid().equals(parentMenuDataItemVo.getId())
+                    && (CommonConstant.ROLE_ADMIN == roleId || menuIds.contains(p.getId())))
+                    .collect(Collectors.toList());
+            parentMenuDataItemVo.setRoutes(objectConvertor.toMenuDataItemVo(childMenus).stream().peek(p -> {
+                if (p.getLayout()) {
+                    p.setLayout(null);
+                }
+            }).collect(Collectors.toList()));
+        }
+        return parentMenuDataItemVos;
     }
 }

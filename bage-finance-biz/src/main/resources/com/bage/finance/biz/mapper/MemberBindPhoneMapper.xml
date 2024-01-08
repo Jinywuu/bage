@@ -354,4 +354,63 @@
     </foreach>
 </update>
 
+  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+    insert into member_bind_phone (phone, member_id, disable, create_time, update_time, password) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        #{item.phone, jdbcType=VARCHAR},
+        #{item.memberId, jdbcType=BIGINT},
+        #{item.disable, jdbcType=BIT},
+        #{item.createTime, jdbcType=TIMESTAMP},
+        #{item.updateTime, jdbcType=TIMESTAMP},
+        #{item.password, jdbcType=VARCHAR},
+      </trim>
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" keyColumn="id" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      insert into member_bind_phone 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.phone != null">
+          phone,
+        </if>
+        <if test="item.memberId != null">
+          member_id,
+        </if>
+        <if test="item.disable != null">
+          disable,
+        </if>
+        <if test="item.createTime != null">
+          create_time,
+        </if>
+        <if test="item.updateTime != null">
+          update_time,
+        </if>
+        <if test="item.password != null">
+          password,
+        </if>
+      </trim>
+       values 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.phone != null">
+          #{item.phone, jdbcType=VARCHAR},
+        </if>
+        <if test="item.memberId != null">
+          #{item.memberId, jdbcType=BIGINT},
+        </if>
+        <if test="item.disable != null">
+          #{item.disable, jdbcType=BIT},
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.password != null">
+          #{item.password, jdbcType=VARCHAR},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
 </mapper>

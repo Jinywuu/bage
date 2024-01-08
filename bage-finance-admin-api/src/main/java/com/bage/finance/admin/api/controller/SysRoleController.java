@@ -4,6 +4,8 @@ import com.bage.common.dto.ApiResponse;
 import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.dto.vo.GetRoleDetailVo;
 import com.bage.finance.biz.dto.vo.ListRoleVo;
+import com.bage.finance.biz.dto.vo.MenuDataItemVo;
+import com.bage.finance.biz.service.SysRoleBindMenuService;
 import com.bage.finance.biz.service.SysRoleService;
 import com.bage.mybatis.help.PageInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -59,5 +61,17 @@ public class SysRoleController {
     @GetMapping(value = "getById")
     public ApiResponse<GetRoleDetailVo> getById(@Valid @NotNull @RequestParam Integer id) {
         return ApiResponse.success(sysRoleService.getById(id));
+    }
+
+    @ApiOperation(value = "查询当前登录用户角色绑定的菜单列表")
+    @GetMapping(value = "/listRoleBindMenu")
+    public ApiResponse<List<MenuDataItemVo>> listRoleBindMenu() {
+        return ApiResponse.success(sysRoleService.listRoleBindMenu());
+    }
+
+    @ApiOperation(value = "角色绑定菜单")
+    @PostMapping(value = "/roleBindMenu")
+    public ApiResponse<Boolean> roleBindResource(@Valid @RequestBody RoleBindMenuForm form) {
+        return ApiResponse.success(sysRoleService.roleBindMenu(form));
     }
 }

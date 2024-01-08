@@ -1,62 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bage.finance.biz.mapper.MemberMapper">
-  <resultMap id="BaseResultMap" type="com.bage.finance.biz.domain.Member">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="disable" jdbcType="BIT" property="disable" />
+<mapper namespace="com.bage.finance.biz.mapper.SysRoleBindMenuMapper">
+  <resultMap id="BaseResultMap" type="com.bage.finance.biz.domain.SysRoleBindMenu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sys_role_id" jdbcType="INTEGER" property="sysRoleId" />
+    <result column="sys_menu_id" jdbcType="INTEGER" property="sysMenuId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-    <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bage.finance.biz.domain.Member">
-    <result column="sys_role_ids" jdbcType="LONGVARCHAR" property="sysRoleIds" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="update_member_id" jdbcType="BIGINT" property="updateMemberId" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="disable" jdbcType="BIT" property="disable" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, nick_name, disable, create_time, update_time, name, avatar_url, tenant_id, email
+    id, sys_role_id, sys_menu_id, create_time, update_time, member_id, update_member_id, 
+    del_flag, disable
   </sql>
-  <sql id="Blob_Column_List">
-    sys_role_ids
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from member
-    where id = #{id,jdbcType=BIGINT}
+    from sys_role_bind_menu
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from member
-    where id = #{id,jdbcType=BIGINT}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_role_bind_menu
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.bage.finance.biz.domain.Member">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  <insert id="insert" parameterType="com.bage.finance.biz.domain.SysRoleBindMenu">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into member (nick_name, disable, create_time, 
-      update_time, name, avatar_url, 
-      tenant_id, email, sys_role_ids
-      )
-    values (#{nickName,jdbcType=VARCHAR}, #{disable,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
-      #{tenantId,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, #{sysRoleIds,jdbcType=LONGVARCHAR}
-      )
+    insert into sys_role_bind_menu (sys_role_id, sys_menu_id, create_time, 
+      update_time, member_id, update_member_id, 
+      del_flag, disable)
+    values (#{sysRoleId,jdbcType=INTEGER}, #{sysMenuId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{memberId,jdbcType=BIGINT}, #{updateMemberId,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=BIT}, #{disable,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.bage.finance.biz.domain.Member">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+  <insert id="insertSelective" parameterType="com.bage.finance.biz.domain.SysRoleBindMenu">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into member
+    insert into sys_role_bind_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="nickName != null">
-        nick_name,
+      <if test="sysRoleId != null">
+        sys_role_id,
       </if>
-      <if test="disable != null">
-        disable,
+      <if test="sysMenuId != null">
+        sys_menu_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -64,28 +55,25 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="name != null">
-        name,
+      <if test="memberId != null">
+        member_id,
       </if>
-      <if test="avatarUrl != null">
-        avatar_url,
+      <if test="updateMemberId != null">
+        update_member_id,
       </if>
-      <if test="tenantId != null">
-        tenant_id,
+      <if test="delFlag != null">
+        del_flag,
       </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="sysRoleIds != null">
-        sys_role_ids,
+      <if test="disable != null">
+        disable,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="nickName != null">
-        #{nickName,jdbcType=VARCHAR},
+      <if test="sysRoleId != null">
+        #{sysRoleId,jdbcType=INTEGER},
       </if>
-      <if test="disable != null">
-        #{disable,jdbcType=BIT},
+      <if test="sysMenuId != null">
+        #{sysMenuId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -93,31 +81,28 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="memberId != null">
+        #{memberId,jdbcType=BIGINT},
       </if>
-      <if test="avatarUrl != null">
-        #{avatarUrl,jdbcType=VARCHAR},
+      <if test="updateMemberId != null">
+        #{updateMemberId,jdbcType=BIGINT},
       </if>
-      <if test="tenantId != null">
-        #{tenantId,jdbcType=BIGINT},
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
       </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="sysRoleIds != null">
-        #{sysRoleIds,jdbcType=LONGVARCHAR},
+      <if test="disable != null">
+        #{disable,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bage.finance.biz.domain.Member">
-    update member
+  <update id="updateByPrimaryKeySelective" parameterType="com.bage.finance.biz.domain.SysRoleBindMenu">
+    update sys_role_bind_menu
     <set>
-      <if test="nickName != null">
-        nick_name = #{nickName,jdbcType=VARCHAR},
+      <if test="sysRoleId != null">
+        sys_role_id = #{sysRoleId,jdbcType=INTEGER},
       </if>
-      <if test="disable != null">
-        disable = #{disable,jdbcType=BIT},
+      <if test="sysMenuId != null">
+        sys_menu_id = #{sysMenuId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -125,48 +110,32 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=BIGINT},
       </if>
-      <if test="avatarUrl != null">
-        avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      <if test="updateMemberId != null">
+        update_member_id = #{updateMemberId,jdbcType=BIGINT},
       </if>
-      <if test="tenantId != null">
-        tenant_id = #{tenantId,jdbcType=BIGINT},
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
       </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="sysRoleIds != null">
-        sys_role_ids = #{sysRoleIds,jdbcType=LONGVARCHAR},
+      <if test="disable != null">
+        disable = #{disable,jdbcType=BIT},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bage.finance.biz.domain.Member">
-    update member
-    set nick_name = #{nickName,jdbcType=VARCHAR},
-      disable = #{disable,jdbcType=BIT},
+  <update id="updateByPrimaryKey" parameterType="com.bage.finance.biz.domain.SysRoleBindMenu">
+    update sys_role_bind_menu
+    set sys_role_id = #{sysRoleId,jdbcType=INTEGER},
+      sys_menu_id = #{sysMenuId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      name = #{name,jdbcType=VARCHAR},
-      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
-      tenant_id = #{tenantId,jdbcType=BIGINT},
-      email = #{email,jdbcType=VARCHAR},
-      sys_role_ids = #{sysRoleIds,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bage.finance.biz.domain.Member">
-    update member
-    set nick_name = #{nickName,jdbcType=VARCHAR},
-      disable = #{disable,jdbcType=BIT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      name = #{name,jdbcType=VARCHAR},
-      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
-      tenant_id = #{tenantId,jdbcType=BIGINT},
-      email = #{email,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
+      member_id = #{memberId,jdbcType=BIGINT},
+      update_member_id = #{updateMemberId,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=BIT},
+      disable = #{disable,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="list" parameterType="com.bage.mybatis.help.MyBatisWrapper" resultMap="BaseResultMap">
         <include refid="listSql"/>
@@ -181,7 +150,7 @@
                 ${selectBuilder}
             </trim>
         </if>
-        from member
+        from sys_role_bind_menu
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -244,7 +213,7 @@
          ${selectBuilder} 
       </trim>
     </if>
-    from member
+    from sys_role_bind_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -258,13 +227,13 @@
         <include refid="countSql"/>
     </select>
     <sql id="countSql">
-        select count(*) total_count from member
+        select count(*) total_count from sys_role_bind_menu
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </sql>
   <update id="updateField" parameterType="com.bage.mybatis.help.MyBatisWrapper">
-    update member 
+    update sys_role_bind_menu 
     set 
     <trim prefixOverrides="," suffixOverrides=",">
          ${example.updateSql} 
@@ -312,7 +281,7 @@
         </where></sql>
    <update id="updateFieldBatch" parameterType="java.util.List">
            <foreach collection="list" index="index" item="example" separator=";">
-               update member 
+               update sys_role_bind_menu 
                    set 
                <trim prefixOverrides="," suffixOverrides=",">
                    ${example.updateSql} 
@@ -328,7 +297,7 @@
          ${selectBuilder} 
       </trim>
     </if>
-    from member
+    from sys_role_bind_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -338,30 +307,30 @@
   </select>
 
   <update id="updateBatchSelective" parameterType="java.util.List">
-    update member
+    update sys_role_bind_menu
    <trim prefix="set" suffixOverrides=",">
       <trim prefix="id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.id != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.id,jdbcType=BIGINT}
+            when id = #{item.id,jdbcType=INTEGER} then #{item.id,jdbcType=INTEGER}
           </if>
         </foreach>
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="nick_name = case" suffix="end,">
+      <trim prefix="sys_role_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.nickName != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.nickName,jdbcType=VARCHAR}
+          <if test="item.sysRoleId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.sysRoleId,jdbcType=INTEGER}
           </if>
         </foreach>
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="disable = case" suffix="end,">
+      <trim prefix="sys_menu_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.disable != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.disable,jdbcType=BIT}
+          <if test="item.sysMenuId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.sysMenuId,jdbcType=INTEGER}
           </if>
         </foreach>
       </trim>
@@ -370,7 +339,7 @@
       <trim prefix="create_time = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.createTime != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+            when id = #{item.id,jdbcType=INTEGER} then #{item.createTime,jdbcType=TIMESTAMP}
           </if>
         </foreach>
       </trim>
@@ -379,87 +348,77 @@
       <trim prefix="update_time = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           <if test="item.updateTime != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+            when id = #{item.id,jdbcType=INTEGER} then #{item.updateTime,jdbcType=TIMESTAMP}
           </if>
         </foreach>
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="name = case" suffix="end,">
+      <trim prefix="member_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.name != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+          <if test="item.memberId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.memberId,jdbcType=BIGINT}
           </if>
         </foreach>
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="avatar_url = case" suffix="end,">
+      <trim prefix="update_member_id = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.avatarUrl != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.avatarUrl,jdbcType=VARCHAR}
+          <if test="item.updateMemberId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.updateMemberId,jdbcType=BIGINT}
           </if>
         </foreach>
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="tenant_id = case" suffix="end,">
+      <trim prefix="del_flag = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.tenantId != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.tenantId,jdbcType=BIGINT}
+          <if test="item.delFlag != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.delFlag,jdbcType=BIT}
           </if>
         </foreach>
       </trim>
   </trim>
    <trim prefix="set" suffixOverrides=",">
-      <trim prefix="email = case" suffix="end,">
+      <trim prefix="disable = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          <if test="item.email != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.email,jdbcType=VARCHAR}
-          </if>
-        </foreach>
-      </trim>
-  </trim>
-   <trim prefix="set" suffixOverrides=",">
-      <trim prefix="sys_role_ids = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          <if test="item.sysRoleIds != null">
-            when id = #{item.id,jdbcType=BIGINT} then #{item.sysRoleIds,jdbcType=LONGVARCHAR}
+          <if test="item.disable != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.disable,jdbcType=BIT}
           </if>
         </foreach>
       </trim>
   </trim>
   where id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
-      #{item.id,jdbcType=BIGINT}
+      #{item.id,jdbcType=INTEGER}
     </foreach>
 </update>
 
   <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
-    insert into member (nick_name, disable, create_time, update_time, name, avatar_url, tenant_id, email, sys_role_ids) values
+    insert into sys_role_bind_menu (sys_role_id, sys_menu_id, create_time, update_time, member_id, update_member_id, del_flag, disable) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
-        #{item.nickName, jdbcType=VARCHAR},
-        #{item.disable, jdbcType=BIT},
+        #{item.sysRoleId, jdbcType=INTEGER},
+        #{item.sysMenuId, jdbcType=INTEGER},
         #{item.createTime, jdbcType=TIMESTAMP},
         #{item.updateTime, jdbcType=TIMESTAMP},
-        #{item.name, jdbcType=VARCHAR},
-        #{item.avatarUrl, jdbcType=VARCHAR},
-        #{item.tenantId, jdbcType=BIGINT},
-        #{item.email, jdbcType=VARCHAR},
-        #{item.sysRoleIds, jdbcType=LONGVARCHAR},
+        #{item.memberId, jdbcType=BIGINT},
+        #{item.updateMemberId, jdbcType=BIGINT},
+        #{item.delFlag, jdbcType=BIT},
+        #{item.disable, jdbcType=BIT},
       </trim>
     </foreach>
   </insert>
   <insert id="insertBatchSelective" keyColumn="id" parameterType="java.util.List">
     <foreach collection="list" index="index" item="item" separator=";">
-      insert into member 
+      insert into sys_role_bind_menu 
       <trim prefix="(" suffix=")" suffixOverrides=",">
-        <if test="item.nickName != null">
-          nick_name,
+        <if test="item.sysRoleId != null">
+          sys_role_id,
         </if>
-        <if test="item.disable != null">
-          disable,
+        <if test="item.sysMenuId != null">
+          sys_menu_id,
         </if>
         <if test="item.createTime != null">
           create_time,
@@ -467,29 +426,26 @@
         <if test="item.updateTime != null">
           update_time,
         </if>
-        <if test="item.name != null">
-          name,
+        <if test="item.memberId != null">
+          member_id,
         </if>
-        <if test="item.avatarUrl != null">
-          avatar_url,
+        <if test="item.updateMemberId != null">
+          update_member_id,
         </if>
-        <if test="item.tenantId != null">
-          tenant_id,
+        <if test="item.delFlag != null">
+          del_flag,
         </if>
-        <if test="item.email != null">
-          email,
-        </if>
-        <if test="item.sysRoleIds != null">
-          sys_role_ids,
+        <if test="item.disable != null">
+          disable,
         </if>
       </trim>
        values 
       <trim prefix="(" suffix=")" suffixOverrides=",">
-        <if test="item.nickName != null">
-          #{item.nickName, jdbcType=VARCHAR},
+        <if test="item.sysRoleId != null">
+          #{item.sysRoleId, jdbcType=INTEGER},
         </if>
-        <if test="item.disable != null">
-          #{item.disable, jdbcType=BIT},
+        <if test="item.sysMenuId != null">
+          #{item.sysMenuId, jdbcType=INTEGER},
         </if>
         <if test="item.createTime != null">
           #{item.createTime, jdbcType=TIMESTAMP},
@@ -497,20 +453,17 @@
         <if test="item.updateTime != null">
           #{item.updateTime, jdbcType=TIMESTAMP},
         </if>
-        <if test="item.name != null">
-          #{item.name, jdbcType=VARCHAR},
+        <if test="item.memberId != null">
+          #{item.memberId, jdbcType=BIGINT},
         </if>
-        <if test="item.avatarUrl != null">
-          #{item.avatarUrl, jdbcType=VARCHAR},
+        <if test="item.updateMemberId != null">
+          #{item.updateMemberId, jdbcType=BIGINT},
         </if>
-        <if test="item.tenantId != null">
-          #{item.tenantId, jdbcType=BIGINT},
+        <if test="item.delFlag != null">
+          #{item.delFlag, jdbcType=BIT},
         </if>
-        <if test="item.email != null">
-          #{item.email, jdbcType=VARCHAR},
-        </if>
-        <if test="item.sysRoleIds != null">
-          #{item.sysRoleIds, jdbcType=LONGVARCHAR},
+        <if test="item.disable != null">
+          #{item.disable, jdbcType=BIT},
         </if>
       </trim>
     </foreach>

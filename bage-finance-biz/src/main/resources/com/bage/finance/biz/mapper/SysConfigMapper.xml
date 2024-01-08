@@ -437,4 +437,91 @@
     </foreach>
 </update>
 
+  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+    insert into sys_config (config_name, type, config_key, config_value, create_time, update_time, member_id, update_member_id, del_flag, disable) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        #{item.configName, jdbcType=VARCHAR},
+        #{item.type, jdbcType=VARCHAR},
+        #{item.configKey, jdbcType=VARCHAR},
+        #{item.configValue, jdbcType=VARCHAR},
+        #{item.createTime, jdbcType=TIMESTAMP},
+        #{item.updateTime, jdbcType=TIMESTAMP},
+        #{item.memberId, jdbcType=BIGINT},
+        #{item.updateMemberId, jdbcType=BIGINT},
+        #{item.delFlag, jdbcType=BIT},
+        #{item.disable, jdbcType=BIT},
+      </trim>
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" keyColumn="id" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      insert into sys_config 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.configName != null">
+          config_name,
+        </if>
+        <if test="item.type != null">
+          type,
+        </if>
+        <if test="item.configKey != null">
+          config_key,
+        </if>
+        <if test="item.configValue != null">
+          config_value,
+        </if>
+        <if test="item.createTime != null">
+          create_time,
+        </if>
+        <if test="item.updateTime != null">
+          update_time,
+        </if>
+        <if test="item.memberId != null">
+          member_id,
+        </if>
+        <if test="item.updateMemberId != null">
+          update_member_id,
+        </if>
+        <if test="item.delFlag != null">
+          del_flag,
+        </if>
+        <if test="item.disable != null">
+          disable,
+        </if>
+      </trim>
+       values 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.configName != null">
+          #{item.configName, jdbcType=VARCHAR},
+        </if>
+        <if test="item.type != null">
+          #{item.type, jdbcType=VARCHAR},
+        </if>
+        <if test="item.configKey != null">
+          #{item.configKey, jdbcType=VARCHAR},
+        </if>
+        <if test="item.configValue != null">
+          #{item.configValue, jdbcType=VARCHAR},
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.memberId != null">
+          #{item.memberId, jdbcType=BIGINT},
+        </if>
+        <if test="item.updateMemberId != null">
+          #{item.updateMemberId, jdbcType=BIGINT},
+        </if>
+        <if test="item.delFlag != null">
+          #{item.delFlag, jdbcType=BIT},
+        </if>
+        <if test="item.disable != null">
+          #{item.disable, jdbcType=BIT},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
 </mapper>

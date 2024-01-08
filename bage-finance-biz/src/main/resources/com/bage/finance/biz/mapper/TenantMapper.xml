@@ -374,4 +374,70 @@
     </foreach>
 </update>
 
+  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+    insert into tenant (name, disable, create_time, update_time, admin_id, update_admin_id, del_flag) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        #{item.name, jdbcType=VARCHAR},
+        #{item.disable, jdbcType=BIT},
+        #{item.createTime, jdbcType=TIMESTAMP},
+        #{item.updateTime, jdbcType=TIMESTAMP},
+        #{item.adminId, jdbcType=BIGINT},
+        #{item.updateAdminId, jdbcType=BIGINT},
+        #{item.delFlag, jdbcType=BIT},
+      </trim>
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" keyColumn="id" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      insert into tenant 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.name != null">
+          name,
+        </if>
+        <if test="item.disable != null">
+          disable,
+        </if>
+        <if test="item.createTime != null">
+          create_time,
+        </if>
+        <if test="item.updateTime != null">
+          update_time,
+        </if>
+        <if test="item.adminId != null">
+          admin_id,
+        </if>
+        <if test="item.updateAdminId != null">
+          update_admin_id,
+        </if>
+        <if test="item.delFlag != null">
+          del_flag,
+        </if>
+      </trim>
+       values 
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.name != null">
+          #{item.name, jdbcType=VARCHAR},
+        </if>
+        <if test="item.disable != null">
+          #{item.disable, jdbcType=BIT},
+        </if>
+        <if test="item.createTime != null">
+          #{item.createTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.updateTime != null">
+          #{item.updateTime, jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.adminId != null">
+          #{item.adminId, jdbcType=BIGINT},
+        </if>
+        <if test="item.updateAdminId != null">
+          #{item.updateAdminId, jdbcType=BIGINT},
+        </if>
+        <if test="item.delFlag != null">
+          #{item.delFlag, jdbcType=BIT},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
 </mapper>

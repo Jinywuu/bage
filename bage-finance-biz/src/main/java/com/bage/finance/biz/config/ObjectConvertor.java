@@ -44,4 +44,8 @@ public interface ObjectConvertor {
 
     PageInfo<ListRoleVo> toListRoleVoPage(PageInfo<SysRole> source);
     GetRoleDetailVo toGetRoleDetailVo(SysRole source);
+
+    MenuDataItemVo toMenuDataItemVo(SysMenu source);
+
+    List<MenuDataItemVo> toMenuDataItemVo(List<SysMenu> source);
 }
