@@ -103,16 +103,11 @@ public class AuthFilterServiceImpl<T> implements AuthFilterService<T> {
         if (sysRoleIds.contains(CommonConstant.ROLE_ADMIN)) {
             return;
         }
-        Set<Integer> roleMenuIds = listRoleMenuIdByCache(sysRoleIds);
-        if (CollectionUtils.isEmpty(roleMenuIds)) {
-            throw new BizException("角色对应的菜单id不存在");
+        Set<String> roleBindResourcePaths = listRoleResourcePathByCache(sysRoleIds);
+        if (CollectionUtils.isEmpty(roleBindResourcePaths)) {
+            throw new BizException("角色没有绑定任何资源");
         }
-        List<String> menuPathList = listMenuPathByCache(roleMenuIds);
-
-        if (CollectionUtils.isEmpty(menuPathList)) {
-            throw new BizException("角色菜单配置不存在");
-        }
-        for (String url : menuPathList) {
+        for (String url : roleBindResourcePaths) {
             if (antPathMatcher.match(url, path)) {
                 return;
             }
@@ -126,23 +121,13 @@ public class AuthFilterServiceImpl<T> implements AuthFilterService<T> {
      * @param roleIds
      * @return
      */
-    private Set<Integer> listRoleMenuIdByCache(Set<Long> roleIds) {
-        HashOperations<String, String, Set<Integer>> hashOps = redisTemplate.opsForHash();
-        List<Set<Integer>> roleMenuIds = hashOps.multiGet("ROLE", roleIds.stream().map(String::valueOf).collect(Collectors.toSet()));
-        // 对结果进行处理，将 List<Set<Integer>> 转为 Set<Integer>
+    private Set<String> listRoleResourcePathByCache(Set<Long> roleIds) {
+        HashOperations<String, String, Set<String>> hashOps = redisTemplate.opsForHash();
+        List<Set<String>> roleMenuIds = hashOps.multiGet(CommonConstant.ROLE_RESOURCE_PERMISSIONS, roleIds.stream().map(String::valueOf).collect(Collectors.toSet()));
+        // 对结果进行处理，将 List<List<String>> 转为 List<String>
         return roleMenuIds.stream()
+                .filter(p -> !CollectionUtils.isEmpty(p))
                 .flatMap(Set::stream)
                 .collect(Collectors.toSet());
-    }
-
-    /**
-     * 从缓存中获取菜单路径
-     *
-     * @param menuIds
-     * @return
-     */
-    private List<String> listMenuPathByCache(Set<Integer> menuIds) {
-        HashOperations<String, String, String> hashOps = redisTemplate.opsForHash();
-        return hashOps.multiGet("MENU", menuIds.stream().map(String::valueOf).collect(Collectors.toSet()));
     }
 }

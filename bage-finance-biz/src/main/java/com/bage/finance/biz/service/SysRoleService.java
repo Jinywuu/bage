@@ -89,5 +89,18 @@ public interface SysRoleService {
      * @return
      */
     List<MenuDataItemVo> listRoleBindMenu();
+
+    /**
+     * 角色绑定资源列表
+     *
+     * @param form
+     * @return
+     */
+    boolean roleBindResource(RoleBindResourceForm form);
+
+    /**
+     * 将所有角色绑定的资源设置到缓存中(通过定时任务触发)
+     */
+    void setSysRoleResourceCache();
 }
 

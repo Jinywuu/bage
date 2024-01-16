@@ -6,7 +6,7 @@ import java.util.Date;
  * 系统角色绑定菜单（表：sys_role_bind_menu）
  *
  * @author bage
- * @date 2024-01-08 09:44:25
+ * @date 2024-01-16 11:01:36
  */
 public class SysRoleBindMenu {
     /**
@@ -60,7 +60,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Integer getId() {
         return id;
@@ -72,7 +72,7 @@ public class SysRoleBindMenu {
      *
      * @param id the value for sys_role_bind_menu.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setId(Integer id) {
         this.id = id;
@@ -84,7 +84,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.sys_role_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Integer getSysRoleId() {
         return sysRoleId;
@@ -96,7 +96,7 @@ public class SysRoleBindMenu {
      *
      * @param sysRoleId the value for sys_role_bind_menu.sys_role_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setSysRoleId(Integer sysRoleId) {
         this.sysRoleId = sysRoleId;
@@ -108,7 +108,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.sys_menu_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Integer getSysMenuId() {
         return sysMenuId;
@@ -120,7 +120,7 @@ public class SysRoleBindMenu {
      *
      * @param sysMenuId the value for sys_role_bind_menu.sys_menu_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setSysMenuId(Integer sysMenuId) {
         this.sysMenuId = sysMenuId;
@@ -132,7 +132,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -144,7 +144,7 @@ public class SysRoleBindMenu {
      *
      * @param createTime the value for sys_role_bind_menu.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -156,7 +156,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -168,7 +168,7 @@ public class SysRoleBindMenu {
      *
      * @param updateTime the value for sys_role_bind_menu.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -180,7 +180,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getMemberId() {
         return memberId;
@@ -192,7 +192,7 @@ public class SysRoleBindMenu {
      *
      * @param memberId the value for sys_role_bind_menu.member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -204,7 +204,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.update_member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getUpdateMemberId() {
         return updateMemberId;
@@ -216,7 +216,7 @@ public class SysRoleBindMenu {
      *
      * @param updateMemberId the value for sys_role_bind_menu.update_member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUpdateMemberId(Long updateMemberId) {
         this.updateMemberId = updateMemberId;
@@ -228,7 +228,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.del_flag
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getDelFlag() {
         return delFlag;
@@ -240,7 +240,7 @@ public class SysRoleBindMenu {
      *
      * @param delFlag the value for sys_role_bind_menu.del_flag
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
@@ -252,7 +252,7 @@ public class SysRoleBindMenu {
      *
      * @return the value of sys_role_bind_menu.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -264,7 +264,7 @@ public class SysRoleBindMenu {
      *
      * @param disable the value for sys_role_bind_menu.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;

@@ -30,4 +30,21 @@ public class SysJobService {
         }
         return ReturnT.SUCCESS;
     }
+
+    /**
+     * 将所有角色绑定的资源设置到缓存中
+     */
+    @XxlJob("setSysRoleResourceCacheJobHandler")
+    public ReturnT<String> setSysRoleResourceCacheJobHandler(String param) throws Exception {
+        XxlJobHelper.log("setSysRoleResourceCacheJobHandler -> begin");
+        try {
+            XxlJobHelper.log("开始执行任务");
+            sysRoleService.setSysRoleResourceCache();
+            XxlJobHelper.log("任务执行结束");
+        } catch (Exception e) {
+            XxlJobHelper.log("任务执行失败", e);
+            return ReturnT.FAIL;
+        }
+        return ReturnT.SUCCESS;
+    }
 }

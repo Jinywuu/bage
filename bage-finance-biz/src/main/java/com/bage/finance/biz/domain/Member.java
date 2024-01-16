@@ -6,7 +6,7 @@ import java.util.Date;
  * 用户表（表：member）
  *
  * @author bage
- * @date 2024-01-08 09:44:25
+ * @date 2024-01-16 11:01:36
  */
 public class Member {
     /**
@@ -65,7 +65,7 @@ public class Member {
      *
      * @return the value of member.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getId() {
         return id;
@@ -77,7 +77,7 @@ public class Member {
      *
      * @param id the value for member.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setId(Long id) {
         this.id = id;
@@ -89,7 +89,7 @@ public class Member {
      *
      * @return the value of member.nick_name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getNickName() {
         return nickName;
@@ -101,7 +101,7 @@ public class Member {
      *
      * @param nickName the value for member.nick_name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setNickName(String nickName) {
         this.nickName = nickName;
@@ -113,7 +113,7 @@ public class Member {
      *
      * @return the value of member.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -125,7 +125,7 @@ public class Member {
      *
      * @param disable the value for member.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -137,7 +137,7 @@ public class Member {
      *
      * @return the value of member.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -149,7 +149,7 @@ public class Member {
      *
      * @param createTime the value for member.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -161,7 +161,7 @@ public class Member {
      *
      * @return the value of member.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -173,7 +173,7 @@ public class Member {
      *
      * @param updateTime the value for member.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -185,7 +185,7 @@ public class Member {
      *
      * @return the value of member.name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getName() {
         return name;
@@ -197,7 +197,7 @@ public class Member {
      *
      * @param name the value for member.name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setName(String name) {
         this.name = name;
@@ -209,7 +209,7 @@ public class Member {
      *
      * @return the value of member.avatar_url
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getAvatarUrl() {
         return avatarUrl;
@@ -221,7 +221,7 @@ public class Member {
      *
      * @param avatarUrl the value for member.avatar_url
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
@@ -233,7 +233,7 @@ public class Member {
      *
      * @return the value of member.tenant_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getTenantId() {
         return tenantId;
@@ -245,7 +245,7 @@ public class Member {
      *
      * @param tenantId the value for member.tenant_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setTenantId(Long tenantId) {
         this.tenantId = tenantId;
@@ -257,7 +257,7 @@ public class Member {
      *
      * @return the value of member.email
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getEmail() {
         return email;
@@ -269,7 +269,7 @@ public class Member {
      *
      * @param email the value for member.email
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setEmail(String email) {
         this.email = email;
@@ -281,7 +281,7 @@ public class Member {
      *
      * @return the value of member.sys_role_ids
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getSysRoleIds() {
         return sysRoleIds;
@@ -293,7 +293,7 @@ public class Member {
      *
      * @param sysRoleIds the value for member.sys_role_ids
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setSysRoleIds(String sysRoleIds) {
         this.sysRoleIds = sysRoleIds;

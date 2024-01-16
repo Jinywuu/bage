@@ -74,4 +74,10 @@ public class SysRoleController {
     public ApiResponse<Boolean> roleBindResource(@Valid @RequestBody RoleBindMenuForm form) {
         return ApiResponse.success(sysRoleService.roleBindMenu(form));
     }
+
+    @ApiOperation(value = "角色绑定资源")
+    @PostMapping(value = "/roleBindResource")
+    public ApiResponse<Boolean> roleBindResource(@Valid @RequestBody RoleBindResourceForm form) {
+        return ApiResponse.success(sysRoleService.roleBindResource(form));
+    }
 }

@@ -6,7 +6,7 @@ import java.util.Date;
  * 租户表（表：tenant）
  *
  * @author bage
- * @date 2024-01-08 09:44:25
+ * @date 2024-01-16 11:01:36
  */
 public class Tenant {
     /**
@@ -55,7 +55,7 @@ public class Tenant {
      *
      * @return the value of tenant.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getId() {
         return id;
@@ -67,7 +67,7 @@ public class Tenant {
      *
      * @param id the value for tenant.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setId(Long id) {
         this.id = id;
@@ -79,7 +79,7 @@ public class Tenant {
      *
      * @return the value of tenant.name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getName() {
         return name;
@@ -91,7 +91,7 @@ public class Tenant {
      *
      * @param name the value for tenant.name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setName(String name) {
         this.name = name;
@@ -103,7 +103,7 @@ public class Tenant {
      *
      * @return the value of tenant.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -115,7 +115,7 @@ public class Tenant {
      *
      * @param disable the value for tenant.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -127,7 +127,7 @@ public class Tenant {
      *
      * @return the value of tenant.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -139,7 +139,7 @@ public class Tenant {
      *
      * @param createTime the value for tenant.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -151,7 +151,7 @@ public class Tenant {
      *
      * @return the value of tenant.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -163,7 +163,7 @@ public class Tenant {
      *
      * @param updateTime the value for tenant.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -175,7 +175,7 @@ public class Tenant {
      *
      * @return the value of tenant.admin_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getAdminId() {
         return adminId;
@@ -187,7 +187,7 @@ public class Tenant {
      *
      * @param adminId the value for tenant.admin_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setAdminId(Long adminId) {
         this.adminId = adminId;
@@ -199,7 +199,7 @@ public class Tenant {
      *
      * @return the value of tenant.update_admin_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getUpdateAdminId() {
         return updateAdminId;
@@ -211,7 +211,7 @@ public class Tenant {
      *
      * @param updateAdminId the value for tenant.update_admin_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUpdateAdminId(Long updateAdminId) {
         this.updateAdminId = updateAdminId;
@@ -223,7 +223,7 @@ public class Tenant {
      *
      * @return the value of tenant.del_flag
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getDelFlag() {
         return delFlag;
@@ -235,7 +235,7 @@ public class Tenant {
      *
      * @param delFlag the value for tenant.del_flag
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;

@@ -12,6 +12,11 @@ public class CommonConstant {
     public static final String ROLE_MENU_PERMISSIONS = "ROLE_MENU_PERMISSIONS:";
 
     /**
+     * 角色资源权限
+     */
+    public static final String ROLE_RESOURCE_PERMISSIONS = "ROLE_RESOURCE_PERMISSIONS:";
+
+    /**
      * 管理员
      */
     public static final Long ROLE_ADMIN = 1L;

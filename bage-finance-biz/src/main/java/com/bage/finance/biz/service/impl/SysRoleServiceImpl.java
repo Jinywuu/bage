@@ -47,6 +47,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     final MemberService memberService;
     final SysResourceService sysResourceService;
     final SysRoleBindMenuService sysRoleBindMenuService;
+    final SysRoleBindResourceService sysRoleBindResourceService;
 
     /**
      * 保存角色路由
@@ -131,6 +132,8 @@ public class SysRoleServiceImpl implements SysRoleService {
         }
         //删除角色绑定的菜单缓存
         deleteSysRoleMenuCache(id);
+        //删除角色绑定的资源缓存
+        deleteSysRoleResourceCache(id);
         //删除会员角色id
         //todo 后续通过mq发送消息调用删除
         //memberService.delRoleIds(id);
@@ -153,7 +156,17 @@ public class SysRoleServiceImpl implements SysRoleService {
                 .andEq(setId(form.getId()))
                 .andEq(setDelFlag(false))
                 .andEq(setDisable(!form.getDisable()));
-        return sysRoleMapper.updateField(wrapper) > 0;
+        if (sysRoleMapper.updateField(wrapper) == 0) {
+            throw new BizException("禁用或启用失败");
+        }
+        if (form.getDisable()) {
+            deleteSysRoleMenuCache(form.getId());
+            deleteSysRoleResourceCache(form.getId());
+        } else {
+            setSysRoleMenuCache(form.getId());
+            setSysRoleResourceCache(form.getId());
+        }
+        return true;
     }
 
     /**
@@ -247,6 +260,50 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     /**
+     * 角色绑定资源列表
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public boolean roleBindResource(RoleBindResourceForm form) {
+        if (!CollectionUtils.isEmpty(form.getBindResourceIds())) {
+            List<SysResource> sysResources = sysResourceService.listByIds(form.getBindResourceIds());
+            if (form.getBindResourceIds().size() != sysResources.size()) {
+                throw new BizException("资源非法");
+            }
+        }
+        if (sysRoleBindResourceService.roleBindResource(form)) {
+            setSysRoleResourceCache(form.getRoleId());
+        }
+        return true;
+    }
+
+    /**
+     * 将所有角色绑定的资源设置到缓存中(通过定时任务触发)
+     */
+    @Override
+    public void setSysRoleResourceCache() {
+        PageHelperRequest form = new PageHelperRequest();
+        form.setPageNum(1);
+        List<SysRole> sysRoles = null;
+        while (!CollectionUtils.isEmpty(sysRoles = list(form))) {
+            for (SysRole sysRole : sysRoles) {
+                if (sysRole.getDisable() || sysRole.getDelFlag()) {
+                    deleteSysRoleResourceCache(sysRole.getId());
+                    continue;
+                }
+                //查询绑定的资源id列表
+                List<Integer> resourceIds = sysRoleBindResourceService.listBindResourceIdByRoleId(sysRole.getId());
+                List<SysResource> sysResources = sysResourceService.listByIds(resourceIds);
+                updateSysRoleResourceCache(sysRole.getId(),
+                        sysResources.stream().map(SysResource::getPath).collect(Collectors.toSet()));
+            }
+            form.setPageNum(form.getPageNum() + 1);
+        }
+    }
+
+    /**
      * 将某个角色绑定的菜单设置到缓存中
      *
      * @param roleId
@@ -270,6 +327,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         HashOperations<String, String, List<MenuDataItemVo>> hashOps = redisTemplate.opsForHash();
         hashOps.put(cacheKey, String.valueOf(roleId), menuDataItemVos);
     }
+
     /**
      * 删除角色资源路由缓存
      *
@@ -280,6 +338,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         HashOperations<String, String, List<MenuDataItemVo>> hashOps = redisTemplate.opsForHash();
         hashOps.delete(cacheKey, String.valueOf(roleId));
     }
+
     /**
      * 从缓存中获取角色绑定的菜单
      *
@@ -321,5 +380,46 @@ public class SysRoleServiceImpl implements SysRoleService {
             }).collect(Collectors.toList()));
         }
         return parentMenuDataItemVos;
+    }
+
+
+    /**
+     * 将某个角色绑定的资源设置到缓存中
+     *
+     * @param roleId
+     */
+    private void setSysRoleResourceCache(int roleId) {
+        //查询绑定的资源id列表
+        List<Integer> resourceIds = sysRoleBindResourceService.listBindResourceIdByRoleId(roleId);
+        List<SysResource> sysResources = sysResourceService.listByIds(resourceIds);
+        if (CollectionUtils.isEmpty(sysResources)) {
+            updateSysRoleResourceCache(roleId, new HashSet<>());
+        } else {
+            updateSysRoleResourceCache(roleId,
+                    sysResources.stream().map(SysResource::getPath).collect(Collectors.toSet()));
+        }
+    }
+
+    /**
+     * 更新角色资源路由缓存
+     *
+     * @param roleId       角色id
+     * @param resourcePath 资源路由
+     */
+    private void updateSysRoleResourceCache(int roleId, Set<String> resourcePath) {
+        String cacheKey = CommonConstant.ROLE_RESOURCE_PERMISSIONS;
+        HashOperations<String, String, Set<String>> hashOps = redisTemplate.opsForHash();
+        hashOps.put(cacheKey, String.valueOf(roleId), resourcePath);
+    }
+
+    /**
+     * 删除角色资源路由缓存
+     *
+     * @param roleId 角色id
+     */
+    private void deleteSysRoleResourceCache(int roleId) {
+        String cacheKey = CommonConstant.ROLE_RESOURCE_PERMISSIONS;
+        HashOperations<String, String, Set<String>> hashOps = redisTemplate.opsForHash();
+        hashOps.delete(cacheKey, String.valueOf(roleId));
     }
 }

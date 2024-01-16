@@ -6,7 +6,7 @@ import java.util.Date;
  * 账套（表：account_book）
  *
  * @author bage
- * @date 2024-01-08 09:44:25
+ * @date 2024-01-16 11:01:36
  */
 public class AccountBook {
     /**
@@ -100,7 +100,7 @@ public class AccountBook {
      *
      * @return the value of account_book.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getId() {
         return id;
@@ -112,7 +112,7 @@ public class AccountBook {
      *
      * @param id the value for account_book.id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setId(Long id) {
         this.id = id;
@@ -124,7 +124,7 @@ public class AccountBook {
      *
      * @return the value of account_book.company_name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getCompanyName() {
         return companyName;
@@ -136,7 +136,7 @@ public class AccountBook {
      *
      * @param companyName the value for account_book.company_name
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
@@ -148,7 +148,7 @@ public class AccountBook {
      *
      * @return the value of account_book.unified_social_credit_code
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public String getUnifiedSocialCreditCode() {
         return unifiedSocialCreditCode;
@@ -160,7 +160,7 @@ public class AccountBook {
      *
      * @param unifiedSocialCreditCode the value for account_book.unified_social_credit_code
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUnifiedSocialCreditCode(String unifiedSocialCreditCode) {
         this.unifiedSocialCreditCode = unifiedSocialCreditCode;
@@ -172,7 +172,7 @@ public class AccountBook {
      *
      * @return the value of account_book.industry_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Integer getIndustryId() {
         return industryId;
@@ -184,7 +184,7 @@ public class AccountBook {
      *
      * @param industryId the value for account_book.industry_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setIndustryId(Integer industryId) {
         this.industryId = industryId;
@@ -196,7 +196,7 @@ public class AccountBook {
      *
      * @return the value of account_book.value_added_tax_cate
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Byte getValueAddedTaxCate() {
         return valueAddedTaxCate;
@@ -208,7 +208,7 @@ public class AccountBook {
      *
      * @param valueAddedTaxCate the value for account_book.value_added_tax_cate
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setValueAddedTaxCate(Byte valueAddedTaxCate) {
         this.valueAddedTaxCate = valueAddedTaxCate;
@@ -220,7 +220,7 @@ public class AccountBook {
      *
      * @return the value of account_book.enable_voucher_verify
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getEnableVoucherVerify() {
         return enableVoucherVerify;
@@ -232,7 +232,7 @@ public class AccountBook {
      *
      * @param enableVoucherVerify the value for account_book.enable_voucher_verify
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setEnableVoucherVerify(Boolean enableVoucherVerify) {
         this.enableVoucherVerify = enableVoucherVerify;
@@ -244,7 +244,7 @@ public class AccountBook {
      *
      * @return the value of account_book.start_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getStartTime() {
         return startTime;
@@ -256,7 +256,7 @@ public class AccountBook {
      *
      * @param startTime the value for account_book.start_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
@@ -268,7 +268,7 @@ public class AccountBook {
      *
      * @return the value of account_book.accounting_standard
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Byte getAccountingStandard() {
         return accountingStandard;
@@ -280,7 +280,7 @@ public class AccountBook {
      *
      * @param accountingStandard the value for account_book.accounting_standard
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setAccountingStandard(Byte accountingStandard) {
         this.accountingStandard = accountingStandard;
@@ -292,7 +292,7 @@ public class AccountBook {
      *
      * @return the value of account_book.enable_fixed_assets
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getEnableFixedAssets() {
         return enableFixedAssets;
@@ -304,7 +304,7 @@ public class AccountBook {
      *
      * @param enableFixedAssets the value for account_book.enable_fixed_assets
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setEnableFixedAssets(Boolean enableFixedAssets) {
         this.enableFixedAssets = enableFixedAssets;
@@ -316,7 +316,7 @@ public class AccountBook {
      *
      * @return the value of account_book.enable_capital
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getEnableCapital() {
         return enableCapital;
@@ -328,7 +328,7 @@ public class AccountBook {
      *
      * @param enableCapital the value for account_book.enable_capital
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setEnableCapital(Boolean enableCapital) {
         this.enableCapital = enableCapital;
@@ -340,7 +340,7 @@ public class AccountBook {
      *
      * @return the value of account_book.enable_psi
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getEnablePsi() {
         return enablePsi;
@@ -352,7 +352,7 @@ public class AccountBook {
      *
      * @param enablePsi the value for account_book.enable_psi
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setEnablePsi(Boolean enablePsi) {
         this.enablePsi = enablePsi;
@@ -364,7 +364,7 @@ public class AccountBook {
      *
      * @return the value of account_book.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -376,7 +376,7 @@ public class AccountBook {
      *
      * @param disable the value for account_book.disable
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -388,7 +388,7 @@ public class AccountBook {
      *
      * @return the value of account_book.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -400,7 +400,7 @@ public class AccountBook {
      *
      * @param createTime the value for account_book.create_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -412,7 +412,7 @@ public class AccountBook {
      *
      * @return the value of account_book.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -424,7 +424,7 @@ public class AccountBook {
      *
      * @param updateTime the value for account_book.update_time
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -436,7 +436,7 @@ public class AccountBook {
      *
      * @return the value of account_book.member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getMemberId() {
         return memberId;
@@ -448,7 +448,7 @@ public class AccountBook {
      *
      * @param memberId the value for account_book.member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -460,7 +460,7 @@ public class AccountBook {
      *
      * @return the value of account_book.update_member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Long getUpdateMemberId() {
         return updateMemberId;
@@ -472,7 +472,7 @@ public class AccountBook {
      *
      * @param updateMemberId the value for account_book.update_member_id
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setUpdateMemberId(Long updateMemberId) {
         this.updateMemberId = updateMemberId;
@@ -484,7 +484,7 @@ public class AccountBook {
      *
      * @return the value of account_book.del_flag
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public Boolean getDelFlag() {
         return delFlag;
@@ -496,7 +496,7 @@ public class AccountBook {
      *
      * @param delFlag the value for account_book.del_flag
      *
-     * @mbg.generated Mon Jan 08 09:44:25 CST 2024
+     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
      */
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
