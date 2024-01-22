@@ -6,7 +6,7 @@ import java.util.Date;
  * 用户表绑定微信openid表（表：member_bind_wx_openid）
  *
  * @author bage
- * @date 2024-01-16 11:01:36
+ * @date 2024-01-22 17:33:59
  */
 public class MemberBindWxOpenId {
     /**
@@ -50,7 +50,7 @@ public class MemberBindWxOpenId {
      *
      * @return the value of member_bind_wx_openid.id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Long getId() {
         return id;
@@ -62,7 +62,7 @@ public class MemberBindWxOpenId {
      *
      * @param id the value for member_bind_wx_openid.id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setId(Long id) {
         this.id = id;
@@ -74,7 +74,7 @@ public class MemberBindWxOpenId {
      *
      * @return the value of member_bind_wx_openid.app_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public String getAppId() {
         return appId;
@@ -86,7 +86,7 @@ public class MemberBindWxOpenId {
      *
      * @param appId the value for member_bind_wx_openid.app_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setAppId(String appId) {
         this.appId = appId;
@@ -98,7 +98,7 @@ public class MemberBindWxOpenId {
      *
      * @return the value of member_bind_wx_openid.open_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public String getOpenId() {
         return openId;
@@ -110,7 +110,7 @@ public class MemberBindWxOpenId {
      *
      * @param openId the value for member_bind_wx_openid.open_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setOpenId(String openId) {
         this.openId = openId;
@@ -122,7 +122,7 @@ public class MemberBindWxOpenId {
      *
      * @return the value of member_bind_wx_openid.member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Long getMemberId() {
         return memberId;
@@ -134,7 +134,7 @@ public class MemberBindWxOpenId {
      *
      * @param memberId the value for member_bind_wx_openid.member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -146,7 +146,7 @@ public class MemberBindWxOpenId {
      *
      * @return the value of member_bind_wx_openid.disable
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -158,7 +158,7 @@ public class MemberBindWxOpenId {
      *
      * @param disable the value for member_bind_wx_openid.disable
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -170,7 +170,7 @@ public class MemberBindWxOpenId {
      *
      * @return the value of member_bind_wx_openid.create_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -182,7 +182,7 @@ public class MemberBindWxOpenId {
      *
      * @param createTime the value for member_bind_wx_openid.create_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -194,7 +194,7 @@ public class MemberBindWxOpenId {
      *
      * @return the value of member_bind_wx_openid.update_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -206,7 +206,7 @@ public class MemberBindWxOpenId {
      *
      * @param updateTime the value for member_bind_wx_openid.update_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;

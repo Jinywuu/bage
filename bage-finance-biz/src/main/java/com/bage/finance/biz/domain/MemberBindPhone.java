@@ -6,7 +6,7 @@ import java.util.Date;
  * 用户表绑定手机表（表：member_bind_phone）
  *
  * @author bage
- * @date 2024-01-16 11:01:36
+ * @date 2024-01-22 17:33:59
  */
 public class MemberBindPhone {
     /**
@@ -50,7 +50,7 @@ public class MemberBindPhone {
      *
      * @return the value of member_bind_phone.id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Long getId() {
         return id;
@@ -62,7 +62,7 @@ public class MemberBindPhone {
      *
      * @param id the value for member_bind_phone.id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setId(Long id) {
         this.id = id;
@@ -74,7 +74,7 @@ public class MemberBindPhone {
      *
      * @return the value of member_bind_phone.phone
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public String getPhone() {
         return phone;
@@ -86,7 +86,7 @@ public class MemberBindPhone {
      *
      * @param phone the value for member_bind_phone.phone
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setPhone(String phone) {
         this.phone = phone;
@@ -98,7 +98,7 @@ public class MemberBindPhone {
      *
      * @return the value of member_bind_phone.member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Long getMemberId() {
         return memberId;
@@ -110,7 +110,7 @@ public class MemberBindPhone {
      *
      * @param memberId the value for member_bind_phone.member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -122,7 +122,7 @@ public class MemberBindPhone {
      *
      * @return the value of member_bind_phone.disable
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -134,7 +134,7 @@ public class MemberBindPhone {
      *
      * @param disable the value for member_bind_phone.disable
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -146,7 +146,7 @@ public class MemberBindPhone {
      *
      * @return the value of member_bind_phone.create_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -158,7 +158,7 @@ public class MemberBindPhone {
      *
      * @param createTime the value for member_bind_phone.create_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -170,7 +170,7 @@ public class MemberBindPhone {
      *
      * @return the value of member_bind_phone.update_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -182,7 +182,7 @@ public class MemberBindPhone {
      *
      * @param updateTime the value for member_bind_phone.update_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -194,7 +194,7 @@ public class MemberBindPhone {
      *
      * @return the value of member_bind_phone.password
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public String getPassword() {
         return password;
@@ -206,7 +206,7 @@ public class MemberBindPhone {
      *
      * @param password the value for member_bind_phone.password
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setPassword(String password) {
         this.password = password;

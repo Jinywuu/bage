@@ -39,6 +39,8 @@ public class AccountBookField {
 
     public static DbField DelFlag = new DbField("del_flag","delFlag","BIT","java.lang.Boolean");
 
+    public static DbField TenantId = new DbField("tenant_id","tenantId","BIGINT","java.lang.Long");
+
     public static FieldResult setId(Long id) {
         return new FieldResult(Id, Collections.singletonList(id));
     }
@@ -105,5 +107,9 @@ public class AccountBookField {
 
     public static FieldResult setDelFlag(Boolean delFlag) {
         return new FieldResult(DelFlag, Collections.singletonList(delFlag));
+    }
+
+    public static FieldResult setTenantId(Long tenantId) {
+        return new FieldResult(TenantId, Collections.singletonList(tenantId));
     }
 }

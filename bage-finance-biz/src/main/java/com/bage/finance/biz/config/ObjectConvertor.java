@@ -1,9 +1,7 @@
 package com.bage.finance.biz.config;
 
-import com.bage.finance.biz.domain.Member;
-import com.bage.finance.biz.domain.SysMenu;
-import com.bage.finance.biz.domain.SysResource;
-import com.bage.finance.biz.domain.SysRole;
+import com.bage.finance.biz.domain.*;
+import com.bage.finance.biz.dto.form.AddAccountBookForm;
 import com.bage.finance.biz.dto.form.CreateMenuForm;
 import com.bage.finance.biz.dto.form.CreateSysResourceForm;
 import com.bage.finance.biz.dto.vo.*;
@@ -48,4 +46,10 @@ public interface ObjectConvertor {
     MenuDataItemVo toMenuDataItemVo(SysMenu source);
 
     List<MenuDataItemVo> toMenuDataItemVo(List<SysMenu> source);
+
+    GetAccountBookVo toGetAccountBookVo(AccountBook source);
+    PageInfo<ListAccountBookVo> toListAccountBookVoPage(PageInfo<AccountBook> source);
+    AccountBook toAccountBook(AddAccountBookForm source);
+
+    List<DataDictionaryVo> toDataDictionaryVo(List<DataDictionary> source);
 }

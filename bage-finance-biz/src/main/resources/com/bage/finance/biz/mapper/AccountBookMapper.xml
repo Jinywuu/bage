@@ -19,11 +19,13 @@
     <result column="member_id" jdbcType="BIGINT" property="memberId" />
     <result column="update_member_id" jdbcType="BIGINT" property="updateMemberId" />
     <result column="del_flag" jdbcType="BIT" property="delFlag" />
+    <result column="tenant_id" jdbcType="BIGINT" property="tenantId" />
   </resultMap>
   <sql id="Base_Column_List">
     id, company_name, unified_social_credit_code, industry_id, value_added_tax_cate, 
     enable_voucher_verify, start_time, accounting_standard, enable_fixed_assets, enable_capital, 
-    enable_psi, disable, create_time, update_time, member_id, update_member_id, del_flag
+    enable_psi, disable, create_time, update_time, member_id, update_member_id, del_flag, 
+    tenant_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -44,13 +46,15 @@
       start_time, accounting_standard, enable_fixed_assets, 
       enable_capital, enable_psi, disable, 
       create_time, update_time, member_id, 
-      update_member_id, del_flag)
+      update_member_id, del_flag, tenant_id
+      )
     values (#{companyName,jdbcType=VARCHAR}, #{unifiedSocialCreditCode,jdbcType=VARCHAR}, 
       #{industryId,jdbcType=INTEGER}, #{valueAddedTaxCate,jdbcType=TINYINT}, #{enableVoucherVerify,jdbcType=BIT}, 
       #{startTime,jdbcType=TIMESTAMP}, #{accountingStandard,jdbcType=TINYINT}, #{enableFixedAssets,jdbcType=BIT}, 
       #{enableCapital,jdbcType=BIT}, #{enablePsi,jdbcType=BIT}, #{disable,jdbcType=BIT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{memberId,jdbcType=BIGINT}, 
-      #{updateMemberId,jdbcType=BIGINT}, #{delFlag,jdbcType=BIT})
+      #{updateMemberId,jdbcType=BIGINT}, #{delFlag,jdbcType=BIT}, #{tenantId,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.bage.finance.biz.domain.AccountBook">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -106,6 +110,9 @@
       <if test="delFlag != null">
         del_flag,
       </if>
+      <if test="tenantId != null">
+        tenant_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="companyName != null">
@@ -155,6 +162,9 @@
       </if>
       <if test="delFlag != null">
         #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -209,6 +219,9 @@
       <if test="delFlag != null">
         del_flag = #{delFlag,jdbcType=BIT},
       </if>
+      <if test="tenantId != null">
+        tenant_id = #{tenantId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -229,7 +242,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       member_id = #{memberId,jdbcType=BIGINT},
       update_member_id = #{updateMemberId,jdbcType=BIGINT},
-      del_flag = #{delFlag,jdbcType=BIT}
+      del_flag = #{delFlag,jdbcType=BIT},
+      tenant_id = #{tenantId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="list" parameterType="com.bage.mybatis.help.MyBatisWrapper" resultMap="BaseResultMap">
@@ -556,6 +570,15 @@
         </foreach>
       </trim>
   </trim>
+   <trim prefix="set" suffixOverrides=",">
+      <trim prefix="tenant_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tenantId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.tenantId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+  </trim>
   where id in
     <foreach close=")" collection="list" item="item" open="(" separator=", ">
       #{item.id,jdbcType=BIGINT}
@@ -563,7 +586,7 @@
 </update>
 
   <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
-    insert into account_book (company_name, unified_social_credit_code, industry_id, value_added_tax_cate, enable_voucher_verify, start_time, accounting_standard, enable_fixed_assets, enable_capital, enable_psi, disable, create_time, update_time, member_id, update_member_id, del_flag) values
+    insert into account_book (company_name, unified_social_credit_code, industry_id, value_added_tax_cate, enable_voucher_verify, start_time, accounting_standard, enable_fixed_assets, enable_capital, enable_psi, disable, create_time, update_time, member_id, update_member_id, del_flag, tenant_id) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">
         #{item.companyName, jdbcType=VARCHAR},
@@ -582,6 +605,7 @@
         #{item.memberId, jdbcType=BIGINT},
         #{item.updateMemberId, jdbcType=BIGINT},
         #{item.delFlag, jdbcType=BIT},
+        #{item.tenantId, jdbcType=BIGINT},
       </trim>
     </foreach>
   </insert>
@@ -637,6 +661,9 @@
         <if test="item.delFlag != null">
           del_flag,
         </if>
+        <if test="item.tenantId != null">
+          tenant_id,
+        </if>
       </trim>
        values 
       <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -687,6 +714,9 @@
         </if>
         <if test="item.delFlag != null">
           #{item.delFlag, jdbcType=BIT},
+        </if>
+        <if test="item.tenantId != null">
+          #{item.tenantId, jdbcType=BIGINT},
         </if>
       </trim>
     </foreach>

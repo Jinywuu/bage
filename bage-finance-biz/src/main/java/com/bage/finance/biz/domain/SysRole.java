@@ -6,7 +6,7 @@ import java.util.Date;
  * 系统角色（表：sys_role）
  *
  * @author bage
- * @date 2024-01-16 11:01:36
+ * @date 2024-01-22 17:33:59
  */
 public class SysRole {
     /**
@@ -55,7 +55,7 @@ public class SysRole {
      *
      * @return the value of sys_role.id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Integer getId() {
         return id;
@@ -67,7 +67,7 @@ public class SysRole {
      *
      * @param id the value for sys_role.id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setId(Integer id) {
         this.id = id;
@@ -79,7 +79,7 @@ public class SysRole {
      *
      * @return the value of sys_role.role_name
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public String getRoleName() {
         return roleName;
@@ -91,7 +91,7 @@ public class SysRole {
      *
      * @param roleName the value for sys_role.role_name
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setRoleName(String roleName) {
         this.roleName = roleName;
@@ -103,7 +103,7 @@ public class SysRole {
      *
      * @return the value of sys_role.create_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -115,7 +115,7 @@ public class SysRole {
      *
      * @param createTime the value for sys_role.create_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -127,7 +127,7 @@ public class SysRole {
      *
      * @return the value of sys_role.update_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -139,7 +139,7 @@ public class SysRole {
      *
      * @param updateTime the value for sys_role.update_time
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -151,7 +151,7 @@ public class SysRole {
      *
      * @return the value of sys_role.member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Long getMemberId() {
         return memberId;
@@ -163,7 +163,7 @@ public class SysRole {
      *
      * @param memberId the value for sys_role.member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
@@ -175,7 +175,7 @@ public class SysRole {
      *
      * @return the value of sys_role.update_member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Long getUpdateMemberId() {
         return updateMemberId;
@@ -187,7 +187,7 @@ public class SysRole {
      *
      * @param updateMemberId the value for sys_role.update_member_id
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setUpdateMemberId(Long updateMemberId) {
         this.updateMemberId = updateMemberId;
@@ -199,7 +199,7 @@ public class SysRole {
      *
      * @return the value of sys_role.del_flag
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Boolean getDelFlag() {
         return delFlag;
@@ -211,7 +211,7 @@ public class SysRole {
      *
      * @param delFlag the value for sys_role.del_flag
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setDelFlag(Boolean delFlag) {
         this.delFlag = delFlag;
@@ -223,7 +223,7 @@ public class SysRole {
      *
      * @return the value of sys_role.disable
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -235,7 +235,7 @@ public class SysRole {
      *
      * @param disable the value for sys_role.disable
      *
-     * @mbg.generated Tue Jan 16 11:01:36 CST 2024
+     * @mbg.generated Mon Jan 22 17:33:59 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
