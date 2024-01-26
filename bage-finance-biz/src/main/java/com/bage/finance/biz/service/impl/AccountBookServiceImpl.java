@@ -1,6 +1,7 @@
 package com.bage.finance.biz.service.impl;
 
 import com.bage.common.service.TokenService;
+import com.bage.common.util.DateUtil;
 import com.bage.finance.biz.config.ObjectConvertor;
 import com.bage.finance.biz.domain.AccountBook;
 import com.bage.finance.biz.dto.AdminDTO;
@@ -23,7 +24,7 @@ import static com.bage.finance.biz.domain.AccountBookField.*;
 @Slf4j
 @RequiredArgsConstructor
 public class AccountBookServiceImpl implements AccountBookService {
-    final AccountBookMapper     accountBookMapper;
+    final AccountBookMapper accountBookMapper;
     final ObjectConvertor objectConvertor;
     final TokenService<AdminDTO> tokenService;
 
@@ -41,7 +42,6 @@ public class AccountBookServiceImpl implements AccountBookService {
         myBatisWrapper.whereBuilder()
                 .andEq(Id, id)
                 .andEq(DelFlag, false)
-                .andEq(MemberId, tokenService.getThreadLocalUserId())
                 .andEq(TenantId, tokenService.getThreadLocalTenantId());
         AccountBook accountBook = accountBookMapper.get(myBatisWrapper);
         return objectConvertor.toGetAccountBookVo(accountBook);
@@ -66,7 +66,7 @@ public class AccountBookServiceImpl implements AccountBookService {
         if (request.getDisable() != null) {
             where.andEq(setDisable(request.getDisable()));
         }
-        myBatisWrapper.whereBuilder().andEq(TenantId, tokenService.getThreadLocalTenantId());
+        myBatisWrapper.and().andEq(TenantId, tokenService.getThreadLocalTenantId());
         myBatisWrapper.orderByDesc(CreateTime);
         PageInfo<AccountBook> accountBookPageInfo = myBatisWrapper.listPage(accountBookMapper);
         return objectConvertor.toListAccountBookVoPage(accountBookPageInfo);
@@ -99,7 +99,6 @@ public class AccountBookServiceImpl implements AccountBookService {
         myBatisWrapper.update(setDisable(form.getDisable()))
                 .whereBuilder()
                 .andEq(setId(form.getId()))
-                .andEq(setMemberId(tokenService.getThreadLocalUserId()))
                 .andEq(TenantId, tokenService.getThreadLocalTenantId());
 
         return accountBookMapper.updateField(myBatisWrapper) > 0;
@@ -115,9 +114,10 @@ public class AccountBookServiceImpl implements AccountBookService {
     public boolean del(DelForm form) {
         MyBatisWrapper<AccountBook> myBatisWrapper = new MyBatisWrapper<>();
         myBatisWrapper.update(setDelFlag(true))
+                .update(UpdateMemberId, tokenService.getThreadLocalUserId())
+                .update(UpdateTime, DateUtil.getSystemTime())
                 .whereBuilder()
                 .andEq(setId(form.getId()))
-                .andEq(setMemberId(tokenService.getThreadLocalUserId()))
                 .andEq(TenantId, tokenService.getThreadLocalTenantId());
         return accountBookMapper.updateField(myBatisWrapper) > 0;
     }
@@ -140,7 +140,6 @@ public class AccountBookServiceImpl implements AccountBookService {
                 .update(setEnableVoucherVerify(form.getEnableVoucherVerify()))
                 .whereBuilder()
                 .andEq(setId(form.getId()))
-                .andEq(setMemberId(tokenService.getThreadLocalUserId()))
                 .andEq(TenantId, tokenService.getThreadLocalTenantId());
 
         return accountBookMapper.updateField(myBatisWrapper) > 0;

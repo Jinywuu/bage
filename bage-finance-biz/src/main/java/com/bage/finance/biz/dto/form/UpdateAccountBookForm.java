@@ -30,8 +30,8 @@ public class UpdateAccountBookForm implements Serializable {
     /**
      * 统一社会信用代码
      */
-    @ApiModelProperty(value = "统一社会信用代码")
-    private String unifiedSocialCreditCode;
+//    @ApiModelProperty(value = "统一社会信用代码")
+//    private String unifiedSocialCreditCode;
 
     /**
      * 行业代码id（取数据字典）
@@ -57,16 +57,16 @@ public class UpdateAccountBookForm implements Serializable {
     /**
      * 账套启用年月
      */
-    @ApiModelProperty(value = "账套启用年月")
-    @NotNull
-    private Date startTime;
+//    @ApiModelProperty(value = "账套启用年月")
+//    @NotNull
+//    private Date startTime;
 
     /**
      * 会计准则[0：小企业会计准则；1：企业会计准则；2：民间非盈利组织会计制度；3：农民专业合作社财务会计制度]
      */
-    @ApiModelProperty(value = "会计准则[0：小企业会计准则；1：企业会计准则；2：民间非盈利组织会计制度；3：农民专业合作社财务会计制度]")
-    @NotNull
-    private Byte accountingStandard;
+//    @ApiModelProperty(value = "会计准则[0：小企业会计准则；1：企业会计准则；2：民间非盈利组织会计制度；3：农民专业合作社财务会计制度]")
+//    @NotNull
+//    private Byte accountingStandard;
 
     /**
      * 是否启用固定资产模块[0：不启用；1：启用]
