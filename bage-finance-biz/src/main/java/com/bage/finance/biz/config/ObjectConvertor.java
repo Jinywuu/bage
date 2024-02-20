@@ -2,6 +2,7 @@ package com.bage.finance.biz.config;
 
 import com.bage.finance.biz.domain.*;
 import com.bage.finance.biz.dto.form.AddAccountBookForm;
+import com.bage.finance.biz.dto.form.CreateCurrencyConfigForm;
 import com.bage.finance.biz.dto.form.CreateMenuForm;
 import com.bage.finance.biz.dto.form.CreateSysResourceForm;
 import com.bage.finance.biz.dto.vo.*;
@@ -52,4 +53,10 @@ public interface ObjectConvertor {
     AccountBook toAccountBook(AddAccountBookForm source);
 
     List<DataDictionaryVo> toDataDictionaryVo(List<DataDictionary> source);
+
+    List<ListCurrencyConfigVo> toListCurrencyConfigVo(List<CurrencyConfig> source);
+
+    CurrencyConfig toCurrencyConfig(CreateCurrencyConfigForm source);
+
+    GetCurrencyConfigVo toGetCurrencyConfigVo(CurrencyConfig source);
 }
