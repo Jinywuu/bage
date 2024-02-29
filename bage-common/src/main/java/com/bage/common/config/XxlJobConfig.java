@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "xxl.job")
-@ConditionalOnProperty("xxl.job")
+@ConditionalOnProperty("xxl.job.admin.addresses")
 @Slf4j
 public class XxlJobConfig {
     @Value("${xxl.job.admin.addresses}")
