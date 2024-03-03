@@ -49,6 +49,13 @@ public interface ObjectConvertor {
     List<MenuDataItemVo> toMenuDataItemVo(List<SysMenu> source);
 
     GetAccountBookVo toGetAccountBookVo(AccountBook source);
+
+    @Mappings({
+            @Mapping(target = "valueAddedTaxCate", expression = "java(com.bage.finance.biz.enums.ValueAddedTaxCateEnum.getMessage(source.getValueAddedTaxCate()))"),
+            @Mapping(target = "accountingStandard", expression = "java(com.bage.finance.biz.enums.AccountingStandardEnum.getMessage(source.getAccountingStandard()))")
+    })
+    ListAccountBookVo toListAccountBookVo(AccountBook source);
+
     PageInfo<ListAccountBookVo> toListAccountBookVoPage(PageInfo<AccountBook> source);
     AccountBook toAccountBook(AddAccountBookForm source);
 
