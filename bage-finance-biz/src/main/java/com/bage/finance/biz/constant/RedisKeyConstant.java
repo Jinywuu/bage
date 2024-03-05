@@ -22,4 +22,12 @@ public class RedisKeyConstant {
      * 修改资源锁
      */
     public static final String CHANGE_RESOURCE_LOCK = "CHANGE_RESOURCE_LOCK";
+
+    //用户图形验证码（登录之后的）
+    public static final String USER_GRAPHIC_VERIFICATION_CODE = "USER_GRAPHIC_VERIFICATION_CODE:";
+
+    /**
+     * 新增或修改手机号
+     */
+    public static final String PHONE_CHANGE = "PHONE_CHANGE:";
 }

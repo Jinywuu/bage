@@ -63,7 +63,7 @@ public class MemberRegServiceImpl implements MemberRegService {
         }
         memberLoginService.checkSmsCode(request.getPhone(), request.getSmsCode(), SmsCodeTypeEnum.REG.getCode());
 
-        RLock rLock = redissonClient.getLock("PHONE_REG:" + request.getPhone());
+        RLock rLock = redissonClient.getLock(RedisKeyConstant.PHONE_CHANGE + request.getPhone());
         try {
             rLock.lock();
             MemberBindPhone memberBindPhone = memberBindPhoneService.getMemberByPhone(request.getPhone());

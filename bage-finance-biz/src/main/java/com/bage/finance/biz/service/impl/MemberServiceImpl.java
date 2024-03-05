@@ -1,7 +1,10 @@
 package com.bage.finance.biz.service.impl;
 
 import com.bage.common.constant.CommonConstant;
+import com.bage.common.service.TokenService;
 import com.bage.finance.biz.domain.Member;
+import com.bage.finance.biz.dto.AdminDTO;
+import com.bage.finance.biz.dto.form.UpdateEmailAndNameForm;
 import com.bage.finance.biz.mapper.MemberMapper;
 import com.bage.finance.biz.service.MemberService;
 import com.bage.mybatis.help.MyBatisWrapper;
@@ -16,6 +19,7 @@ import static com.bage.finance.biz.domain.MemberField.*;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     final MemberMapper memberMapper;
+    final TokenService<AdminDTO> tokenService;
 
     /**
      * 注册
@@ -46,5 +50,22 @@ public class MemberServiceImpl implements MemberService {
                 TenantId, Email)
                 .whereBuilder().andEq(setId(id));
         return memberMapper.topOne(myBatisWrapper);
+    }
+
+    /**
+     * 修改邮箱和姓名
+     *
+     * @param form
+     * @return
+     */
+    @Override
+    public boolean updateEmailAndName(UpdateEmailAndNameForm form) {
+        MyBatisWrapper<Member> wrapper = new MyBatisWrapper<>();
+        wrapper.update(setEmail(form.getEmail()))
+                .update(setName(form.getName()))
+                .whereBuilder()
+                .andEq(setId(tokenService.getThreadLocalUserId()))
+                .andEq(setDisable(false));
+        return memberMapper.updateField(wrapper) > 0;
     }
 }
