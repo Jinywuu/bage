@@ -6,7 +6,7 @@ import java.util.Date;
  * 数据字典（表：data_dictionary）
  *
  * @author bage
- * @date 2024-02-20 13:36:00
+ * @date 2024-03-07 15:17:17
  */
 public class DataDictionary {
     /**
@@ -55,7 +55,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.id
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public Long getId() {
         return id;
@@ -67,7 +67,7 @@ public class DataDictionary {
      *
      * @param id the value for data_dictionary.id
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setId(Long id) {
         this.id = id;
@@ -79,7 +79,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.data_code_cate
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public String getDataCodeCate() {
         return dataCodeCate;
@@ -91,7 +91,7 @@ public class DataDictionary {
      *
      * @param dataCodeCate the value for data_dictionary.data_code_cate
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setDataCodeCate(String dataCodeCate) {
         this.dataCodeCate = dataCodeCate;
@@ -103,7 +103,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.data_code
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public String getDataCode() {
         return dataCode;
@@ -115,7 +115,7 @@ public class DataDictionary {
      *
      * @param dataCode the value for data_dictionary.data_code
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setDataCode(String dataCode) {
         this.dataCode = dataCode;
@@ -127,7 +127,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.data_value
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public String getDataValue() {
         return dataValue;
@@ -139,7 +139,7 @@ public class DataDictionary {
      *
      * @param dataValue the value for data_dictionary.data_value
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setDataValue(String dataValue) {
         this.dataValue = dataValue;
@@ -151,7 +151,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.data_sort
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public Integer getDataSort() {
         return dataSort;
@@ -163,7 +163,7 @@ public class DataDictionary {
      *
      * @param dataSort the value for data_dictionary.data_sort
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setDataSort(Integer dataSort) {
         this.dataSort = dataSort;
@@ -175,7 +175,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.disable
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public Boolean getDisable() {
         return disable;
@@ -187,7 +187,7 @@ public class DataDictionary {
      *
      * @param disable the value for data_dictionary.disable
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setDisable(Boolean disable) {
         this.disable = disable;
@@ -199,7 +199,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.create_time
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public Date getCreateTime() {
         return createTime;
@@ -211,7 +211,7 @@ public class DataDictionary {
      *
      * @param createTime the value for data_dictionary.create_time
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -223,7 +223,7 @@ public class DataDictionary {
      *
      * @return the value of data_dictionary.update_time
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -235,7 +235,7 @@ public class DataDictionary {
      *
      * @param updateTime the value for data_dictionary.update_time
      *
-     * @mbg.generated Tue Feb 20 13:36:00 CST 2024
+     * @mbg.generated Thu Mar 07 15:17:17 CST 2024
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;

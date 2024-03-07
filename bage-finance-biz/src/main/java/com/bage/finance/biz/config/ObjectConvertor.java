@@ -1,10 +1,7 @@
 package com.bage.finance.biz.config;
 
 import com.bage.finance.biz.domain.*;
-import com.bage.finance.biz.dto.form.AddAccountBookForm;
-import com.bage.finance.biz.dto.form.CreateCurrencyConfigForm;
-import com.bage.finance.biz.dto.form.CreateMenuForm;
-import com.bage.finance.biz.dto.form.CreateSysResourceForm;
+import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.dto.vo.*;
 import com.bage.mybatis.help.PageInfo;
 import com.bage.wx.dto.MpQrCodeCreateResult;
@@ -66,4 +63,10 @@ public interface ObjectConvertor {
     CurrencyConfig toCurrencyConfig(CreateCurrencyConfigForm source);
 
     GetCurrencyConfigVo toGetCurrencyConfigVo(CurrencyConfig source);
+
+    VoucherWordConfig toVoucherWordConfig(CreateVoucherWordConfigForm source);
+
+    GetVoucherWordConfigVo toGetVoucherWordConfigVo(VoucherWordConfig source);
+
+    List<ListVoucherWordConfigVo> toListVoucherWordConfigVo(List<VoucherWordConfig> source);
 }
