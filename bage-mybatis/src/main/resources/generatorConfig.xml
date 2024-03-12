@@ -32,11 +32,11 @@
         </plugin>
         <commentGenerator type="com.bage.mybatis.generator.plugin.GeneratorCommentPlugin">
             <!-- 是否去除所有自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true"/>
+            <property name="suppressAllComments" value="false"/>
             <!-- 是否添加数据库内的注释 true：是 ： false:否 -->
             <property name="addRemarkComments" value="true"/>
             <!-- 是否去除自动生成日期的注释 true：是 ： false:否 -->
-            <property name="suppressDate" value="true"/>
+            <property name="suppressDate" value="false"/>
             <property name="author" value="bage"/>
         </commentGenerator>
 

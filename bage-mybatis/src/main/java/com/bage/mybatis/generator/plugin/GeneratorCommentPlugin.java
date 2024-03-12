@@ -98,8 +98,9 @@ public class GeneratorCommentPlugin extends DefaultCommentGenerator {
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
         if (!suppressAllComments) {
-            super.addFieldComment(field, introspectedTable);
+            return;
         }
+        super.addFieldComment(field, introspectedTable);
     }
 
     /**
@@ -110,8 +111,9 @@ public class GeneratorCommentPlugin extends DefaultCommentGenerator {
     @Override
     public void addComment(XmlElement xmlElement) {
         if (!suppressAllComments) {
-            super.addComment(xmlElement);
+            return;
         }
+        super.addComment(xmlElement);
     }
 
     /**
@@ -123,21 +125,52 @@ public class GeneratorCommentPlugin extends DefaultCommentGenerator {
     @Override
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
         if (!suppressAllComments) {
-            super.addGeneralMethodComment(method, introspectedTable);
+            return;
         }
+        super.addGeneralMethodComment(method, introspectedTable);
     }
 
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {
         if (!suppressAllComments) {
-            super.addClassComment(innerClass, introspectedTable);
+            return;
         }
+        super.addClassComment(innerClass, introspectedTable);
     }
 
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
         if (!suppressAllComments) {
-            super.addClassComment(innerClass, introspectedTable, markAsDoNotDelete);
+            return;
         }
+        super.addClassComment(innerClass, introspectedTable, markAsDoNotDelete);
+    }
+
+    /**
+     * Getter 方法注释
+     */
+    @Override
+    public void addGetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+        if (!suppressAllComments) {
+            return;
+        }
+        method.addJavaDocLine("/**");
+        method.addJavaDocLine(" * " + introspectedColumn.getRemarks());
+        method.addJavaDocLine(" */");
+        super.addGetterComment(method, introspectedTable, introspectedColumn);
+    }
+
+    /**
+     * Setter 方法注释
+     */
+    @Override
+    public void addSetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+        if (!suppressAllComments) {
+            return;
+        }
+        method.addJavaDocLine("/**");
+        method.addJavaDocLine(" * " + introspectedColumn.getRemarks());
+        method.addJavaDocLine(" */");
+        super.addSetterComment(method, introspectedTable, introspectedColumn);
     }
 }
