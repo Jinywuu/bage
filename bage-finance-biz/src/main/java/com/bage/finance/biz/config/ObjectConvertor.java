@@ -69,4 +69,10 @@ public interface ObjectConvertor {
     GetVoucherWordConfigVo toGetVoucherWordConfigVo(VoucherWordConfig source);
 
     List<ListVoucherWordConfigVo> toListVoucherWordConfigVo(List<VoucherWordConfig> source);
+
+    List<ListCalculateCateVo> toListCalculateCateVos(List<AssistCalculateCate> source);
+
+    AssistCalculateCate toAssistCalculateCate(CreateAssistCalculateCateForm source);
+
+    GetAssistCalculateCateVo toGetAssistCalculateCateVo(AssistCalculateCate source);
 }

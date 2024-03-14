@@ -189,5 +189,11 @@
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+        <table tableName="assist_calculate_cate" domainObjectName="AssistCalculateCate" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="customer_column" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
     </context>
 </generatorConfiguration>
