@@ -29,7 +29,7 @@ public class UpdateAssistCalculateCateForm {
 
     @Data
     public static class CustomerColumnConfig {
-        @Pattern(regexp = "^(c[1-9]|c10|code|name|notes)$", message = "参数非法")
+        @Pattern(regexp = "^(c[1-9]|c10|code|name|notes|mnemonicCode)$", message = "参数非法")
         @NotBlank
         @ApiModelProperty(value = "字段名称，c1,c2,c3,c4,c5,c6,c7,c8")
         private String columnName;
