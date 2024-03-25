@@ -125,4 +125,15 @@ public interface ObjectConvertor {
     List<ListAssistCalculateSupplierVo> toListAssistCalculateSupplierVo(List<AssistCalculateSupplier> source);
     GetAssistCalculateSupplierVo toGetAssistCalculateSupplierVo(AssistCalculateSupplier source);
 
+    Subject toSubject(CreateSubjectForm source);
+    GetSubjectVo toGetSubjectVo(Subject source);
+    SubjectCalculateConfigForm.NumberCalculateConfig toNumberCalculateConfig(SubjectCalculateConfigVo.NumberCalculateConfig source);
+    List<SubjectCalculateConfigForm.AssistCalculateConfig> toAssistCalculateConfig(List<SubjectCalculateConfigVo.AssistCalculateConfig> source);
+    ListSubjectVo toListSubjectVo(Subject source);
+    GetSubjectDetailVo toGetSubjectDetailVo(Subject source);
+    List<GetSubjectDetailVo.ForeignCurrencyConfigVo> toForeignCurrencyConfigVo(List<CurrencyConfig> source);
+    List<ListSubjectByCateAndCodeAndNameVo> toListSubjectByCateAndCodeAndNameVo(List<Subject> source);
+    List<GetSubjectDetailVo.AssistCalculateConfigVo> toAssistCalculateConfigVo(List<AssistCalculateCate> source);
+    DownloadSubjectVo toDownloadSubjectVo(Subject source);
+
 }

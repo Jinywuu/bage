@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import static com.bage.finance.biz.domain.AssistCalculateCateField.*;
 
@@ -177,7 +178,7 @@ public class AssistCalculateCateServiceImpl implements AssistCalculateCateServic
      * @return
      */
     @Override
-    public List<AssistCalculateCate> list(List<Long> ids) {
+    public List<AssistCalculateCate> list(Set<Long> ids) {
         MyBatisWrapper<AssistCalculateCate> wrapper = new MyBatisWrapper<>();
         wrapper.select(Id, Name, Level, Code)
                 .whereBuilder()
@@ -239,6 +240,47 @@ public class AssistCalculateCateServiceImpl implements AssistCalculateCateServic
                 .whereBuilder().andEq(Id, id)
                 .andGTE(setUseCount(count));
         if (mapper.updateField(wrapper) == 0) {
+            throw new BizException("增加辅助核算类别使用计数异常");
+        }
+        return true;
+    }
+
+    /**
+     * 增加辅助核算类别使用计数
+     *
+     * @param ids
+     * @return
+     */
+    @Override
+    public boolean addUseCount(Set<Long> ids) {
+        MyBatisWrapper<AssistCalculateCate> wrapper = new MyBatisWrapper<>();
+        wrapper.updateIncr(UseCount, 1)
+                .whereBuilder()
+                .andIn(Id, ids)
+                .andEq(TenantId, tokenService.getThreadLocalTenantId());
+        int updateRows = mapper.updateField(wrapper);
+        if (ids.size() != updateRows) {
+            throw new BizException("增加辅助核算类别使用计数异常");
+        }
+        return true;
+    }
+
+    /**
+     * 扣减辅助核算类别使用计数
+     *
+     * @param ids
+     * @return
+     */
+    @Override
+    public boolean deductUseCount(Set<Long> ids) {
+        MyBatisWrapper<AssistCalculateCate> wrapper = new MyBatisWrapper<>();
+        wrapper.updateDecr(UseCount, 1)
+                .whereBuilder()
+                .andIn(Id, ids)
+                .andEq(TenantId, tokenService.getThreadLocalTenantId())
+                .andGT(UseCount, 0);
+        int updateRows = mapper.updateField(wrapper);
+        if (ids.size() != updateRows) {
             throw new BizException("增加辅助核算类别使用计数异常");
         }
         return true;

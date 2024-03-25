@@ -30,4 +30,9 @@ public class RedisKeyConstant {
      * 新增或修改手机号
      */
     public static final String PHONE_CHANGE = "PHONE_CHANGE:";
+
+    /**
+     * 科目锁
+     */
+    public static final String SUBJECT_LOCK = "SUBJECT_LOCK:";
 }
