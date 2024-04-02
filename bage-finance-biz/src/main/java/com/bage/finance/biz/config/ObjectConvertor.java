@@ -75,4 +75,65 @@ public interface ObjectConvertor {
     AssistCalculateCate toAssistCalculateCate(CreateAssistCalculateCateForm source);
 
     GetAssistCalculateCateVo toGetAssistCalculateCateVo(AssistCalculateCate source);
+
+    PageInfo<ListAssistCalculateSummaryVo> toListAssistCalculateSummaryVo(PageInfo<AssistCalculateSummary> source);
+    AssistCalculateSummary toAssistCalculateSummary(CreateAssistCalculateForm source);
+
+    AssistCalculateSummary toAssistCalculateSummary(UpdateAssistCalculateCustomerForm source);
+
+    AssistCalculateSummary toAssistCalculateSummary(UpdateAssistCalculateCustomForm source);
+
+    AssistCalculateSummary toAssistCalculateSummary(UpdateAssistCalculateDepartmentForm source);
+
+    AssistCalculateSummary toAssistCalculateSummary(UpdateAssistCalculateEmployeeForm source);
+
+    AssistCalculateSummary toAssistCalculateSummary(UpdateAssistCalculateInventoryForm source);
+
+    AssistCalculateSummary toAssistCalculateSummary(UpdateAssistCalculateProjectForm source);
+
+    AssistCalculateSummary toAssistCalculateSummary(UpdateAssistCalculateSupplierForm source);
+
+    AssistCalculateCashFlow toAssistCalculateCashFlow(CreateAssistCalculateCashFlowForm source);
+    List<ListAssistCalculateCashFlowVo> toListAssistCalculateCashFlowVo(List<AssistCalculateCashFlow> source);
+    GetAssistCalculateCashFlowVo toGetAssistCalculateCashFlowVo(AssistCalculateCashFlow source);
+
+    AssistCalculateCustomer toAssistCalculateCustomer(CreateAssistCalculateCustomerForm source);
+    List<ListAssistCalculateCustomerVo> toListAssistCalculateCustomerVo(List<AssistCalculateCustomer> source);
+    GetAssistCalculateCustomerVo toGetAssistCalculateCustomerVo(AssistCalculateCustomer source);
+
+    AssistCalculateCustom toAssistCalculateCustom(CreateAssistCalculateCustomForm source);
+    List<ListAssistCalculateCustomVo> toListAssistCalculateVo(List<AssistCalculateCustom> source);
+    GetAssistCalculateCustomVo toGetAssistCalculateCustomVo(AssistCalculateCustom source);
+
+    AssistCalculateDepartment toAssistCalculateDepartment(CreateAssistCalculateDepartmentForm source);
+    List<ListAssistCalculateDepartmentVo> toAssistCalculateDepartmentVo(List<AssistCalculateDepartment> source);
+    GetAssistCalculateDepartmentVo toGetAssistCalculateDepartmentVo(AssistCalculateDepartment source);
+
+    AssistCalculateEmployee toAssistCalculateEmployee(CreateAssistCalculateEmployeeForm source);
+    List<ListAssistCalculateEmployeeVo> toAssistCalculateEmployee(List<AssistCalculateEmployee> source);
+    GetAssistCalculateEmployeeVo toGetAssistCalculateEmployeeVo(AssistCalculateEmployee source);
+
+    AssistCalculateInventory toAssistCalculateInventory(CreateAssistCalculateInventoryForm source);
+    List<ListAssistCalculateInventoryVo> toListAssistCalculateInventoryVo(List<AssistCalculateInventory> source);
+    GetAssistCalculateInventoryVo toGetAssistCalculateInventoryVo(AssistCalculateInventory source);
+
+    AssistCalculateProject toAssistCalculateProject(CreateAssistCalculateProjectForm source);
+    List<ListAssistCalculateProjectVo> toListAssistCalculateProjectVo(List<AssistCalculateProject> source);
+    GetAssistCalculateProjectVo toGetAssistCalculateProjectVo(AssistCalculateProject source);
+
+    AssistCalculateSupplier toAssistCalculateSupplier(CreateAssistCalculateSupplierForm source);
+    List<ListAssistCalculateSupplierVo> toListAssistCalculateSupplierVo(List<AssistCalculateSupplier> source);
+    GetAssistCalculateSupplierVo toGetAssistCalculateSupplierVo(AssistCalculateSupplier source);
+
+    Subject toSubject(CreateSubjectForm source);
+    GetSubjectVo toGetSubjectVo(Subject source);
+    SubjectCalculateConfigForm.NumberCalculateConfig toNumberCalculateConfig(SubjectCalculateConfigVo.NumberCalculateConfig source);
+    List<SubjectCalculateConfigForm.AssistCalculateConfig> toAssistCalculateConfig(List<SubjectCalculateConfigVo.AssistCalculateConfig> source);
+    ListSubjectVo toListSubjectVo(Subject source);
+    GetSubjectDetailVo toGetSubjectDetailVo(Subject source);
+    List<GetSubjectDetailVo.ForeignCurrencyConfigVo> toForeignCurrencyConfigVo(List<CurrencyConfig> source);
+    List<ListSubjectByCateAndCodeAndNameVo> toListSubjectByCateAndCodeAndNameVo(List<Subject> source);
+    List<GetSubjectDetailVo.AssistCalculateConfigVo> toAssistCalculateConfigVo(List<AssistCalculateCate> source);
+    DownloadSubjectVo toDownloadSubjectVo(Subject source);
+
 }

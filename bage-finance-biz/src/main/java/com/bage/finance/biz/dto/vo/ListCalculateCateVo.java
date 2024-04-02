@@ -13,7 +13,7 @@ public class ListCalculateCateVo {
      *
      */
     @ApiModelProperty(value = "id")
-    private Integer id;
+    private Long id;
 
     /**
      * 辅助核算类别名称

@@ -26,7 +26,7 @@ public class UpdateByExampleWhereClausePlugin extends PluginAdapter {
         String node = "<sql id=\"Update_By_Example_Where_Clause\">\n" +
                 "   <where>\n" +
                 "            <trim prefixOverrides=\"and | or\">\n" +
-                "                <foreach collection=\"example.oredCriteria\" item=\"criteria\" separator=\"or\">\n" +
+                "                <foreach collection=\"example.oredCriteria\" item=\"criteria\">\n" +
                 "                    <if test=\"criteria.andOrOr\">\n" +
                 "                        and\n" +
                 "                    </if>\n" +

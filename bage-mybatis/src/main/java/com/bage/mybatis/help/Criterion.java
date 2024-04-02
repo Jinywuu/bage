@@ -1,5 +1,6 @@
 package com.bage.mybatis.help;
 
+import java.util.Collection;
 import java.util.List;
 
 public class Criterion {
@@ -66,7 +67,7 @@ public class Criterion {
         this.value = value;
         this.typeHandler = typeHandler;
         this.jdbcType = jdbcType;
-        if (value instanceof List<?>) {
+        if (value instanceof Collection<?>) {
             this.listValue = true;
         } else {
             this.singleValue = true;

@@ -195,5 +195,72 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="customer_column" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </table>
+        <table tableName="assist_calculate_custom" domainObjectName="AssistCalculateCustom" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="assist_calculate_customer" domainObjectName="AssistCalculateCustomer"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="assist_calculate_supplier" domainObjectName="AssistCalculateSupplier"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="assist_calculate_employee" domainObjectName="AssistCalculateEmployee"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="sex" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+        </table>
+        <table tableName="assist_calculate_department" domainObjectName="AssistCalculateDepartment"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="assist_calculate_project" domainObjectName="AssistCalculateProject"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="assist_calculate_inventory" domainObjectName="AssistCalculateInventory"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="assist_calculate_cash_flow" domainObjectName="AssistCalculateCashFlow"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="assist_calculate_summary" domainObjectName="AssistCalculateSummary"
+               enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="tenant_sys_config" domainObjectName="TenantSysConfig" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="config_value" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+        <table tableName="subject" domainObjectName="Subject" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="balance_direction" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+            <columnOverride column="subject_type" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+        </table>
     </context>
 </generatorConfiguration>

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class DelForm {
 
     /**
-     * 辅助核算类目id
+     * 科目id
      */
     @NotNull
     private Long id;
