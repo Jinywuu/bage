@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @ConditionalOnProperty(prefix = "sys", name = "enable-my-security", havingValue = "true")
 @Component
@@ -64,7 +65,7 @@ public class AuthFilterServiceImpl<T> implements AuthFilterService<T> {
             BaseUserInfoDTO baseUserInfoDTO = (BaseUserInfoDTO) userInfo;
             //检查权限
             checkPermissions(baseUserInfoDTO.getSysRoleIds(), request.getServletPath());
-            //T userInfo = userService.getRedisUser(tokenResponse.getToken());
+//            T userInfo = userService.getRedisUser(tokenResponse.getToken());
             // 用户信息存储在线程中
             tokenService.setThreadLocalUser(userInfo);
             filterChain.doFilter(request, response);
@@ -123,7 +124,7 @@ public class AuthFilterServiceImpl<T> implements AuthFilterService<T> {
      */
     private Set<String> listRoleResourcePathByCache(Set<Long> roleIds) {
         HashOperations<String, String, Set<String>> hashOps = redisTemplate.opsForHash();
-        List<Set<String>> roleMenuIds = hashOps.multiGet(CommonConstant.ROLE_RESOURCE_PERMISSIONS, roleIds.stream().map(String::valueOf).collect(Collectors.toSet()));
+        List<Set<String>> roleMenuIds = hashOps.multiGet(CommonConstant.ROLE_RESOURCE_PERMISSIONS, roleIds.stream().map(String::valueOf).collect(Collectors.toList()));
         // 对结果进行处理，将 List<List<String>> 转为 List<String>
         return roleMenuIds.stream()
                 .filter(p -> !CollectionUtils.isEmpty(p))

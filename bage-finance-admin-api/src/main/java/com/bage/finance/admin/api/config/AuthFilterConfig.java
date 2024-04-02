@@ -19,6 +19,15 @@ import java.io.IOException;
 public class AuthFilterConfig extends OncePerRequestFilter {
     final AuthFilterService<AdminDTO> authFilterService;
 
+    /**
+     * 滤器筛选
+     *
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         authFilterService.doFilterInternal(request, response, filterChain);
