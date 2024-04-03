@@ -283,7 +283,8 @@ public class AssistCalculateSummaryServiceImpl implements AssistCalculateSummary
         transactionTemplate.execute((transactionStatus) -> {
             create(assistCalculateSummary);
             form.setAssistCalculateSummaryId(assistCalculateSummary.getId());
-            AssistCalculateHandleService assistCalculateHandleService = assistCalculateHandlerFactory.get(assistCalculateSummary.getAssistCalculateCateCode());
+            AssistCalculateHandleService assistCalculateHandleService = assistCalculateHandlerFactory
+                    .get(assistCalculateSummary.getAssistCalculateCateCode());
             assistCalculateHandleService.create(form);
             if (!assistCalculateCateService.addUseCount(form.getAssistCalculateCateId(), 1)) {
                 throw new BizException("创建失败");
