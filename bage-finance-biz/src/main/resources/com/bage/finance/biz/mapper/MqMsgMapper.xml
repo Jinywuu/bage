@@ -609,7 +609,7 @@
     </foreach>
 </update>
 
-  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+  <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.Collection" useGeneratedKeys="true">
     insert into mq_msg (mq_topic, mq_tag, mq_key, msg_class_name, msg_status, error_count, error_msg, request_id, disable, create_time, update_time, member_id, update_member_id, del_flag, tenant_id, data_no, msg) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">

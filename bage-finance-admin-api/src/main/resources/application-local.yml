@@ -56,3 +56,37 @@ ali:
     enable: true
     endpoint: dysmsapi.aliyuncs.com
     region: cn-hangzhou
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    # 发送消息超时时间，默认3000
+    send-message-timeout: 30000
+    # 生产者组
+    group: producer-group-1
+    # 发送消息失败重试次数，默认2
+    retryTimesWhenSendFailed: 2
+    # 异步消息重试此处，默认2
+    retryTimesWhenSendAsyncFailed: 2
+    # 消息最大长度，默认1024 * 1024 * 4(默认4M)
+    maxMessageSize: 4096
+    # 压缩消息阈值，默认4k(1024 * 4)
+    compressMessageBodyThreshold: 4096
+    # 是否在内部发送失败时重试另一个broker，默认false
+    retryNextServer: false
+  consumer:
+    group: consumer-group-1
+    # 消费者消息模式，可选值为CLUSTERING和BROADCASTING，默认为CLUSTERING
+    message-model: CLUSTERING
+    # 消息消费模式为CLUSTERING时，消费线程数，默认值为20
+    consume-thread-max: 20
+    # 消息消费模式为CLUSTERING时，每次拉取消息的最大数量，默认值为1
+    consume-message-batch-max-size: 1
+    # 消费者一次拉取消息时，等待服务器返回的超时时间，默认值为30000ms
+    pull-timeout-millis: 30000
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  scheme: http
+  apiKey: test

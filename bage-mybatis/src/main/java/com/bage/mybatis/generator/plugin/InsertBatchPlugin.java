@@ -11,6 +11,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.internal.util.JavaBeansUtil;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -36,14 +37,17 @@ public class InsertBatchPlugin extends PluginAdapter {
         IntrospectedColumn primaryKeyColumn = primaryKeyColumns.stream()
                 .filter(IntrospectedColumn::isAutoIncrement)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException(String.format("生成文件时发生错误, 表: %s, 无自增主键。", introspectedTable.getFullyQualifiedTableNameAtRuntime())));
+                .orElse(null);
+        //.orElseThrow(() -> new RuntimeException(String.format("生成文件时发生错误, 表: %s, 无自增主键。", introspectedTable.getFullyQualifiedTableNameAtRuntime())));
 
         XmlElement insertBatch = new XmlElement("insert");
         insertBatch.addAttribute(new Attribute("id", "insertBatch"));
-        insertBatch.addAttribute(new Attribute("parameterType", "java.util.List"));
-//        insertBatch.addAttribute(new Attribute("useGeneratedKeys", "true"));
-        insertBatch.addAttribute(new Attribute("keyColumn", primaryKeyColumn.getActualColumnName()));
-//        insertBatch.addAttribute(new Attribute("keyProperty", JavaBeansUtil.getCamelCaseString(primaryKeyColumn.getActualColumnName(), false)));
+        insertBatch.addAttribute(new Attribute("parameterType", "java.util.Collection"));
+        if (!Objects.isNull(primaryKeyColumn)) {
+            insertBatch.addAttribute(new Attribute("useGeneratedKeys", "true"));
+            insertBatch.addAttribute(new Attribute("keyColumn", primaryKeyColumn.getActualColumnName()));
+            insertBatch.addAttribute(new Attribute("keyProperty", JavaBeansUtil.getCamelCaseString(primaryKeyColumn.getActualColumnName(), false)));
+        }
 
         List<IntrospectedColumn> allColumns = introspectedTable.getAllColumns();
         String columns = allColumns.stream().filter(p -> !p.isAutoIncrement())
@@ -77,6 +81,34 @@ public class InsertBatchPlugin extends PluginAdapter {
         XmlElement rootElement = document.getRootElement();
         rootElement.addElement(insertBatch);
         return super.sqlMapDocumentGenerated(document, introspectedTable);
+    }
+
+    /**
+     * 修改Mapper类
+     */
+    private void generatedBatchInsertMethod(String methodName, Interface interfaze, IntrospectedTable introspectedTable) {
+        Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
+        importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
+
+        Method method = new Method(methodName);
+        // 1.设置方法可见性
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setAbstract(true);
+        // 2.设置返回值类型
+        FullyQualifiedJavaType returnType = FullyQualifiedJavaType.getIntInstance();
+
+        method.setReturnType(returnType);
+
+        // 4.设置参数列表
+        FullyQualifiedJavaType listType = FullyQualifiedJavaType.getNewListInstance();
+        FullyQualifiedJavaType paramType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
+        listType.addTypeArgument(paramType);
+        method.addParameter(new Parameter(listType, "list", "@Param(\"list\")"));
+        importedTypes.add(listType);
+
+        // 设置需要导入的类
+        interfaze.addImportedTypes(importedTypes);
+        interfaze.addMethod(method);
     }
 
     private TextElement generateForValue(IntrospectedColumn column, String itemName) {

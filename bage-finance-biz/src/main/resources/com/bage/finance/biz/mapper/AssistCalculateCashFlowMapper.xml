@@ -417,7 +417,7 @@
     </foreach>
 </update>
 
-  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+  <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.Collection" useGeneratedKeys="true">
     insert into assist_calculate_cash_flow (cash_flow_cate, disable, create_time, update_time, member_id, update_member_id, del_flag, tenant_id, assist_calculate_summary_id) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">

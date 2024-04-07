@@ -784,7 +784,7 @@
     </foreach>
 </update>
 
-  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+  <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.Collection" useGeneratedKeys="true">
     insert into subject (pid, code, sort, name, mnemonic_code, balance_direction, level, tenant_id, disable, create_time, update_time, member_id, update_member_id, del_flag, subject_cate, node_depth, depth_code_length_one, depth_code_length_two, depth_code_length_three, depth_code_length_four, subject_type, use_count, parent_subject_disable, pid_path, calculate_config) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">

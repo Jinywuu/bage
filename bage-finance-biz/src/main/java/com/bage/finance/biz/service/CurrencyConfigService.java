@@ -49,6 +49,13 @@ public interface CurrencyConfigService {
     List<CurrencyConfig> list(Set<Long> ids);
 
     /**
+     * 查询币别列表(和租户无关)
+     *
+     * @return
+     */
+    List<CurrencyConfig> listByIds(Set<Long> ids);
+
+    /**
      * 查询币别信息
      *
      * @param id
@@ -71,4 +78,22 @@ public interface CurrencyConfigService {
      * @return
      */
     boolean decrUseCount(Set<Long> ids);
+
+    /**
+     * 增加币别使用计数
+     *
+     * @param id
+     * @param count
+     * @return
+     */
+    boolean addUseCount(long id, int count);
+
+    /**
+     * 减少币别使用计数
+     *
+     * @param id
+     * @param count
+     * @return
+     */
+    boolean decrUseCount(long id, int count);
 }
