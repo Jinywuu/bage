@@ -2,6 +2,9 @@ package com.bage.finance.biz.service;
 
 import com.bage.finance.biz.domain.Member;
 import com.bage.finance.biz.dto.form.UpdateEmailAndNameForm;
+import com.bage.finance.biz.dto.vo.ListMemberVo;
+
+import java.util.List;
 
 public interface MemberService {
     /**
@@ -25,4 +28,10 @@ public interface MemberService {
      * @return
      */
     boolean updateEmailAndName(UpdateEmailAndNameForm form);
+
+    /**
+     * 查询用户列表
+     * @return
+     */
+    List<ListMemberVo> listMember();
 }

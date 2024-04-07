@@ -35,4 +35,9 @@ public class RedisKeyConstant {
      * 科目锁
      */
     public static final String SUBJECT_LOCK = "SUBJECT_LOCK:";
+
+    /**
+     * 保存凭证锁
+     */
+    public static final String SAVE_VOUCHER_LOCK = "SAVE_VOUCHER_LOCK:";
 }

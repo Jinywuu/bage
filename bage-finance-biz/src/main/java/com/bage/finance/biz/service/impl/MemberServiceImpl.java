@@ -2,15 +2,19 @@ package com.bage.finance.biz.service.impl;
 
 import com.bage.common.constant.CommonConstant;
 import com.bage.common.service.TokenService;
+import com.bage.finance.biz.config.ObjectConvertor;
 import com.bage.finance.biz.domain.Member;
 import com.bage.finance.biz.dto.AdminDTO;
 import com.bage.finance.biz.dto.form.UpdateEmailAndNameForm;
+import com.bage.finance.biz.dto.vo.ListMemberVo;
 import com.bage.finance.biz.mapper.MemberMapper;
 import com.bage.finance.biz.service.MemberService;
 import com.bage.mybatis.help.MyBatisWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.bage.finance.biz.domain.MemberField.*;
 
@@ -20,6 +24,7 @@ import static com.bage.finance.biz.domain.MemberField.*;
 public class MemberServiceImpl implements MemberService {
     final MemberMapper memberMapper;
     final TokenService<AdminDTO> tokenService;
+    final ObjectConvertor objectConvertor;
 
     /**
      * 注册
@@ -67,5 +72,21 @@ public class MemberServiceImpl implements MemberService {
                 .andEq(setId(tokenService.getThreadLocalUserId()))
                 .andEq(setDisable(false));
         return memberMapper.updateField(wrapper) > 0;
+    }
+
+    /**
+     * 查询用户列表
+     *
+     * @return
+     */
+    @Override
+    public List<ListMemberVo> listMember() {
+        MyBatisWrapper<Member> wrapper = new MyBatisWrapper<>();
+        wrapper.select(Id, NickName, Name)
+                .whereBuilder()
+                .andEq(TenantId, tokenService.getThreadLocalTenantId())
+                .andEq(Disable, false);
+        List<Member> members = memberMapper.list(wrapper);
+        return objectConvertor.toListMemberVo(members);
     }
 }

@@ -229,6 +229,27 @@ public class VoucherWordConfigServiceImpl implements VoucherWordConfigService {
     }
 
     /**
+     * 查询币别信息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public VoucherWordConfig getVoucherWordConfig(long id) {
+        MyBatisWrapper<VoucherWordConfig> wrapper = new MyBatisWrapper<>();
+        wrapper
+                .select(Id, VoucherWord, PrintTitle, DefaultFlag)
+                .whereBuilder()
+                .andEq(Id, id)
+                .andEq(DelFlag, false);
+        VoucherWordConfig voucherWordConfig = mapper.get(wrapper);
+        if (voucherWordConfig == null) {
+            throw new BizException("凭证字不存在");
+        }
+        return voucherWordConfig;
+    }
+
+    /**
      * 查询凭证字信息
      *
      * @param voucherWord

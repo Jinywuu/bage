@@ -1,6 +1,7 @@
 package com.bage.finance.biz.config;
 
 import com.bage.finance.biz.domain.*;
+import com.bage.finance.biz.domain.es.VoucherDocuemt;
 import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.dto.vo.*;
 import com.bage.mybatis.help.PageInfo;
@@ -136,4 +137,18 @@ public interface ObjectConvertor {
     List<GetSubjectDetailVo.AssistCalculateConfigVo> toAssistCalculateConfigVo(List<AssistCalculateCate> source);
     DownloadSubjectVo toDownloadSubjectVo(Subject source);
 
+    Voucher toVoucher(CreateVoucherForm source);
+    List<VoucherSubjectDetail> toVoucherSubjectDetail(List<CreateVoucherForm.VoucherSubjectDetailForm> source);
+    List<VoucherSubjectAssistCalculateDetail> toVoucherSubjectAssistCalculateDetail(List<CreateVoucherForm.VoucherSubjectAssistCalculateDetailForm> source);
+    @Mappings({@Mapping(target = "voucherSubjectDetailVoList", source = "subjectDocuments")})
+    ListVoucherVo toListVoucherVo(VoucherDocuemt source);
+    PageInfo<ListVoucherVo> toListVoucherVo(PageInfo<VoucherDocuemt> source);
+    GetVoucherVo toGetVoucherVo(Voucher source);
+    List<GetVoucherVo.VoucherSubjectDetailVo> toGetVoucherSubjectDetailVo(List<VoucherSubjectDetail> source);
+    List<GetVoucherVo.ForeignCurrencyConfigVo> toForeignCurrencyConfigVo2(List<CurrencyConfig> source);
+    VoucherDocuemt toVoucherES(Voucher source);
+    List<VoucherDocuemt.SubjectDocument> toSubjectES(List<VoucherSubjectDetail> source);
+    List<VoucherDocuemt.AssistCalculateDocument> toAssistCalculateES(List<VoucherSubjectAssistCalculateDetail> source);
+
+    List<ListMemberVo> toListMemberVo(List<Member> source);
 }

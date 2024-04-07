@@ -85,4 +85,12 @@ public interface VoucherWordConfigService {
      * @return
      */
     boolean deductUseCount(long id, int count);
+
+    /**
+     * 查询币别信息
+     *
+     * @param id
+     * @return
+     */
+    VoucherWordConfig getVoucherWordConfig(long id);
 }

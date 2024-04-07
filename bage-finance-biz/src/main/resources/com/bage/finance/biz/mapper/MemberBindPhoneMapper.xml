@@ -354,7 +354,7 @@
     </foreach>
 </update>
 
-  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+  <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.Collection" useGeneratedKeys="true">
     insert into member_bind_phone (phone, member_id, disable, create_time, update_time, password) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">

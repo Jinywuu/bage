@@ -520,7 +520,7 @@
     </foreach>
 </update>
 
-  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+  <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.Collection" useGeneratedKeys="true">
     insert into assist_calculate_summary (name, code, disable, create_time, update_time, member_id, update_member_id, del_flag, mnemonic_code, assist_calculate_cate_id, tenant_id, assist_calculate_cate_code, notes, use_count) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">

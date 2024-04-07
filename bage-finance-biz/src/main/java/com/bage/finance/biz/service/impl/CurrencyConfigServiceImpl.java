@@ -130,7 +130,24 @@ public class CurrencyConfigServiceImpl implements CurrencyConfigService {
     public List<CurrencyConfig> list(Set<Long> ids) {
         MyBatisWrapper<CurrencyConfig> wrapper = new MyBatisWrapper<>();
         wrapper.select(Id, Code, Name, ExchangeRate, BaseCurrencyFlag, UseCount)
-                .whereBuilder().andEq(setTenantId(tokenService.getThreadLocalTenantId()))
+                .whereBuilder()
+                .andEq(setTenantId(tokenService.getThreadLocalTenantId()))
+                .andEq(setDelFlag(false))
+                .andIn(Id, ids);
+        return mapper.list(wrapper);
+    }
+
+    /**
+     * 查询币别列表(和租户无关)
+     *
+     * @param ids
+     * @return
+     */
+    @Override
+    public List<CurrencyConfig> listByIds(Set<Long> ids) {
+        MyBatisWrapper<CurrencyConfig> wrapper = new MyBatisWrapper<>();
+        wrapper.select(Id, Code, Name, ExchangeRate, BaseCurrencyFlag, UseCount)
+                .whereBuilder()
                 .andEq(setDelFlag(false))
                 .andIn(Id, ids);
         return mapper.list(wrapper);
@@ -195,6 +212,47 @@ public class CurrencyConfigServiceImpl implements CurrencyConfigService {
         int updateRows = mapper.updateField(wrapper);
         if (ids.size() != updateRows) {
             throw new BizException("增加币别使用计数异常");
+        }
+        return true;
+    }
+
+    /**
+     * 增加币别使用计数
+     *
+     * @param id
+     * @param count
+     * @return
+     */
+    @Override
+    public boolean addUseCount(long id, int count) {
+        MyBatisWrapper<CurrencyConfig> wrapper = new MyBatisWrapper<>();
+        wrapper.updateIncr(UseCount, count)
+                .whereBuilder()
+                .andEq(Id, id)
+                .andEq(TenantId, tokenService.getThreadLocalTenantId());
+        if (mapper.updateField(wrapper) == 0) {
+            throw new BizException("增加币别使用计数失败");
+        }
+        return true;
+    }
+
+    /**
+     * 减少币别使用计数
+     *
+     * @param id
+     * @param count
+     * @return
+     */
+    @Override
+    public boolean decrUseCount(long id, int count) {
+        MyBatisWrapper<CurrencyConfig> wrapper = new MyBatisWrapper<>();
+        wrapper.updateDecr(UseCount, count)
+                .whereBuilder()
+                .andEq(Id, id)
+                .andEq(TenantId, tokenService.getThreadLocalTenantId())
+                .andGT(UseCount, count);
+        if (mapper.updateField(wrapper) == 0) {
+            throw new BizException("减少币别使用计数失败");
         }
         return true;
     }
