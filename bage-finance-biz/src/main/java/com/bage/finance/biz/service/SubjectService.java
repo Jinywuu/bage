@@ -83,7 +83,7 @@ public interface SubjectService {
      *
      * @return
      */
-    List<GetSubjectVo> list(Set<Long> ids);
+    List<GetSubjectVo> list(Set<Long> ids, long tenantId);
 
     /**
      * 查询id，编码，名称
