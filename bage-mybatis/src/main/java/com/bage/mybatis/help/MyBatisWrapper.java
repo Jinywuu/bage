@@ -39,6 +39,7 @@ public class MyBatisWrapper<T> {
      */
     public MyBatisWrapper<T> select(DbField... fields) {
         if (fields == null || fields.length == 0) {
+            selectBuilder = new StringBuilder("*");
             return this;
         }
         if (selectBuilder == null) {

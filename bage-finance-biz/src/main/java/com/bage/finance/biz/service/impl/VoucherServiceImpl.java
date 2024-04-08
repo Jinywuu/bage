@@ -625,9 +625,9 @@ public class VoucherServiceImpl implements VoucherService {
                         item2.setShowSubjectName(tempShowSubjectName);
                         item2.getAssistCalculateDocuments().forEach(assistCalculateDocument -> {
                             if (!item2.getShowSubjectName().equals(tempShowSubjectName)) {
-                                item2.setShowSubjectName("_");
+                                item2.setShowSubjectName(item2.getShowSubjectName() + "_");
                             }
-                            item2.setShowSubjectName(item2.getShowSubjectName() + assistCalculateDocument.getCode() + assistCalculateDocument.getName());
+                            item2.setShowSubjectName(item2.getShowSubjectName() + assistCalculateDocument.getCode() + " " + assistCalculateDocument.getName());
                         });
                     }
                 });
