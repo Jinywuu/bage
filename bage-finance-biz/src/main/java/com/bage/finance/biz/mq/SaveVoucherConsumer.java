@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
         //topic：消息的发送者使用同一个topic
         topic = MqConstant.TOPIC_VOUCHER,
         //group：不用和生产者group相同 ( 在RocketMQ中消费者和发送者组没有关系 )
-        consumerGroup = "group1",
+        consumerGroup = "consumer-group-1",
         //tag：设置为 * 时，表示全部。多个以|分隔，比如：tag1|tag2。
         selectorExpression = "*",
         //指定需要消费的TAG

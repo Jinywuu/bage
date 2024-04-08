@@ -39,6 +39,12 @@ public interface CurrencyConfigService {
      * 查询币别列表
      * @return
      */
+    List<ListCurrencyConfigVo> list(long tenantId);
+
+    /**
+     * 查询币别列表
+     * @return
+     */
     List<ListCurrencyConfigVo> list();
 
     /**
