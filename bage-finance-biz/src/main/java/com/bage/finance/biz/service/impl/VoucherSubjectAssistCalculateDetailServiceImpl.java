@@ -74,9 +74,6 @@ public class VoucherSubjectAssistCalculateDetailServiceImpl implements VoucherSu
                 .whereBuilder()
                 .andEq(VoucherId, voucherId)
                 .andEq(DelFlag, false);
-        if (mapper.updateField(wrapper) == 0) {
-            throw new BizException("删除凭证科目辅助核算明细失败");
-        }
         return true;
     }
 }

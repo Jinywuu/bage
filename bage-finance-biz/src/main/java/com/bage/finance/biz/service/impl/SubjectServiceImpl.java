@@ -489,7 +489,7 @@ public class SubjectServiceImpl implements SubjectService {
                 wrapper.and().andEq(UseCount, 0);
             }
             // 如果是非系统科目
-            if (!Objects.equals(subject.getLevel(), SubjectTypeEnum.SYSTEM.getCode())) {
+            if (!Objects.equals(subject.getSubjectType(), SubjectTypeEnum.SYSTEM.getCode())) {
                 wrapper.update(Name, form.getName())
                         .update(setCode(form.getCode()))
                         .update(setMnemonicCode(form.getMnemonicCode()))
@@ -733,8 +733,8 @@ public class SubjectServiceImpl implements SubjectService {
      * @return
      */
     @Override
-    public List<GetSubjectVo> list(Set<Long> ids) {
-        List<Subject> subjects = listByIds(ids);
+    public List<GetSubjectVo> list(Set<Long> ids, long tenantId) {
+        List<Subject> subjects = listByIds(ids, tenantId);
         if (CollectionUtils.isEmpty(subjects)) {
             return null;
         }
@@ -1177,11 +1177,13 @@ public class SubjectServiceImpl implements SubjectService {
      * @param ids
      * @return
      */
-    private List<Subject> listByIds(Set<Long> ids) {
+    private List<Subject> listByIds(Set<Long> ids, long tenantId) {
         MyBatisWrapper<Subject> wrapper = new MyBatisWrapper<>();
         wrapper.select(Id, Pid, CalculateConfig, SubjectCate)
                 .whereBuilder()
-                .andIn(Id, ids);
+                .andIn(Id, ids)
+                .andEq(DelFlag, false)
+                .andEq(TenantId, tenantId);
         wrapper.orderByDesc(NodeDepth);
         return mapper.list(wrapper);
     }

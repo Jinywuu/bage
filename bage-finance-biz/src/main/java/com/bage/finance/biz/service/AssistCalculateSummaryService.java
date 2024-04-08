@@ -59,10 +59,11 @@ public interface AssistCalculateSummaryService {
 
     /**
      * 通过辅助核算id查询辅助核算列表
+     *
      * @param ids
      * @return
      */
-    List<AssistCalculateSummary> list(Set<Long> ids);
+    List<AssistCalculateSummary> list(Set<Long> ids, long tenantId);
 
     /**
      * 添加自定义辅助核算

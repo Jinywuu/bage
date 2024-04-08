@@ -110,15 +110,26 @@ public class CurrencyConfigServiceImpl implements CurrencyConfigService {
      * @return
      */
     @Override
-    public List<ListCurrencyConfigVo> list() {
+    public List<ListCurrencyConfigVo> list(long tenantId) {
         MyBatisWrapper<CurrencyConfig> wrapper = new MyBatisWrapper<>();
         wrapper.select(Id, Code, Name, ExchangeRate, BaseCurrencyFlag, UseCount)
-                .whereBuilder().andEq(setTenantId(tokenService.getThreadLocalTenantId()))
+                .whereBuilder()
+                .andEq(setTenantId(tenantId))
                 .andEq(setDelFlag(false));
         wrapper.orderByDesc(BaseCurrencyFlag)
                 .orderByAsc(Code);
         List<CurrencyConfig> currencyConfigs = mapper.list(wrapper);
         return objectConvertor.toListCurrencyConfigVo(currencyConfigs);
+    }
+
+    /**
+     * 查询币别列表
+     *
+     * @return
+     */
+    @Override
+    public List<ListCurrencyConfigVo> list() {
+        return list(tokenService.getThreadLocalTenantId());
     }
 
     /**
