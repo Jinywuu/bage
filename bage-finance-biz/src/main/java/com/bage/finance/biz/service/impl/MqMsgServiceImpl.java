@@ -110,7 +110,7 @@ public class MqMsgServiceImpl implements MqMsgService {
     @Override
     public MqMsg get(String requestId) {
         MyBatisWrapper<MqMsg> wrapper = new MyBatisWrapper<>();
-        wrapper.select(Id, RequestId, MsgStatus, MqTopic, MqTag, MqKey, DataNo)
+        wrapper.select(Id, RequestId, ErrorCount, MsgStatus, MqTopic, MqTag, MqKey, DataNo)
                 .whereBuilder()
                 .andEq(RequestId, requestId);
         return mapper.get(wrapper);
