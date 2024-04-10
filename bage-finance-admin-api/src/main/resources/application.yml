@@ -43,7 +43,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher #使用 Ant 风格的路径模式来配置 URL 路径匹配策略
-
+  profiles:
+    active: local
 # Mybatis
 mybatis:
   mapper-locations: classpath*:**/*Mapper.xml
@@ -56,7 +57,7 @@ mybatis:
 swagger:
   enable: true
   name: BAGE-FINANCE-ADMIN-API
-  description: BAGE-FINANCE-ADMIN-API 接口文档
+  description: BAGE-FINANCE-ADMIN-API
   version: 0.0.1
 
 # Swagger UI
@@ -70,7 +71,7 @@ knife4j:
 # 日志配置
 logging:
   config: classpath:logback-spring-${spring.profiles.active}.xml
-
+#  config: classpath:logback-spring-local.xml
 security:
   # 开启安全校验
   enable: true
