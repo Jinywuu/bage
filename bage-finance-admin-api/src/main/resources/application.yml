@@ -43,7 +43,8 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher #使用 Ant 风格的路径模式来配置 URL 路径匹配策略
-
+  profiles:
+    active: local
 # Mybatis
 mybatis:
   mapper-locations: classpath*:**/*Mapper.xml
