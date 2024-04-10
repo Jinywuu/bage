@@ -36,9 +36,7 @@ public class RedissonAutoConfiguration {
                 .setMasterName(redssionProperties.getMasterName())
                 .setTimeout(redssionProperties.getTimeout())
                 .setMasterConnectionPoolSize(redssionProperties.getMasterConnectionPoolSize())
-                .setSlaveConnectionPoolSize(redssionProperties.getSlaveConnectionPoolSize())
-                .setPassword(redssionProperties.getPassword());
-
+                .setSlaveConnectionPoolSize(redssionProperties.getSlaveConnectionPoolSize());
 
         if (StringUtils.isNotBlank(redssionProperties.getPassword())) {
             serverConfig.setPassword(redssionProperties.getPassword());
