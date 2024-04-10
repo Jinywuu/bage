@@ -4,7 +4,7 @@ spring:
   #    active: local
   # 数据库配置
   datasource:
-    url: jdbc:mysql://117.72.43.128:3306/ls-finance-local?useUnicode=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/bage-finance-local?useUnicode=true&useSSL=false&characterEncoding=utf8&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
     username: root
     password: 123456
   # redis配置
@@ -23,8 +23,7 @@ spring:
         max-wait: 10000
       # 应用程序关闭时Lettuce 将等待最多 3 秒钟来完成关闭操作。如果超过这个时间仍未完成，则会强制关闭连接。
       shutdown-timeout: 3000
-    host: 117.72.43.128
-    password: ls123456
+    host: 127.0.0.1
 
 # 日志配置
 logging:
@@ -32,8 +31,7 @@ logging:
     name: ../${spring.application.name}/logs/bage-finance-admin-api.log
 
 redisson:
-  address: redis://117.72.43.128:6379
-  password: ls123456
+  address: redis://127.0.0.1:6379
 
 wx:
   mp:
@@ -47,7 +45,7 @@ xxl:
   job:
     admin:
       ### 调度中心部署跟地址 [选填]：如调度中心集群部署存在多个地址则用逗号分隔。执行器将会使用该地址进行"执行器心跳注册"和"任务结果回调"；为空则关闭自动注册；
-      addresses: http://117.72.43.128:8080/xxl-job-admin
+      addresses: http://localhost:8080/xxl-job-admin
     ### 执行器通讯TOKEN [选填]：非空时启用；
     accessToken: e1c717f2-9d58-11ee-a3a0-00155d9bf92e
 

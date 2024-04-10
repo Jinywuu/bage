@@ -5,7 +5,6 @@ import com.bage.finance.biz.domain.es.VoucherDocuemt;
 import com.bage.finance.biz.dto.form.*;
 import com.bage.finance.biz.dto.vo.*;
 import com.bage.mybatis.help.PageInfo;
-
 import com.bage.wx.dto.MpQrCodeCreateResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
