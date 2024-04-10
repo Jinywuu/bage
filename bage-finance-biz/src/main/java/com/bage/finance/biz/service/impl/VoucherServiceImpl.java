@@ -133,37 +133,18 @@ public class VoucherServiceImpl implements VoucherService {
         try {
             rLock.lock();
             //必须的任务（凭证号是否重复、查询币别列表、科目明细查询）
-            int taskCount = 3;
-            if (form.getId() != null && form.getId() > 0) {
-                //需要查询凭证和凭证科目明细，任务数+2
-                taskCount = taskCount + 2;
-            }
-            if (!CollectionUtils.isEmpty(form.getVoucherSubjectAssistCalculateDetailFormList())) {
-                //需要凭证科目辅助核算明细，任务数+1
-                taskCount++;
-            }
+            //需要查询凭证和凭证科目明细，任务数+2
+            //最少有3个任务，最多6个
+            int taskCount = 6;
             executor = new ThreadPoolExecutor(
                     taskCount,  // 核心线程池大小
                     taskCount,  // 最大线程池大小
                     60, // 线程空闲时间
                     TimeUnit.SECONDS, // 时间单位
                     new LinkedBlockingQueue<>(taskCount)); // 任务队列
-            CountDownLatch latch = new CountDownLatch(taskCount);
 
             Future<Boolean> finalExistByVoucherNumberRef;
-            // 创建一个 Callable 任务
-            Callable<Boolean> callableTask = () -> {
-                try {
-                    return isExistByVoucherNumber(form.getId(), form.getVoucherNumber(), tenantId);
-                } catch (Exception ex) {
-                    log.error("查询凭证编号异常", ex);
-                    return true;
-                } finally {
-                    // 任务执行完成时减少计数器
-                    latch.countDown();
-                }
-            };
-            finalExistByVoucherNumberRef = executor.submit(callableTask);
+            finalExistByVoucherNumberRef = executor.submit(() -> isExistByVoucherNumber(form.getId(), form.getVoucherNumber(), tenantId));
 
             //通过id查询凭证
             Future<Voucher> finalVoucherRef = null;
@@ -171,66 +152,23 @@ public class VoucherServiceImpl implements VoucherService {
             Future<List<VoucherSubjectDetail>> finalVoucherSubjectDetailsRef = null;
             if (form.getId() != null && form.getId() > 0) {
                 //通过id查询凭证
-                Callable<Voucher> callableTask2 = () -> {
-                    try {
-                        Voucher voucher1 = getById(form.getId());
-                        if (voucher1.getTenantId() != tenantId) {
-                            return null;
-                        }
-                        return voucher1;
-                    } catch (Exception ex) {
-                        log.error("查询凭证异常", ex);
+                finalVoucherRef = executor.submit(() -> {
+                    Voucher voucher1 = getById(form.getId());
+                    if (voucher1.getTenantId() != tenantId) {
                         return null;
-                    } finally {
-                        // 任务执行完成时减少计数器
-                        latch.countDown();
                     }
-                };
-                finalVoucherRef = executor.submit(callableTask2);
+                    return voucher1;
+                });
 
                 //通过id查询凭证科目明细
-                Callable<List<VoucherSubjectDetail>> callableTask3 = () -> {
-                    try {
-                        return voucherSubjectDetailService.listByVoucherId(form.getId());
-                    } catch (Exception ex) {
-                        log.error("查询凭证科目明细异常", ex);
-                        return null;
-                    } finally {
-                        // 任务执行完成时减少计数器
-                        latch.countDown();
-                    }
-                };
-                finalVoucherSubjectDetailsRef = executor.submit(callableTask3);
+                finalVoucherSubjectDetailsRef = executor.submit(() -> voucherSubjectDetailService.listByVoucherId(form.getId()));
             }
 
             Future<List<GetSubjectVo>> finalGetSubjectVoRef;
-            Callable<List<GetSubjectVo>> callableTask4 = () -> {
-                try {
-                    return subjectService.list(subjectIds, tenantId);
-                } catch (Exception ex) {
-                    log.error("查询凭证异常", ex);
-                    return null;
-                } finally {
-                    // 任务执行完成时减少计数器
-                    latch.countDown();
-                }
-            };
-            finalGetSubjectVoRef = executor.submit(callableTask4);
+            finalGetSubjectVoRef = executor.submit(() -> subjectService.list(subjectIds, tenantId));
 
             Future<List<ListCurrencyConfigVo>> finalCurrencyConfigVoListRef;
-            Callable<List<ListCurrencyConfigVo>> callableTask5 = () -> {
-                try {
-                    //从数据库中查询所有币别列表
-                    return currencyConfigService.list(tenantId);
-                } catch (Exception ex) {
-                    log.error("查询币别异常", ex);
-                    return null;
-                } finally {
-                    // 任务执行完成时减少计数器
-                    latch.countDown();
-                }
-            };
-            finalCurrencyConfigVoListRef = executor.submit(callableTask5);
+            finalCurrencyConfigVoListRef = executor.submit(() -> currencyConfigService.list(tenantId));
 
             //辅助核算
             Future<List<AssistCalculateSummary>> finalAssistCalculateSummaryListRef = null;
@@ -240,22 +178,9 @@ public class VoucherServiceImpl implements VoucherService {
                         form.getVoucherSubjectAssistCalculateDetailFormList().stream()
                                 .map(CreateVoucherForm.VoucherSubjectAssistCalculateDetailForm::getAssistCalculateId)
                                 .collect(Collectors.toSet());
-                Callable<List<AssistCalculateSummary>> callableTask6 = () -> {
-                    try {
-                        //从数据库中查询辅助核算列表
-                        return assistCalculateSummaryService.list(assistCalculateIds, tenantId);
-                    } catch (Exception ex) {
-                        log.error("查询辅助核算异常", ex);
-                        return null;
-                    } finally {
-                        // 任务执行完成时减少计数器
-                        latch.countDown();
-                    }
-                };
-                finalAssistCalculateSummaryListRef = executor.submit(callableTask6);
+                finalAssistCalculateSummaryListRef = executor.submit(() -> assistCalculateSummaryService.list(assistCalculateIds, tenantId));
             }
-            // 等待计数器归零
-            latch.await();
+
             //获取科目编号是否已存在
             boolean isExistByVoucherNumber = finalExistByVoucherNumberRef.get();
             if (isExistByVoucherNumber) {
