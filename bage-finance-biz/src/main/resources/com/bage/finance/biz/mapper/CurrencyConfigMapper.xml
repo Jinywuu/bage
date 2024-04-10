@@ -293,7 +293,7 @@
   <sql id="Update_By_Example_Where_Clause">
    <where>
             <trim prefixOverrides="and | or">
-                <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <foreach collection="example.oredCriteria" item="criteria">
                     <if test="criteria.andOrOr">
                         and
                     </if>
@@ -479,7 +479,7 @@
     </foreach>
 </update>
 
-  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+  <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.Collection" useGeneratedKeys="true">
     insert into currency_config (code, name, exchange_rate, tenant_id, disable, create_time, update_time, member_id, update_member_id, del_flag, base_currency_flag, use_count) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -6,6 +6,7 @@ import com.bage.finance.biz.dto.form.UpdateEmailAndNameForm;
 import com.bage.finance.biz.dto.form.UpdatePasswordForm;
 import com.bage.finance.biz.dto.form.UpdatePhoneForm;
 import com.bage.finance.biz.dto.vo.CurrentInfoVo;
+import com.bage.finance.biz.dto.vo.ListMemberVo;
 import com.bage.finance.biz.service.MemberBindPhoneService;
 import com.bage.finance.biz.service.MemberComService;
 import com.bage.finance.biz.service.MemberService;
@@ -15,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api(tags = "用户模块")
 @RestController
@@ -62,5 +65,11 @@ public class UserController {
     public ApiResponse<Void> sendSmsCode(@Validated @ModelAttribute GetUserSmsCodeForm request) {
         memberComService.sendSmsCode(request);
         return ApiResponse.success();
+    }
+
+    @ApiOperation(value = "获取用户列表")
+    @GetMapping(value = "/listMember")
+    public ApiResponse<List<ListMemberVo>> listMember() {
+        return ApiResponse.success(memberService.listMember());
     }
 }

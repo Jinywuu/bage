@@ -257,13 +257,14 @@ public class AssistCalculateSummaryServiceImpl implements AssistCalculateSummary
      * @return
      */
     @Override
-    public List<AssistCalculateSummary> list(Set<Long> ids) {
+    public List<AssistCalculateSummary> list(Set<Long> ids, long tenantId) {
         if (CollectionUtils.isEmpty(ids)) {
             return null;
         }
         MyBatisWrapper<AssistCalculateSummary> wrapper = new MyBatisWrapper<>();
         wrapper.select(Id, Name, Code, MnemonicCode, Disable, AssistCalculateCateId)
                 .whereBuilder()
+                .andEq(TenantId, tenantId)
                 .andIn(Id, ids)
                 .andEq(DelFlag, false);
         return mapper.list(wrapper);
@@ -283,7 +284,8 @@ public class AssistCalculateSummaryServiceImpl implements AssistCalculateSummary
         transactionTemplate.execute((transactionStatus) -> {
             create(assistCalculateSummary);
             form.setAssistCalculateSummaryId(assistCalculateSummary.getId());
-            AssistCalculateHandleService assistCalculateHandleService = assistCalculateHandlerFactory.get(assistCalculateSummary.getAssistCalculateCateCode());
+            AssistCalculateHandleService assistCalculateHandleService = assistCalculateHandlerFactory
+                    .get(assistCalculateSummary.getAssistCalculateCateCode());
             assistCalculateHandleService.create(form);
             if (!assistCalculateCateService.addUseCount(form.getAssistCalculateCateId(), 1)) {
                 throw new BizException("创建失败");

@@ -249,5 +249,41 @@
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+        <table tableName="tenant_sys_config" domainObjectName="TenantSysConfig" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="config_value" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+        <table tableName="subject" domainObjectName="Subject" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="balance_direction" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+            <columnOverride column="subject_type" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+        </table>
+        <table tableName="mq_msg"
+               domainObjectName="MqMsg" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="msg_status" javaType="java.lang.Integer" jdbcType="TINYINT"/>
+        </table>
+        <table tableName="voucher" domainObjectName="Voucher" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="voucher_subject_detail" domainObjectName="VoucherSubjectDetail" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="voucher_subject_assist_calculate_detail"
+               domainObjectName="VoucherSubjectAssistCalculateDetail" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

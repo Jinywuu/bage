@@ -233,7 +233,7 @@
   <sql id="Update_By_Example_Where_Clause">
    <where>
             <trim prefixOverrides="and | or">
-                <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <foreach collection="example.oredCriteria" item="criteria">
                     <if test="criteria.andOrOr">
                         and
                     </if>
@@ -374,7 +374,7 @@
     </foreach>
 </update>
 
-  <insert id="insertBatch" keyColumn="id" parameterType="java.util.List">
+  <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.Collection" useGeneratedKeys="true">
     insert into tenant (name, disable, create_time, update_time, admin_id, update_admin_id, del_flag) values
     <foreach collection="list" index="index" item="item" separator=",">
       <trim prefix="(" suffix=")" suffixOverrides=",">

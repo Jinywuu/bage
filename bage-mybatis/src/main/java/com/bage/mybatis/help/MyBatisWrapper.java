@@ -39,6 +39,7 @@ public class MyBatisWrapper<T> {
      */
     public MyBatisWrapper<T> select(DbField... fields) {
         if (fields == null || fields.length == 0) {
+            selectBuilder = new StringBuilder("*");
             return this;
         }
         if (selectBuilder == null) {
@@ -79,6 +80,54 @@ public class MyBatisWrapper<T> {
         if (Strings.isNotBlank(asName)) {
             selectBuilder.append(" as ");
             selectBuilder.append(asName);
+        }
+        return this;
+    }
+
+    public MyBatisWrapper<T> max(DbField field) {
+        return max(field, null);
+    }
+
+    public MyBatisWrapper<T> max(DbField field, String asName) {
+        if (selectBuilder == null) {
+            selectBuilder = new StringBuilder();
+        }
+
+        if (selectBuilder.length() > 0) {
+            selectBuilder.append(",");
+        }
+        selectBuilder.append("max(");
+        selectBuilder.append(field.getDbName());
+        selectBuilder.append(")");
+        selectBuilder.append(" as ");
+        if (Strings.isNotBlank(asName)) {
+            selectBuilder.append(asName);
+        } else {
+            selectBuilder.append(field.getDbName());
+        }
+        return this;
+    }
+
+    public MyBatisWrapper<T> min(DbField field) {
+        return min(field, null);
+    }
+
+    public MyBatisWrapper<T> min(DbField field, String asName) {
+        if (selectBuilder == null) {
+            selectBuilder = new StringBuilder();
+        }
+
+        if (selectBuilder.length() > 0) {
+            selectBuilder.append(",");
+        }
+        selectBuilder.append("min(");
+        selectBuilder.append(field.getDbName());
+        selectBuilder.append(")");
+        selectBuilder.append(" as ");
+        if (Strings.isNotBlank(asName)) {
+            selectBuilder.append(asName);
+        } else {
+            selectBuilder.append(field.getDbName());
         }
         return this;
     }

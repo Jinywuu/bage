@@ -58,3 +58,16 @@ ali:
     enable: true
     endpoint: dysmsapi.aliyuncs.com
     region: cn-hangzhou
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    # 生产者组
+    group: producer-group-1
+
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  scheme: http
+  apiKey: test

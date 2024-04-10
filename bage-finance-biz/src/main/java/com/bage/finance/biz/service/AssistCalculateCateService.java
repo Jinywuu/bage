@@ -9,6 +9,7 @@ import com.bage.finance.biz.dto.vo.ListCalculateCateVo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.List;
+import java.util.Set;
 
 public interface AssistCalculateCateService {
     /**
@@ -55,7 +56,7 @@ public interface AssistCalculateCateService {
      *
      * @return
      */
-    List<AssistCalculateCate> list(List<Long> ids);
+    List<AssistCalculateCate> list(Set<Long> ids);
 
 
     /**
@@ -83,4 +84,20 @@ public interface AssistCalculateCateService {
      * @return
      */
     boolean deductUseCount(long id, int count);
+
+    /**
+     * 增加辅助核算类别使用计数
+     *
+     * @param ids
+     * @return
+     */
+    boolean addUseCount(Set<Long> ids);
+
+    /**
+     * 扣减辅助核算类别使用计数
+     *
+     * @param ids
+     * @return
+     */
+    boolean deductUseCount(Set<Long> ids);
 }
