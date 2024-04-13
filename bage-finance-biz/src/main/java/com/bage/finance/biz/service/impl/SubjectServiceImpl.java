@@ -903,6 +903,9 @@ public class SubjectServiceImpl implements SubjectService {
      */
     @Override
     public Map<Long, String> getSubjectFullName(List<Subject> subjects) {
+        if (CollectionUtils.isEmpty(subjects)) {
+            return null;
+        }
         Map<Long, String> result = new HashMap<>();
         Map<Long, List<Subject>> parentSubjectList = getParentSubjectList(subjects);
         for (Map.Entry<Long, List<Subject>> entry : parentSubjectList.entrySet()) {
