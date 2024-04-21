@@ -240,6 +240,9 @@ public class SysResourceServiceImpl implements SysResourceService {
      */
     @Override
     public List<SysResource> listByIds(List<Integer> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            return null;
+        }
         MyBatisWrapper<SysResource> wrapper = new MyBatisWrapper<>();
         wrapper.select(Id, Path)
                 .whereBuilder()

@@ -226,6 +226,9 @@ public class SysMenuServiceImpl implements SysMenuService {
      */
     @Override
     public List<SysMenu> listByIds(List<Integer> ids) {
+        if (CollectionUtils.isEmpty(ids)) {
+            return null;
+        }
         MyBatisWrapper<SysMenu> wrapper = new MyBatisWrapper<>();
         wrapper.select(Id, Path)
                 .whereBuilder()
