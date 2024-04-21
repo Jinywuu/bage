@@ -668,7 +668,7 @@ public class VoucherServiceImpl implements VoucherService {
         Query query = Query.of(q -> q.matchAll(m -> m));
         // 否则构建组合查询
         BoolQuery.Builder boolQueryBuilder = new BoolQuery.Builder();
-        boolQueryBuilder.must(m -> m.match(t -> t.field("tenantId").query(tokenService.getThreadLocalTenantId())));
+        boolQueryBuilder.must(m -> m.term(t -> t.field("tenantId").value(tokenService.getThreadLocalTenantId())));
         if (Strings.isNotBlank(form.getNotes())) {
             boolQueryBuilder.must(m -> m.match(t -> t.field("notes").query(form.getNotes())));
         }
@@ -1125,11 +1125,13 @@ public class VoucherServiceImpl implements VoucherService {
         RLock rLock1 = redissonClient.getLock(RedisKeyConstant.SAVE_VOUCHER_LOCK + "0");
         // 创建 ThreadPoolExecutor
         ThreadPoolExecutor executor = null;
+        // 获取系统的CPU核心数
+        int cpuCores = Runtime.getRuntime().availableProcessors();
         try {
             rLock1.lock();
             executor = new ThreadPoolExecutor(
-                    16,  // 核心线程池大小
-                    24,  // 最大线程池大小
+                    cpuCores,  // 核心线程池大小
+                    cpuCores * 2,  // 最大线程池大小
                     60, // 线程空闲时间
                     TimeUnit.SECONDS, // 时间单位
                     new LinkedBlockingQueue<>(100)); // 任务队列
@@ -1157,7 +1159,7 @@ public class VoucherServiceImpl implements VoucherService {
                 CountDownLatch latch = new CountDownLatch(vouchers.size());
                 for (Voucher voucher : vouchers) {
                     executor.submit(() -> {
-                        RLock rLock = redissonClient.getLock(RedisKeyConstant.SAVE_VOUCHER_LOCK + voucher.getVoucherNumber());
+                        RLock rLock = redissonClient.getLock(RedisKeyConstant.SAVE_VOUCHER_LOCK + voucher.getTenantId() + ":" + voucher.getVoucherNumber());
                         try {
                             rLock.lock();
                             log.info("正在保存凭证到es：{}", voucher.getId());
@@ -1294,7 +1296,7 @@ public class VoucherServiceImpl implements VoucherService {
 
     private List<Voucher> list(long minId, int top) {
         MyBatisWrapper<Voucher> wrapper = new MyBatisWrapper<>();
-        wrapper.select(Id, VoucherNumber)
+        wrapper.select(Id, VoucherNumber, TenantId)
                 .whereBuilder()
                 .andGT(Id, minId)
                 .andEq(DelFlag, false);
